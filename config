@@ -269,14 +269,14 @@ deploymentConfigurations:
       ssl:
         enabled: true
         clientAuth: WANT
-      overrideBaseUrl: https://OVERRIDE_API_URL
+      overrideBaseUrl: https://deck.opsmx.com
     uiSecurity:
       ssl:
         enabled: true
         sslCertificateFile: /home/spinnaker/.hal/default/tls.crt
         sslCertificateKeyFile: /home/spinnaker/.hal/default/tls.key
         sslCertificatePassphrase: ''
-      overrideBaseUrl: https://OVERRIDE_DECK_URL
+      overrideBaseUrl: https://gate.opsmx.com
     authn:
       oauth2:
         enabled: false
