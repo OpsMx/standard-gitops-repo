@@ -1,0 +1,20 @@
+scheme: https
+artifactId: docker.io/opsmxdev/ubi8-oes-orca:2.14.2-mj2
+kubernetes:
+  useExecHealthCheck: true
+  customHealthCheckExecCommands: ["wget", "https://localhost:8083/health", "--spider", "-q", "--private-key", "/pkcs12/tls.key", "--certificate", "/pkcs12/tls.crt", "--ca-certificate", "/pkcs12/ca.crt"]
+  volumes:
+  - id: mtlscerts-pkcs12
+    mountPath: /pkcs12
+    type: secret
+    readOnly: true
+
+  - id: cacerts
+    mountPath: /etc/ssl/certs/java
+    type: secret
+    readOnly: true
+
+healthEndpoint: localhost
+overrideBaseUrl: https://spin-orca.SPINNAKER_NAMESPACE.svc:8083
+env:
+  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0 -Djdk.tls.client.protocols=TLSv1.2  -Djavax.net.ssl.keyStoreType=pkcs12 -Djavax.net.ssl.keyStore=/pkcs12/keystore.p12 -Djavax.net.ssl.keyStorePassword=changeit"

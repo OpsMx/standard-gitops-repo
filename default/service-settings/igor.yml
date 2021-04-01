@@ -1,0 +1,20 @@
+scheme: https
+artifactId: docker.io/opsmxdev/ubi8-oes-igor:1.10.0
+kubernetes:
+  useExecHealthCheck: true
+  customHealthCheckExecCommands: ["wget", "https://localhost:8088/health", "--spider", "-q", "--private-key", "/pkcs12/tls.key", "--certificate", "/pkcs12/tls.crt", "--ca-certificate", "/pkcs12/ca.crt"]
+  volumes:
+  - id: mtlscerts-pkcs12
+    mountPath: /pkcs12
+    type: secret
+    readOnly: true
+
+  - id: cacerts
+    mountPath: /etc/ssl/certs/java
+    type: secret
+    readOnly: true
+
+healthEndpoint: localhost
+env:
+  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
+overrideBaseUrl: https://spin-igor.SPINNAKER_NAMESPACE.svc:8088
