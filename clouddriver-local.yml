@@ -1,0 +1,20 @@
+kubernetes:
+  enabled: true
+  accounts:
+  - name: k8stest1
+    requiredGroupMembership: []
+    providerVersion: V2
+    permissions: {}
+    dockerRegistries: []
+    configureImagePullSecrets: true
+    cacheThreads: 1
+    namespaces: []
+    omitNamespaces: []
+    kinds: []
+    omitKinds: []
+    customResources: []
+    cachingPolicies: []
+    kubeconfigFile: configserver:kubecfgsDir/k8s_test.cfg
+    liveManifestCalls: true
+    oAuthScopes: []
+    onlySpinnakerManaged: false
