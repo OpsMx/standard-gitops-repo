@@ -14,4 +14,4 @@
     kubeconfigFile: configserver:kubecfgsDir/k8s_${acname}.cfg
     liveManifestCalls: true
     oAuthScopes: []
-    onlySpinnakerManaged: false
+    onlySpinnakerManaged: true
