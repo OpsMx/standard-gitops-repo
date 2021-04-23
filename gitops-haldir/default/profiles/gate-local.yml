@@ -1,28 +1,7 @@
-default:
-  apiPort: 8085
-  legacyServerPort: 9001
-x509:
-  enabled: true
 server:
   tomcat:
     httpsServerPort: X-Forwarded-Port
     internalProxies: .*
     protocolHeader: X-Forwarded-Proto
     remoteIpHeader: X-Forwarded-For
-  port: 8084
-  ssl:
-    enabled: true
-    keyStore: /pkcs12/keystore.p12
-    keyStoreType: PKCS12
-    keyStorePassword: changeit  # from the passphrase secret
-    trustStore: /etc/ssl/certs/java/cacerts
-    trustStoreType: JKS
-    trustStorePassword: changeit # from the passphrase secret
-    clientAuth: need
-okHttpClient:
-  keyStore: /pkcs12/keystore.p12
-  keyStorePassword: changeit # from he passphrase secret
-  trustStore: /etc/ssl/certs/java/cacerts
-  propagateSpinnakerHeaders: true
-  connectTimeoutMs: 60000
-  readTimeoutMs: 60000
+  
