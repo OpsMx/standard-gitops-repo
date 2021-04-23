@@ -113,7 +113,7 @@ deploymentConfigurations:
       enabled: false
     vault:
       enabled: false
-    location: gitops-test-spin
+    location: SPINNAKER_NAMESPACE
     customSizing:
       spin-front50:
         limits:
