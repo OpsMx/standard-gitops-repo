@@ -3,7 +3,7 @@ kubernetes:
   accounts:
   - name: k8stest1
     requiredGroupMembership: []
-    providerVersion: V2
+    providerVersion: v2
     permissions: {}
     dockerRegistries: []
     configureImagePullSecrets: true
@@ -16,5 +16,4 @@ kubernetes:
     cachingPolicies: []
     kubeconfigFile: configserver:kubecfgsDir/k8s_test.cfg
     liveManifestCalls: true
-    oAuthScopes: []
     onlySpinnakerManaged: false
