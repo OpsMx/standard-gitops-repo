@@ -1,3 +1,0 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-front50:0.26.1
-env:
-  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"

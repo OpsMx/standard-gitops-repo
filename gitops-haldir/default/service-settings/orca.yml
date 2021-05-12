@@ -1,3 +1,0 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2.18.0
-env:
-  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"

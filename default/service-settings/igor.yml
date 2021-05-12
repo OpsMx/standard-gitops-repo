@@ -1,0 +1,17 @@
+artifactId: quay.io/opsmxpublic/ubi8-spin-igor:1.14.0
+kubernetes:
+  volumes:
+  #- id: ca-trust-bundle
+  #  mountPath: /etc/pki/ca-trust/extracted/openssl
+  #  type: secret
+  #  readOnly: true
+  #- id: tls-ca-bundle
+  #  mountPath: /etc/pki/ca-trust/extracted/pem
+  #  type: secret
+  #  readOnly: true
+  - id: oes-cacerts
+    mountPath: /etc/pki/ca-trust/extracted/java
+    type: secret
+    readOnly: true
+env:
+  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"

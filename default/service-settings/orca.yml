@@ -1,0 +1,9 @@
+artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2.18.0
+kubernetes:
+  volumes:
+  - id: oes-cacerts
+    mountPath: /etc/ssl/certs/java
+    type: secret
+    readOnly: true
+env:
+  JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"

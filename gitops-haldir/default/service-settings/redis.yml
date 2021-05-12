@@ -1,2 +1,0 @@
-overrideBaseUrl: redis://:password@RELEASE_NAME-redis-master:6379
-skipLifeCycleManagement: true
