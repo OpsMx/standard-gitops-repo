@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  ########################################################################
+  ########################################################################
+  name: opsmx-services-demo-agent  ## REPLACE "demo-agent" agent-name
+  ########################################################################
+  ########################################################################
+  labels:
+    agent.opsmx.com/name: agent1
+    agent.opsmx.com/role: agent
+data:
+  services.yaml: |
+    services:
+      - name: demo-jenkins
+        type: jenkins
+        enabled: true
+        config:
+          url: https://jenkins.example.com
+          credentials:
+            type: basic
+            secretName: opsmxspin-jenkins
+      - name: jenkins-inline-pass
+        type: jenkins
+        enabled: true
+        config:
+          url: https://jenkins.example.com
+          username: BASE64-encoded-username
+          password: BASE64-encoded-password
+      - name: demo-cluster
+        type: kubernetes
+        enabled: true
+        namespaces:
+        - name: ninja
+          namespaces:
+            - ninja-srini
+            - ninja-yeshaswini
+      - name: demo-artifactory
+        type: artifactory
+        enabled: true
+        config:
+          url: https://artifactory.example.com/
+          repo: example-repo-local
+          credentials:
+            type: basic
+            secretName: opsmx-artifactory
+      - name: demo-bitbucket
+        type: bitbucket
+        enabled: true
+        config:
+          url: https://bitbucket.org/
+          credentials:
+            type: basic
+            secretName: opsmx-bitbucket
+ 
+   
