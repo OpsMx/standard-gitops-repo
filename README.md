@@ -18,5 +18,5 @@ This folder
 Helm-package that goes with this
 A pipeline that executes that re-creates the halyard-pod (How?) and executes the hal-deploy-apply job.
 
-*SAMPLES
+#SAMPLES#
 This folder contains sample values.yaml and agent configuration files.
