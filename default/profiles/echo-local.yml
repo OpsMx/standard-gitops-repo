@@ -1,0 +1,6 @@
+rest:
+  enabled: true
+  endpoints:
+    - 
+      wrap: false
+      url: https://spin2-gate.srini-k8s121.opsmx.net/oes/echo   # ----> [Note: This url should be our ns spinnaker gate url]
