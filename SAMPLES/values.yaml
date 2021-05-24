@@ -416,7 +416,7 @@ sapor:
   image:
     registry: quay.io/opsmxpublic
     repository: ubi8-oes-sapor
-    tag: v3.7
+    tag: v3.7.0.1
     pullPolicy: IfNotPresent
 
   resources: {}
