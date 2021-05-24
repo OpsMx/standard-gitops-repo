@@ -13,7 +13,7 @@ imagePullSecret: opsmxdev-secret
 ## Quay container image registry credentials to create imagePullSecret
 ##
 imageCredentials:
-  registry: https://docker.io/
+  registry: https://quay.io/
   username: username
   password: password
   email: info@opsmx.com   # email corresponding to quay registry ID
@@ -40,8 +40,11 @@ installRedis: false
 ## Available installation modes OES-AP, None
 installationMode: OES-AP
 oesAutoConfiguration: true  # Attempt to configure OES with some basic integrations based on best guess
-secretStore: db # Valid values: db, Vault: Used for storing account and integration secrets. Vault, if used, needs to be installed and configured separately
-
+secretStore: vault # Valid values: db, Vault: Used for storing account and integration secrets. Vault, if used, needs to be installed and configured separately
+vault:
+  address: https://server.vaultint.opsmx.net # Vault Address URL
+  token: 123132 # Vault Root token
+  
 ## OES UI, OES Gate, Spinnaker Deck and Spinnaker Gate service type
 ##
 k8sServiceType: ClusterIP
@@ -183,9 +186,9 @@ autopilot:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-autopilot
-    tag: 6f0c63d3b-2328
+    tag: v3.7
     pullPolicy: IfNotPresent
 
 
@@ -231,9 +234,9 @@ dashboard:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-dashboard
-    tag: 961b141-1458
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -281,9 +284,9 @@ gate:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-gate
-    tag: v0.202105191330
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -357,9 +360,9 @@ platform:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-platform
-    tag: 2cbfe94-1486
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -411,9 +414,9 @@ sapor:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-sapor
-    tag: v0.202105191233
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -490,9 +493,9 @@ ui:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-ui
-    tag: v0.202105190921
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   config:
@@ -509,9 +512,9 @@ visibility:
   ## Image specific details
   ##
   image:
-    registry: opsmx11
+    registry: opsmxpublic
     repository: oes-visibility
-    tag: d7c62f2-1479
+    tag: v3.7
     pullPolicy: IfNotPresent
 
   resources: {}
