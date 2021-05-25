@@ -40,7 +40,7 @@ installRedis: false
 ## Available installation modes OES-AP, None
 installationMode: OES-AP
 oesAutoConfiguration: true  # Attempt to configure OES with some basic integrations based on best guess
-secretStore: vault # Valid values: db, Vault: Used for storing account and integration secrets. Vault, if used, needs to be installed and configured separately
+secretStore: db # Valid values: db, Vault: Used for storing account and integration secrets. Vault, if used, needs to be installed and configured separately
 vault:
   address: https://server.vaultint.opsmx.net # Vault Address URL
   token: 123132 # Vault Root token
