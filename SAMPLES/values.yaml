@@ -188,7 +188,7 @@ autopilot:
   image:
     registry: quay.io/opsmxpublic
     repository: ubi8-oes-autopilot
-    tag: v3.7
+    tag: v3.7.0.1
     pullPolicy: IfNotPresent
 
 
@@ -362,7 +362,7 @@ platform:
   image:
     registry: quay.io/opsmxpublic
     repository: ubi8-oes-platform
-    tag: v3.7
+    tag: v3.7.0.1
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -495,7 +495,7 @@ ui:
   image:
     registry: quay.io/opsmxpublic
     repository: ubi8-oes-ui
-    tag: v3.7.0.1
+    tag: v3.7.0.2
     pullPolicy: IfNotPresent
 
   config:
