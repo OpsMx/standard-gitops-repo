@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  ########################################################################
+  ########################################################################
+  name: opsmx-services-demo-agent  ## REPLACE "demo-agent" agent-name
+  ########################################################################
+  ########################################################################
+  labels:
+    agent.opsmx.com/name: agent1
+    agent.opsmx.com/role: agent
+data:
+  services.yaml: |
+    services:
+      - name: demo-cluster
+        type: kubernetes
+        enabled: true
+        namespaces:
+        - name: test
+          namespaces:
+            - ninja-1
+            - ninja-2
+        - name: dev
+          namespaces:
+            - ninja-3
+            - ninja-4
+ 
+   

@@ -12,21 +12,23 @@ metadata:
 data:
   services.yaml: |
     services:
-      - name: demo-jenkins
+      - name: dev-jenkins
         type: jenkins
         enabled: true
         config:
-          url: https://jenkins.example.com
+          url: https://dev-jenkins.opsmx.com
           credentials:
             type: basic
             secretName: opsmxspin-jenkins
-      - name: jenkins-inline-pass
+      - name: dev-jen-inline-pass
         type: jenkins
         enabled: true
         config:
-          url: https://jenkins.example.com
-          username: BASE64-encoded-username
-          password: BASE64-encoded-password
+          url: http://jenkins.opsmx.net:8181/jenkins/
+          #credentials:
+          #  type: basic
+          #  username: b3BzbkZXY=
+          #  password: QnVtYlYmVlQDEyMyQ=
       - name: demo-cluster
         type: kubernetes
         enabled: true
@@ -35,7 +37,11 @@ data:
           namespaces:
             - ninja-srini
             - ninja-yeshaswini
-      - name: demo-artifactory
+        - name: dev-ns
+          namespaces:
+            - ninja-susmitha
+            - ninja-vamsi
+      - name: dev-artifactory
         type: artifactory
         enabled: true
         config:
@@ -44,7 +50,7 @@ data:
           credentials:
             type: basic
             secretName: opsmx-artifactory
-      - name: demo-bitbucket
+      - name: dev-bitbucket
         type: bitbucket
         enabled: true
         config:
