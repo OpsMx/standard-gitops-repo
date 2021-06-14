@@ -43,7 +43,7 @@ job:
                   containers:
                   - command: ["bash", "scripts/deployer.sh"]
                     image: 'opsmxdev/pipepromot:1.0'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: pipepromot
                     volumeMounts:
                     - mountPath: /home/opsmx/scripts
@@ -160,7 +160,7 @@ job:
                   containers:
                   - command: ["bash", "scripts/deployer.sh"]
                     image: 'opsmxdev/pipepromot:1.0'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: pipepromot
                     volumeMounts:
                     - mountPath: /home/opsmx/scripts
@@ -313,7 +313,7 @@ job:
                       - name: executionid
                         value: "${execution.id}"
                     image: 'opsmxdev/policy:v2'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: policystage
                 restartPolicy: Never
       - label: VerificationGate
@@ -418,7 +418,7 @@ job:
                       - name: executionid
                         value: "${execution.id}"
                     image: 'opsmxdev/verificationgate-stage:v2'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: verificationgate
                 restartPolicy: Never
       - label: VisibilityApproval
@@ -553,7 +553,7 @@ job:
                       - name: executionid
                         value: "${execution.id}"
                     image: 'opsmxdev/visibility-stage:v2'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: visibilityapprove
                 restartPolicy: Never
       - label: TestVerification
@@ -679,7 +679,7 @@ job:
                       - name: executionid
                         value: "${execution.id}"
                     image: 'opsmxdev/testverification:v2'
-                    imagePullPolicy: Always
+                    imagePullPolicy: IfNotPresent
                     name: testverification
                 restartPolicy: Never
 webhook:
