@@ -198,7 +198,7 @@ db:
   ##
   #storageClassName: default
 ###############################################################################
-## Use this SAPOR GATE Configuration to Enable Basic Authentication for OES SAPOR to communitcate 
+## Use this SAPOR GATE Configuration to Enable Basic Authentication for OES SAPOR to communitcate
 ## with spinnaker instead of x509
 ## Values of SAPOR OES Gate
 ##
@@ -577,8 +577,6 @@ visibility:
 
     ## Logger level
     logLevel: ERROR
-
-
 
 ###############################################################################
 ## This option enables OES to be configured automatically
@@ -1022,24 +1020,26 @@ spinnaker:
   gitopsHalyard:
     enabled: true
     repo:
-      type: git # git, S3, stash use a different sample values file for s3/bitbuck-stash
-      organization: OpsMx
-      repository: standard-gitops-repo # repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
-      dynamicAccRepository: standard-gitops-repo # Please provide the repo name of the GitOps Dynamic Accounts Directory.Can be same as Hal repo. 
-      halConfigPath: / # Any other value is currently not supported
-      username: <GitHub_UserName>
-      token: <GitHub_Token>
+      type: stash # git, S3, stash, only git support at this point
+      baseUrlHostName: bbdev.opsmx.com    #  https://  bbdev.opsmx.com /scm /ksrin /test38.git
+      organization: scm                   #  https://  bbdev.opsmx.com /scm /ksrin /test38.git
+      projectName: ksrin                  #  https://  bbdev.opsmx.com /scm /ksrin /test38.git
+      repository: test38                  #  https://  bbdev.opsmx.com /scm /ksrin /test38.git
+      dynamicAccRepository: test38        #  https://  bbdev.opsmx.com /scm /ksrin /test38.git
+      username: <user name>               # Authenticating User-Name
+      token:  <password>                  # Authenticating password
     secretName: opsmx-gitops-auth
     # Promote applications and pipelines from one environment to another or take backup
-    pipelinePromotion:  # guthub only,  Not supportd on S3 or Stash
+    pipelinePromotion:  # only git Hub is supported for pipline promotion
       enabled: true
-      organization: <e.g. opsmx>
-      repository: <any empty repo>
-      username: <GitHub_UserName>
-      usermail: <GitHub_Usermail>
-      token: <GitHub_Token>
-      executionNamespace: default   # Do not change
-      executionAccountName: default # Do not change
+      baseURL: https://bbdev.opsmx.com
+      organization: scm
+      projectName: ksrin
+      repository: test38
+      dynamicAccRepository: test38
+      halConfigPath: / # Any other value is currently not supported
+      username: <user name>               # Authenticating User-Name
+      token:  <password>                  # Authenticating password
     ## x509 authentication for Spinnaker Gate
     gatex509:
       enabled: false
