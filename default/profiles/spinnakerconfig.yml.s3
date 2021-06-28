@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include: awss3
+  cloud:
+    config:
+      server:
+        awss3:
+          region: AWS_S3_REGION
+          bucket: AWS_S3_BUCKET
