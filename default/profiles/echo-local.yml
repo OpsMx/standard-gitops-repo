@@ -4,3 +4,6 @@ rest:
     - 
       wrap: false
       url: http://oes-sapor:8085/oes/echo   # ----> [Note: This url should be our SAPOR url]
+
+microsoftteams:
+  enabled: true

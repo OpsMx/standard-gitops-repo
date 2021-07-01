@@ -35,7 +35,7 @@ job:
             kind: Job
             metadata:
               generateName: pipepromot-
-              namespace: default
+              namespace: SPINNAKER_NAMESPACE
             spec:
               backoffLimit: 0
               template:
@@ -48,6 +48,8 @@ job:
                     volumeMounts:
                     - mountPath: /home/opsmx/scripts
                       name: pipe-promot-scripts
+                    - mountPath: /home/opsmx/config
+                      name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
                     env:
@@ -57,67 +59,21 @@ job:
                         value: 'will be replaced'
                       - name: command
                         value: 'upload'
-                      - name: git_friendly_username
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_friendly_username
-                      - name: git_friendly_username
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_friendly_username
-                      - name: git_project
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_project
-                      - name: git_refresh_enabled
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_refresh_enabled
-                      - name: git_repo
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_repo
-                      - name: git_user_email
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_user_email
-                      - name: ignore_spin_errors
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: ignore_spin_errors
                       - name: git_secret_token
                         valueFrom:
                           secretKeyRef:
                             name: git-token
                             key: git_secret_token
-                      - name: debug
+                      - name: git_pr_token
                         valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: debug
-                      - name: pipelineconfig
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelineconfig
-                      - name: pipelineconfigdir
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelineconfigdir
-                      - name: pipelinecreateconf
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelinecreateconf
+                          secretKeyRef:
+                            name: git-token
+                            key: git_pr_token
                   volumes:
+                  - configMap:
+                      defaultMode: 420
+                      name: pipe-promot-config
+                    name: pipe-promot-config
                   - configMap:
                       defaultMode: 420
                       name: pipe-promot-scripts
@@ -152,7 +108,7 @@ job:
             kind: Job
             metadata:
               generateName: pipepromot-
-              namespace: default
+              namespace: SPINNAKER_NAMESPACE
             spec:
               backoffLimit: 0
               template:
@@ -165,6 +121,8 @@ job:
                     volumeMounts:
                     - mountPath: /home/opsmx/scripts
                       name: pipe-promot-scripts
+                    - mountPath: /home/opsmx/config
+                      name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
                     env:
@@ -174,67 +132,21 @@ job:
                         value: 'will be replaced'
                       - name: command
                         value: 'download'
-                      - name: git_friendly_username
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_friendly_username
-                      - name: git_friendly_username
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_friendly_username
-                      - name: git_project
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_project
-                      - name: git_refresh_enabled
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_refresh_enabled
-                      - name: git_repo
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_repo
-                      - name: git_user_email
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: git_user_email
-                      - name: ignore_spin_errors
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: ignore_spin_errors
                       - name: git_secret_token
                         valueFrom:
                           secretKeyRef:
                             name: git-token
                             key: git_secret_token
-                      - name: debug
+                      - name: git_pr_token
                         valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: debug
-                      - name: pipelineconfig
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelineconfig
-                      - name: pipelineconfigdir
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelineconfigdir
-                      - name: pipelinecreateconf
-                        valueFrom:
-                          configMapKeyRef:
-                            name: pipe-promot-config
-                            key: pipelinecreateconf
+                          secretKeyRef:
+                            name: git-token
+                            key: git_pr_token
                   volumes:
+                  - configMap:
+                      defaultMode: 420
+                      name: pipe-promot-config
+                    name: pipe-promot-config
                   - configMap:
                       defaultMode: 420
                       name: pipe-promot-scripts
@@ -283,7 +195,7 @@ job:
           kind: Job
           metadata:
             generateName: policystage-
-            namespace: default
+            namespace: SPINNAKER_NAMESPACE
           spec:
             backoffLimit: 0
             template:
@@ -380,7 +292,7 @@ job:
           kind: Job
           metadata:
             generateName: verificationgate-
-            namespace: default
+            namespace: SPINNAKER_NAMESPACE
           spec:
             backoffLimit: 0
             template:
@@ -511,7 +423,7 @@ job:
           kind: Job
           metadata:
             generateName: visibilityapprove-
-            namespace: default 
+            namespace: SPINNAKER_NAMESPACE 
           spec:
             backoffLimit: 0
             template:
@@ -635,7 +547,7 @@ job:
           kind: Job
           metadata:
             generateName: testverification-
-            namespace: default
+            namespace: SPINNAKER_NAMESPACE
           spec:
             backoffLimit: 0
             template:
