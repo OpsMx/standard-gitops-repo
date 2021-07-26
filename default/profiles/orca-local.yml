@@ -468,6 +468,7 @@ job:
                         value: "${execution.id}"
                       - name: user
                         value: "${execution.authentication.user}"
+                    image: 'opsmxdev/visibility-stage:v2.1'
                     imagePullPolicy: IfNotPresent
                     name: visibilityapprove
                 restartPolicy: Never
