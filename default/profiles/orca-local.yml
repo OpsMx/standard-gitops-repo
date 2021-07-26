@@ -329,7 +329,9 @@ job:
                         value: "${{execution.startTime} .toString()}"
                       - name: executionid
                         value: "${execution.id}"
-                    image: 'opsmxdev/verificationgate-stage:v2'
+                      - name: user
+                        value: "${execution.authentication.user}"
+                    image: 'opsmxdev/verificationgate-stage:v2.1'
                     imagePullPolicy: IfNotPresent
                     name: verificationgate
                 restartPolicy: Never
@@ -464,7 +466,8 @@ job:
                         value:
                       - name: executionid
                         value: "${execution.id}"
-                    image: 'opsmxdev/visibility-stage:v2'
+                      - name: user
+                        value: "${execution.authentication.user}"
                     imagePullPolicy: IfNotPresent
                     name: visibilityapprove
                 restartPolicy: Never
@@ -590,7 +593,9 @@ job:
                         value: "${{execution.startTime} .toString()}"
                       - name: executionid
                         value: "${execution.id}"
-                    image: 'opsmxdev/testverification:v2'
+                      - name: user
+                        value: "${execution.authentication.user}"
+                    image: 'opsmxdev/testverification:v2.1'
                     imagePullPolicy: IfNotPresent
                     name: testverification
                 restartPolicy: Never
