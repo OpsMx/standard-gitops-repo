@@ -1,3 +1,3 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-front50:0.26.1-opa
+artifactId: quay.io/opsmxpublic/ubi8-oes-front50:0.27.1
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
