@@ -1,7 +1,7 @@
 currentDeployment: "default"
 deploymentConfigurations:
 - name: "default"
-  version: "1.24.2"
+  version: "1.26.6"
   providers:
     appengine:
       enabled: false
@@ -113,106 +113,7 @@ deploymentConfigurations:
       enabled: false
     vault:
       enabled: false
-    location: SPINNAKER_NAMESPACE
-    customSizing:
-      spin-front50:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
-        requests:
-          memory: "650Mi"
-          cpu: "500m"
-      spin-echo-scheduler:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
-        requests:
-          cpu: "300m"
-          memory: "128Mi"
-      spin-echo-worker:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
-        requests:
-          cpu: "300m"
-          memory: "128Mi"
-      spin-clouddriver:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
-        requests:
-          cpu: "500m"
-          memory: "512Mi"
-      spin-clouddriver-caching:
-        limits:
-          cpu: "2000m"
-          memory: "2Gi"
-        requests:
-          cpu: "500m"
-          memory: "512Mi"
-      spin-clouddriver-ro-deck:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
-        requests:
-          cpu: "500m"
-          memory: "512Mi"
-      spin-clouddriver-ro:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
-        requests:
-          cpu: "500m"
-          memory: "512Mi"
-      spin-clouddriver-rw:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
-        requests:
-          cpu: "500m"
-          memory: "512Mi"
-      spin-deck:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
-        requests:
-          memory: "64Mi"
-          cpu: "50m"
-      spin-gate:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
-        requests:
-          memory: "650Mi"
-          cpu: "300m"
-      spin-igor:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
-        requests:
-          memory: "650Mi"
-          cpu: "100m"
-      spin-rosco:
-        limits:
-          cpu: "2000m"
-          memory: "1000Mi"
-        requests:
-          memory: "1000Mi"
-          cpu: "100m"
-      spin-echo:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
-        requests:
-          memory: "512Mi"
-          cpu: "100m"
-      spin-orca:
-        limits:
-          cpu: "2000m"
-          memory: "1000Mi"
-        requests:
-          memory: "1000Mi"
-          cpu: "500m"
+    location: "SPINNAKER_NAMESPACE"
     sidecars: {}
     initContainers: {}
     hostAliases: {}
@@ -225,10 +126,10 @@ deploymentConfigurations:
       enabled: false
     haServices:
       clouddriver:
-        enabled: true
+        enabled: false
         disableClouddriverRoDeck: false
       echo:
-        enabled: true
+        enabled: false
   persistentStorage:
     persistentStoreType: "s3"
     azs: {}
@@ -298,11 +199,11 @@ deploymentConfigurations:
     apiSecurity:
       ssl:
         enabled: false
-      overrideBaseUrl: https://OVERRIDE_API_URL
+      overrideBaseUrl: "https://OVERRIDE_API_URL"
     uiSecurity:
       ssl:
         enabled: false
-      overrideBaseUrl: https://OVERRIDE_DECK_URL
+      overrideBaseUrl: "https://OVERRIDE_DECK_URL"
     authn:
       oauth2:
         enabled: false
@@ -332,7 +233,7 @@ deploymentConfigurations:
           roleProviderType: "FILE"
         ldap:
           roleProviderType: "LDAP"
-      enabled: false
+      enabled: true
   artifacts:
     bitbucket:
       enabled: false
@@ -409,7 +310,7 @@ deploymentConfigurations:
     trust:
       enabled: false
   stats:
-    enabled: true
+    enabled: false
     endpoint: "https://stats.spinnaker.io"
     instanceId: "01EKYADM081RQT4KAZKBPKMZK7"
     deploymentMethod: {}
