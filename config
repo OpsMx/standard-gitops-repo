@@ -126,10 +126,10 @@ deploymentConfigurations:
       enabled: false
     haServices:
       clouddriver:
-        enabled: false
+        enabled: true
         disableClouddriverRoDeck: false
       echo:
-        enabled: false
+        enabled: true
   persistentStorage:
     persistentStoreType: "s3"
     azs: {}
