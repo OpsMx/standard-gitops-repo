@@ -16,7 +16,7 @@ job:
         credentials: default
         description: Update git with pipelines in Spinnaker
         account: default
-        application: gitopsHalyard.pipelinePromotion
+        application: sampleapp
         type: pipelineSyncToGit
         waitForCompletion: true
         parameters:
@@ -89,7 +89,7 @@ job:
         credentials: default
         description: Sync Spinnaker pipelines from git
         account: default
-        application: gitopsHalyard.pipelinePromotion
+        application: sampleapp
         type: pipelineSyncToSpinnaker
         waitForCompletion: true
         parameters:
