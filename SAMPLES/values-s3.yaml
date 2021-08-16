@@ -59,15 +59,6 @@ spinnaker:
       deleteOnSyncSpin: true
       #not implemented
       deleteOnSyncRepo: false
-    ## x509 authentication for Spinnaker Gate
-    gatex509:
-      enabled: false
-      host: spingate-x509.domain.com
-    # Max time(in secs) that an init container of halyard should wait
-    # to fetch External Load Balancer IP of spin-deck and spin-gate
-    spinnakerLBCheckDelay: 1 # This is only used if not using ingress
-    mTLS:
-      enabled: false # Enable mTLS for Spinnaker Services and SSL for Deck and Gate
 
   ## Auth mechanism and credentials to be used by spin-cli for creating the sample pipelines
   ## Here basic ldap auth is used by default; everything under spinCli will be pasted in ~/.spin/config
