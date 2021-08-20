@@ -1,7 +1,7 @@
 currentDeployment: "default"
 deploymentConfigurations:
 - name: "default"
-  version: "1.26.6"
+  version: "local:1.26.6"
   providers:
     appengine:
       enabled: false
@@ -113,7 +113,68 @@ deploymentConfigurations:
       enabled: false
     vault:
       enabled: false
-    location: "SPINNAKER_NAMESPACE"
+    location: SPINNAKER_NAMESPACE
+    customSizing:
+      front50:
+        requests:
+          memory: "650Mi"
+          cpu: "500m"
+      echo-scheduler:
+        requests:
+          cpu: "300m"
+          memory: "128Mi"
+      echo-worker:
+        requests:
+          cpu: "300m"
+          memory: "128Mi"
+      clouddriver:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      clouddriver-caching:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      clouddriver-ro-deck:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      clouddriver-ro:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      clouddriver-rw:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      deck:
+        requests:
+          memory: "64Mi"
+          cpu: "50m"
+      gate:
+        requests:
+          memory: "650Mi"
+          cpu: "300m"
+      igor:
+        requests:
+          memory: "650Mi"
+          cpu: "100m"
+      rosco:
+        requests:
+          memory: "1000Mi"
+          cpu: "100m"
+      echo:
+        requests:
+          memory: "512Mi"
+          cpu: "100m"
+      orca:
+        requests:
+          memory: "1000Mi"
+          cpu: "500m"
+      monitoring-daemon:
+        requests:
+          memory: 70Mi
+          cpu: 100m
     sidecars: {}
     initContainers: {}
     hostAliases: {}
@@ -199,11 +260,11 @@ deploymentConfigurations:
     apiSecurity:
       ssl:
         enabled: false
-      overrideBaseUrl: "https://OVERRIDE_API_URL"
+      overrideBaseUrl: https://OVERRIDE_API_URL
     uiSecurity:
       ssl:
         enabled: false
-      overrideBaseUrl: "https://OVERRIDE_DECK_URL"
+      overrideBaseUrl: https://OVERRIDE_DECK_URL
     authn:
       oauth2:
         enabled: false
@@ -233,7 +294,7 @@ deploymentConfigurations:
           roleProviderType: "FILE"
         ldap:
           roleProviderType: "LDAP"
-      enabled: true
+      enabled: false
   artifacts:
     bitbucket:
       enabled: false
@@ -310,7 +371,7 @@ deploymentConfigurations:
     trust:
       enabled: false
   stats:
-    enabled: false
+    enabled: true
     endpoint: "https://stats.spinnaker.io"
     instanceId: "01EKYADM081RQT4KAZKBPKMZK7"
     deploymentMethod: {}
