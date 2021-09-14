@@ -9,6 +9,7 @@ spring:
           username: GIT_USER
           password: GIT_TOKEN
           basedir: /tmp/config-repo
+          #defaultLabel: master
           refresh-rate: 10
 encrypt:
   key: Q7udUkHPuA3VnNlOtksSgQ
