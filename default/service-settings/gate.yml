@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-gate:1.20.0
+artifactId: quay.io/opsmxpublic/ubi8-spin-gate:1.22.0
 healthEndpoint: /health
 kubernetes:
   useExecHealthCheck: false
