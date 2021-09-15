@@ -4,4 +4,27 @@ server:
     internalProxies: .*
     protocolHeader: X-Forwarded-Proto
     remoteIpHeader: X-Forwarded-For
-  
+spinnaker:
+  extensibility:
+    plugins:
+    deck-proxy:
+      enabled: true
+      plugins:
+        Opsmx.VerificationGatePlugin:
+          enabled: true
+          version: 1.0.1
+        Opsmx.TestVerificationGatePlugin:
+          enabled: true
+          version: 1.0.1
+        Opsmx.PolicyGatePlugin:
+          enabled: true
+          version: 1.0.1
+        Opsmx.CustomStagePlugin:
+          enabled: true
+          version: 1.0.1
+        Opsmx.VisibilityApprovalPlugin:
+          enabled: true
+          version: 1.0.1
+    repositories:
+      opsmx-repo:
+        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json

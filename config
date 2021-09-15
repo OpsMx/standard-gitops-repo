@@ -115,104 +115,66 @@ deploymentConfigurations:
       enabled: false
     location: SPINNAKER_NAMESPACE
     customSizing:
-      spin-front50:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
+      front50:
         requests:
           memory: "650Mi"
           cpu: "500m"
-      spin-echo-scheduler:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
+      echo-scheduler:
         requests:
           cpu: "300m"
           memory: "128Mi"
-      spin-echo-worker:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
+      echo-worker:
         requests:
           cpu: "300m"
           memory: "128Mi"
-      spin-clouddriver:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
+      clouddriver:
         requests:
           cpu: "500m"
           memory: "512Mi"
-      spin-clouddriver-caching:
-        limits:
-          cpu: "2000m"
-          memory: "2Gi"
+      clouddriver-caching:
         requests:
           cpu: "500m"
           memory: "512Mi"
-      spin-clouddriver-ro-deck:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
+      clouddriver-ro-deck:
         requests:
           cpu: "500m"
           memory: "512Mi"
-      spin-clouddriver-ro:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
+      clouddriver-ro:
         requests:
           cpu: "500m"
           memory: "512Mi"
-      spin-clouddriver-rw:
-        limits:
-          cpu: "2000m"
-          memory: "1Gi"
+      clouddriver-rw:
         requests:
           cpu: "500m"
           memory: "512Mi"
-      spin-deck:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
+      deck:
         requests:
           memory: "64Mi"
           cpu: "50m"
-      spin-gate:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
+      gate:
         requests:
           memory: "650Mi"
           cpu: "300m"
-      spin-igor:
-        limits:
-          cpu: "2000m"
-          memory: "650Mi"
+      igor:
         requests:
           memory: "650Mi"
           cpu: "100m"
-      spin-rosco:
-        limits:
-          cpu: "2000m"
-          memory: "1000Mi"
+      rosco:
         requests:
           memory: "1000Mi"
           cpu: "100m"
-      spin-echo:
-        limits:
-          cpu: "2000m"
-          memory: "512Mi"
+      echo:
         requests:
           memory: "512Mi"
           cpu: "100m"
-      spin-orca:
-        limits:
-          cpu: "2000m"
-          memory: "1000Mi"
+      orca:
         requests:
           memory: "1000Mi"
           cpu: "500m"
+      monitoring-daemon:
+        requests:
+          memory: 70Mi
+          cpu: 100m
     sidecars: {}
     initContainers: {}
     hostAliases: {}
