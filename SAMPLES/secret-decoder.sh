@@ -29,10 +29,10 @@ value=$(echo $value | sed -e 's`[][\\/.*^$]`\\&`g')
 checkValid=$(echo ${keyName}:${value} | grep '_')
 if [[ $checkValid != "" ]];
 then
-  echo "Underscore charecter, _ , is not allowed key or value of a secret. If required change the script to use another charecter"
+  echo "Questionmark charecter, ? , is not allowed key or value of a secret. If required change the script to use another charecter"
   exit 1
 fi
 #echo $value
-echo "$line" | sed s_encrypted:$secretName:${keyName}_${value}_
+echo "$line" | sed s?encrypted:$secretName:${keyName}?${value}?
 fi
 done 
