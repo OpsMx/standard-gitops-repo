@@ -371,4 +371,4 @@ spinnaker:
     repositories:
       opsmx-repo:
         id: opsmx-repo
-        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json
+        url: https://raw.githubusercontent.com/OpsMx/spinnakerPluginRepository/v3.9.0/plugins.json
