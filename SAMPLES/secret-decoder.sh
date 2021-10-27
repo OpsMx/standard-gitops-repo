@@ -7,7 +7,7 @@
 # Any file with "encrypted:SECRET-NAME:KEY" will be replaced with the value
 # found in a kubernetes secret with name "SECRET-NAME" containing a secret
 # referenced by KEY
-# usage: cat values.yaml | .secret-decoder.sh | helm install oes opsmx/oes -f -
+# usage: cat values.yaml | ./secret-decoder.sh | helm install oes opsmx/oes -f -
 ################################################################################
 # PLEASE REPLACE the KUBECTL command below as required
 ################################################################################
