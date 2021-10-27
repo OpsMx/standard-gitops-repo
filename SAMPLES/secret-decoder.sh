@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 ################################################################################
 # PLEASE REPLACE the KUBECTL command as required
 # jq command is required: https://stedolan.github.io/jq/download/
