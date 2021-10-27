@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 ################################################################################
 # PLEASE REPLACE the KUBECTL command as required
 # jq command is required: https://stedolan.github.io/jq/download/
@@ -11,7 +12,7 @@
 ################################################################################
 # PLEASE REPLACE the KUBECTL command below as required
 ################################################################################
-KUBECTL="kubectl -n srini"
+KUBECTL="kubectl -n http"
 echo "##########Replacing Secrets#########"
 while IFS= read -r line ; do
 encrypted=$(echo $line | grep encrypted: | cut -d : -f1 )
@@ -23,16 +24,17 @@ else
 secret=${line#*encrypted:}
 secretName=${secret%%:*}
 keyName=${secret#*:} 
+keyName=${keyName%%\"*} 
 jqParam=".data.\"$keyName\""
 value=$($KUBECTL get secret $secretName -o json | jq -r $jqParam | base64 -d)
 value=$(echo $value | sed -e 's`[][\\/.*^$]`\\&`g')
 checkValid=$(echo ${keyName}:${value} | grep '_')
 if [[ $checkValid != "" ]];
 then
-  echo "Questionmark charecter, ? , is not allowed key or value of a secret. If required change the script to use another charecter"
+  echo "Underscore charecter, _ , is not allowed key or value of a secret. If required change the script to use another charecter"
   exit 1
 fi
 #echo $value
-echo "$line" | sed s?encrypted:$secretName:${keyName}?${value}?
+echo "$line" | sed s_encrypted:$secretName:${keyName}_${value}_
 fi
 done 
