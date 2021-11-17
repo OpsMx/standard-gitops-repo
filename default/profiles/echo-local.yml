@@ -1,6 +1,9 @@
 rest:
   enabled: true
   endpoints:
+    -
+      wrap: false
+      url:  http://oes-audit-service:8097/auditservice/v1/echo/events/data # --> audit listener
     - 
       wrap: false
       url: http://oes-sapor:8085/oes/echo   # ----> [Note: This url should be our SAPOR url]
