@@ -24,6 +24,7 @@ secret=${line#*encrypted:}
 secretName=${secret%%:*}
 keyName=${secret#*:} 
 keyName=${keyName%%\"*} 
+keyName=${keyName%%\'*} 
 keyName=${keyName%% *} 
 jqParam=".data.\"$keyName\""
 value=$($KUBECTL get secret $secretName -o json | jq -r $jqParam | base64 -d)
