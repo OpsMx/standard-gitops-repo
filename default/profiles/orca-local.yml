@@ -368,7 +368,7 @@ spinnaker:
         enabled: true
         version: 1.0.1
         config:
-    repositories:
-      opsmx-repo:
-        id: opsmx-repo
-        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json
+    #repositories:
+    #opsmx-repo:
+    #    id: opsmx-repo
+    #    url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json

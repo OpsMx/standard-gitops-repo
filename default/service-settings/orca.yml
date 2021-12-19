@@ -1,12 +1,9 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2.20.3
+artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2.20.4.1
 kubernetes:
   volumes:
   - id: oes-cacerts
     mountPath: /etc/ssl/certs/java
     type: secret
     readOnly: true
-  - id: plugins
-    type: emptyDir
-    mountPath: /opt/orca/plugins
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
