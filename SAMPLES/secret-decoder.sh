@@ -10,8 +10,10 @@
 # usage: cat values.yaml | ./secret-decoder.sh | helm install oes opsmx/oes -f -
 ################################################################################
 # PLEASE REPLACE the KUBECTL command below as required
+# Also, change SEDCHAR to a charected that is NOT present in any of the secret-values
 ################################################################################
-KUBECTL="kubectl -n http"
+KUBECTL="kubectl -n oes3952"
+SEDCHAR="?"
 echo "##########Replacing Secrets#########"
 while IFS= read -r line ; do
 encrypted=$(echo $line | grep encrypted: | cut -d : -f1 )
@@ -28,13 +30,13 @@ keyName=${keyName%% *}
 jqParam=".data.\"$keyName\""
 value=$($KUBECTL get secret $secretName -o json | jq -r $jqParam | base64 -d)
 value=$(echo $value | sed -e 's`[][\\/.*^$]`\\&`g')
-checkValid=$(echo ${keyName}:${value} | grep '_')
+checkValid=$(echo ${keyName}:${value} | grep $SEDCHAR)
 if [[ $checkValid != "" ]];
 then
-  echo "Underscore charecter, _ , is not allowed key or value of a secret. If required change the script to use another charecter"
+  echo "Underscore charecter, $SEDCHAR , is not allowed key or value of a secret. If required change the script to use another charecter"
   exit 1
 fi
 #echo $value
-echo "$line" | sed s_encrypted:$secretName:${keyName}_${value}_
+echo "$line" | sed s${SEDCHAR}encrypted:$secretName:${keyName}${SEDCHAR}${value}${SEDCHAR}
 fi
 done 
