@@ -27,4 +27,4 @@ spinnaker:
           version: 1.0.1
     repositories:
       opsmx-repo:
-        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json
+        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/v3.10.0/plugins.json
