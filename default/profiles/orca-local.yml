@@ -372,3 +372,7 @@ spinnaker:
     #opsmx-repo:
     #    id: opsmx-repo
     #    url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/master/plugins.json
+policy:
+  opa:
+    enabled: true
+    url: http://oes-sapor:8085
