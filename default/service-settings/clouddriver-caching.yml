@@ -1,3 +1,8 @@
 artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:8.0.4-1
+#kubernetes:
+#  volumes:
+#  - id: opsmx-gitops-auth
+#    type: secret
+#    mountPath: /tmp/secret
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
