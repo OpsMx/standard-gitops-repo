@@ -190,7 +190,7 @@ deploymentConfigurations:
 #          - secretName: opsmx-gitops-auth
 #            mountPath: /tmp/secret
 #      spin-clouddriver-ro:
-#     - name: k8s-config-sync
+#      - name: k8s-config-sync
 #        dockerImage: quay.io/konikris/k8s-decoder:git-k8s
 #        command: ["sh", "-c"]
 #        args: ["while true; do sh /tmp/script/k8config-sync.sh; sleep 60s; done"]
@@ -198,7 +198,7 @@ deploymentConfigurations:
 #        - configMapName: k8config-sync
 #          mountPath: /tmp/script
 #        mountPath: /opsmx
-#       secretVolumeMounts:
+#        secretVolumeMounts:
 #          - secretName: opsmx-gitops-auth
 #            mountPath: /tmp/secret 
 #      spin-clouddriver-ro-deck:
