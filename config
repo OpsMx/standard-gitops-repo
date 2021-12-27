@@ -176,6 +176,7 @@ deploymentConfigurations:
           memory: 70Mi
           cpu: 100m
     sidecars: {}
+#    sidecars:
 #      spin-clouddriver-caching:
 #      - name: k8s-config-sync
 #        dockerImage: quay.io/konikris/k8s-decoder:git-k8s
