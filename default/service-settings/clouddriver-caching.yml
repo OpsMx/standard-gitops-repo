@@ -4,8 +4,5 @@ kubernetes:
   - id: oes-cacerts
     type: secret
     mountPath: /etc/pki/ca-trust/extracted/java
-#  - id: opsmx-gitops-auth
-#    type: secret
-#    mountPath: /tmp/secret
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
