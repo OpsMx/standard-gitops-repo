@@ -2,7 +2,7 @@
 #fiat:
 #  admin:
 #    roles:
-#      - 7793940
+#      - 77xxops
 auth:
   groupMembership:
     service: ldap
