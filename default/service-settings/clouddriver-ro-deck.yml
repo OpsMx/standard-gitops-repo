@@ -1,3 +1,8 @@
 artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:8.0.4-1
+kubernetes:
+  volumes:
+  - id: oes-cacerts
+    type: secret
+    mountPath: /etc/pki/ca-trust/extracted/java
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
