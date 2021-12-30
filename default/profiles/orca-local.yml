@@ -357,7 +357,6 @@ webhook:
       type: string
 spinnaker:
   extensibility:
-    plugins-root-path: /tmp/plugins
     plugins:
       Opsmx.VerificationGatePlugin:
         enabled: true
@@ -375,10 +374,6 @@ spinnaker:
         enabled: true
         version: 1.0.1
         config:
-    #repositories:
-    #  opsmx-repo:
-    #    id: opsmx-repo
-    #    url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/v3.10.0/plugins.json
 policy:
   opa:
     enabled: true
