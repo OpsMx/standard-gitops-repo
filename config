@@ -306,20 +306,24 @@ deploymentConfigurations:
       enabled: false
       accounts: []
     github:
-      enabled: false
-      accounts: []
+      enabled: true
+      accounts: 
+      - name: opsmxdemo_account
     gitlab:
       enabled: false
       accounts: []
     gitrepo:
-      enabled: false
-      accounts: []
+      enabled: true 
+      accounts: 
+      - name: opsmx_repo
     http:
       enabled: false
       accounts: []
     helm:
-      enabled: false
-      accounts: []
+      enabled: true 
+      accounts: 
+      - name: "opsmx-oes-helm-repo"
+        repository: "https://helmcharts.opsmx.com"
     s3:
       enabled: false
       accounts: []
