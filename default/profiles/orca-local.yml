@@ -374,6 +374,10 @@ spinnaker:
         enabled: true
         version: 1.0.1
         config:
+      Opsmx.RbacPlugin:
+        enabled: true
+        version: 1.0.1
+        config:
 policy:
   opa:
     enabled: true
