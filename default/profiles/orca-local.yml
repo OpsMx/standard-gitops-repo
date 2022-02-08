@@ -7,7 +7,7 @@ pollers:
 
 tasks:
   daysOfExecutionHistory: 180      # How many days to keep old task executions around.
-
+ 
 job:
   preconfigured:
     kubernetes:
@@ -30,6 +30,11 @@ job:
             label: pipieline names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
+          - defaultValue: ""
+            description: "Please enter the Specific branch to upload APP/pipeline data to github repo,It is optional if not specified default branch is taken from the configmap"
+            label: Branch
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: branch_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -59,6 +64,8 @@ job:
                       - name: spinnaker_applications
                         value: 'will be replaced'
                       - name: spinnaker_pipelines
+                        value: 'will be replaced'
+                      - name: branch_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'upload'
@@ -106,6 +113,11 @@ job:
             label: pipieline names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
+          - defaultValue: ""
+            description: "Please enter the Specific branch to download APP/pipeline data from github repo, It is optional if not specified default branch is taken from the configmap" 
+            label: Branch
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: branch_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -135,6 +147,8 @@ job:
                       - name: spinnaker_applications
                         value: 'will be replaced'
                       - name: spinnaker_pipelines
+                        value: 'will be replaced'
+                      - name: branch_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'download'
