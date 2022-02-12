@@ -1,19 +1,21 @@
-# Global variables can be accessed across all the charts including sub-charts
+# This file can be used for very simple installation that uses
+# insecure urls (i.e. http, not httpS). This may not be be allowed in some environments
+# and/or your browser may give a security warning
+# Excellent choice for 1st time ISD Trial
+#
+# Instructions:
+# a) Update the 3 URLs below
+# b) Update the git repo details
+# c) Follow the installation instructions to experience the next generation of Software Delivery
+#
+# NOTE: In the gitops-repo, locate the file "config", edit it and changed https to http for the "overrideurl" lines
+#
 global:
   ssl:
     enabled: false
-  # If cert-manager is installed, TLS secrets will created automatically, as an 'Issuer' will be created
-  # Else, the TLS secrets will need to created manually
-  #certManager:
-  #  installed: false
-  # Spinnaker Deck URL configuration; url overwhich spinnaker deck will be accessed
   spinDeck:
     protocol: http
     host: spin.http-ryzon7.opsmx.co
-  # Spinnaker Gate URL configuration; url overwhich spinnaker gate will be accessed
-  spinGate:
-    protocol: http
-    host: spin-gate.http-ryzon7.opsmx.co
   ## OES-UI url configuration
   oesUI:
     protocol: http
