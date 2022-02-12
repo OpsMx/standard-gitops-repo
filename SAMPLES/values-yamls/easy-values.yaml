@@ -1,0 +1,40 @@
+# Global variables can be accessed across all the charts including sub-charts
+global:
+  ssl:
+    enabled: false
+  # If cert-manager is installed, TLS secrets will created automatically, as an 'Issuer' will be created
+  # Else, the TLS secrets will need to created manually
+  #certManager:
+  #  installed: false
+  # Spinnaker Deck URL configuration; url overwhich spinnaker deck will be accessed
+  spinDeck:
+    protocol: http
+    host: spin.http-ryzon7.opsmx.co
+  # Spinnaker Gate URL configuration; url overwhich spinnaker gate will be accessed
+  spinGate:
+    protocol: http
+    host: spin-gate.http-ryzon7.opsmx.co
+  ## OES-UI url configuration
+  oesUI:
+    protocol: http
+    host: oes.http-ryzon7.opsmx.co
+  ## OES-Gate url configuration
+  oesGate:
+    protocol: http
+    host: oes-gate.http-ryzon7.opsmx.co
+
+spinnaker:
+  gitopsHalyard:
+    enabled: true
+    repo:
+      type: git # git, s3, stash(bitbucket server) use a different sample values file for s3/bitbuck-stash
+      baseUrlHostName: github.com    # Specify it if git url is something other than github.com
+      organization: ksrinimba
+      # Specify project name only if repo is under a project
+      projectName: ""
+      repository: http-ryzon7 # repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: http-ryzon7 # Please provide the repo name of the GitOps Dynamic Accounts Directory.Can be same as Hal repo. 
+      username: ksrinimba  # Username to authenticate with git/stash repo
+      token: <your get token> #  https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+    # Promote applications and pipelines from one environment to another or take backup
+
