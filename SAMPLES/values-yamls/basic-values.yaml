@@ -7,29 +7,23 @@
 # Instructions:
 # a) Update the 3 URLs below
 # b) Update the git repo details
-# c) Follow the installation instructions to experience the next generation of Software Delivery
+# c) Follow the  instructions to experience the next generation of Software Delivery
 #
-# NOTE: In the gitops-repo, locate the file "config", edit it and changed https to http for the "overrideurl" lines
 global:
   oesUI:
-    host: oes.basic.play.opsmx.org
+    host: oes.isd-pov.opsmx.org
   oesGate:
-    host: oes-gate.basic.play.opsmx.org
+    host: oes-gate.isd-pov.opsmx.org
   spinDeck:
-    host: spin.basic.play.opsmx.org
+    host: spin.isd-pov.opsmx.org
      
 spinnaker:
   # Initialize gitOps style Halyard
   gitopsHalyard:
     repo:
-      type: git # git, s3, stash(bitbucket server) use a different sample values file for s3/bitbuck-stash
-      baseUrlHostName: github.com  dd  # Specify it if git url is something other than github.com
-      organization: <USERNAME> #  user name
-      repository: basic-isd # repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
-      dynamicAccRepository: basic-isd # Please provide the repo name of the GitOps Dynamic Accounts Directory.Can be same as Hal repo. 
-      halConfigPath: / #hal config path configuration path supports relative path from the root folder must be same as  dynAccntConfigPath
-      dynAccntConfigPath: / #dymanic account configuration path supports relative path from the root folder must be same as halConfigPath
-      username: <USERNAME>  # Username to authenticate with git/stash repo
-      token: <PERSONAL ACCESS TOKEN>  # Token corresponding to above username
-
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>    # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
 

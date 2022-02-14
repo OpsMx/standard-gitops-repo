@@ -15,28 +15,22 @@ global:
     enabled: false
   spinDeck:
     protocol: http
-    host: spin.http-ryzon7.opsmx.co
+    host: spin.isd-pov.opsmx.co
   ## OES-UI url configuration
   oesUI:
     protocol: http
-    host: oes.http-ryzon7.opsmx.co
+    host: oes.isd-pov.opsmx.co
   ## OES-Gate url configuration
   oesGate:
     protocol: http
-    host: oes-gate.http-ryzon7.opsmx.co
+    host: oes-gate.isd-pov.opsmx.co
 
 spinnaker:
   gitopsHalyard:
     enabled: true
     repo:
-      type: git # git, s3, stash(bitbucket server) use a different sample values file for s3/bitbuck-stash
-      baseUrlHostName: github.com    # Specify it if git url is something other than github.com
-      organization: ksrinimba
-      # Specify project name only if repo is under a project
-      projectName: ""
-      repository: http-ryzon7 # repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
-      dynamicAccRepository: http-ryzon7 # Please provide the repo name of the GitOps Dynamic Accounts Directory.Can be same as Hal repo. 
-      username: ksrinimba  # Username to authenticate with git/stash repo
-      token: <your get token> #  https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-    # Promote applications and pipelines from one environment to another or take backup
-
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>    # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
