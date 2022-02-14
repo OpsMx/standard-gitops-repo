@@ -66,6 +66,9 @@ gate:
       issuerId: isd
       jksSecretName: oessamljks
       metadataSecretName: oesmetadataxml
+    server:
+      session:
+        timeoutInSeconds: 7200 #Update to match your SAML settings
      
 platform:
   config:
