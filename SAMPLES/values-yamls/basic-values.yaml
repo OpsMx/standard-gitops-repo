@@ -11,11 +11,11 @@
 #
 global:
   oesUI:
-    host: oes.isd-pov.opsmx.org
+    host: oes.isd-pov.example.com
   oesGate:
-    host: oes-gate.isd-pov.opsmx.org
+    host: oes-gate.isd-pov.example.com
   spinDeck:
-    host: spin.isd-pov.opsmx.org
+    host: spin.isd-pov.example.com
      
 spinnaker:
   # Initialize gitOps style Halyard

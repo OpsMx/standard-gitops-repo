@@ -13,11 +13,11 @@ global:
   commonGate:
     spinnakerRBAC: true 
   oesUI:
-    host: oes.isd-pov.opsmx.org
+    host: oes.isd-pov.example.com
   oesGate:
-    host: oes-gate.isd-pov.opsmx.org
+    host: oes-gate.isd-pov.example.com
   spinDeck:
-    host: spin.isd-pov.opsmx.org
+    host: spin.isd-pov.example.com
   ##### DISABLE LDAP
   installOpenLdap: false
   ldap:
@@ -51,7 +51,7 @@ gate:
       keyStoreAliasName: saml
       metadataUrl: /opt/spinnaker/saml/oesmetadata.xml # The key in this secret must be oesmetadata.xml
       redirectProtocol: https
-      redirectHostname: oes-gate.isd-pov.opsmx.org
+      redirectHostname: oes-gate.isd-pov.example.com
       redirectBasePath: /
       issuerId: isd
       jksSecretName: oessamljks
@@ -63,6 +63,6 @@ platform:
     adminGroups: isd-admin
 saporgate:
   config:
-    username: srinivas@opsmx.io      # User name with admin permissions and belonging to admin groups defined in platform service
+    username: admin@example.com      # User name with admin permissions and belonging to admin groups defined in platform service
     password: saporadmin             # Use credentials corresponding to spinCli.gate.endpoint    
 

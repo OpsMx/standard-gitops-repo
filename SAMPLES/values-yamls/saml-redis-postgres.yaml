@@ -13,11 +13,11 @@ global:
   commonGate:
     spinnakerRBAC: true
   oesUI:
-    host: oes.isd-pov.opsmx.org
+    host: oes.isd-pov.example.com
   oesGate:
-    host: oes-gate.isd-pov.opsmx.org
+    host: oes-gate.isd-pov.example.com
   spinDeck:
-    host: spin.isd-pov.opsmx.org
+    host: spin.isd-pov.example.com
 
   # If using exteral SSO
   installOpenLdap: false # If using external LDAP
@@ -36,6 +36,11 @@ spinnaker:
       token: <YOUR TOKEN>     # REPLACE
       repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
       dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+  spinCli:
+    auth:
+      basic:
+        username: admin@example.com # This should match the saporgate credentials below
+        password: saporadmin        # This should match the saporgate credentials below
 
 ################################################################
 ## BEGIN SAML SECTION
@@ -57,7 +62,7 @@ gate:
       keyStoreAliasName: saml
       metadataUrl: /opt/spinnaker/saml/oesmetadata.xml # The key in this secret must be oesmetadata.xml
       redirectProtocol: https
-      redirectHostname: oes-gate.isd-pov.opsmx.org
+      redirectHostname: oes-gate.isd-pov.example.com
       redirectBasePath: /
       issuerId: isd
       jksSecretName: oessamljks
@@ -69,7 +74,7 @@ platform:
     adminGroups: isd-admin
 saporgate:
   config:
-    username: srinivas@opsmx.io      # User name with admin permissions and belonging to admin groups defined in platform service
+    username: admin@example.com      # User name with admin permissions and belonging to admin groups defined in platform service
     password: saporadmin             # Use credentials corresponding to spinCli.gate.endpoint    
 
 ################################################################
