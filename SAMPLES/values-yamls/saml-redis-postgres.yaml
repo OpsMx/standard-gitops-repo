@@ -2,13 +2,17 @@
 # secure urls (i.e. httpS).  This requires that cert-manager be present, the cluster be accessible from internet
 # OR you many need to manually create the TLS certificates
 # and/or your browser may give a security warning
-# Good choice for 1st time ISD Trial if using httpS is mandatory or your have issues with your browser's security
+# Best suited for going to production with external Data bases such as AWS Aurora DB or Google Cloud SQL
+# and external Redis such as AWS Elastic Cache or Google MemoryStore, along with SAML SSO
 #
 # Instructions:
 # a) Update the 3 URLs below
 # b) Update the git repo details
-# c) Follow the  instructions to experience the next generation of Software Delivery
-#
+# c) Update the gate.config.saml information. Alternatively delete the section and set ldap.enabled and installOpenLDAP to true
+# d) Update DB information. If NOT using external MySql or S3 storage, set mini.enabled to true to use the minio pod installed automatically
+# e) Update the Redis host IP or host name, authentication is not recommended as it impacts performance
+# f) Follow the  instructions to experience the next generation of Software Delivery
+
 global:
   commonGate:
     spinnakerRBAC: true

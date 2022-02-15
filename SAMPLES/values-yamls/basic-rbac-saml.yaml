@@ -2,12 +2,13 @@
 # secure urls (i.e. httpS).  This requires that cert-manager be present, the cluster be accessible from internet
 # OR you many need to manually create the TLS certificates
 # and/or your browser may give a security warning
-# Good choice for 1st time ISD Trial if using httpS is mandatory or your have issues with your browser's security
+# Good choice for ISD Trial  using SAML SSO, excellent for checking out SSO integration in your environment
 #
 # Instructions:
 # a) Update the 3 URLs below
 # b) Update the git repo details
-# c) Follow the  instructions to experience the next generation of Software Delivery
+# c) Update the gate.config.saml information
+# d) Follow the  instructions to experience the next generation of Software Delivery
 #
 global:
   commonGate:
