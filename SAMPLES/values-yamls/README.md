@@ -6,14 +6,14 @@
 1. cert-manager is installed and the cluster is reachable from the internet on port 80
 2. Manually create site certificates (TLS certs) and install them as TLS secerts, as described **_HERE_**. If you are behind a corporate firewall or need to use your own certifications, this is the preferred approach. 
                   
-**basic-rbac-saml.yaml**: Same as basic-values.yaml but enable Role Based Access Control (RBAC). This allows for applications and accounts to be seperated between groups/teams.**DNS is required. If you do not have access to a DNS server, we suggest using the easy-values.yaml**. 
+**basic-rbac-saml.yaml**: Same as basic-values.yaml but enables Role Based Access Control (RBAC). This allows for applications and accounts to be seperated between groups/teams.**DNS is required. If you do not have access to a DNS server, we suggest using the easy-values.yaml**. 
 
-All the above (easy, basic) lavors come with configuration for the built-in openLDAP authentication and authorization.
+All the above (easy, basic) flavors come with configuration for the built-in openLDAP authentication and authorization and are great choices for POV without having to create users and groups.
 
 **saml-rbac-postgres.yaml**: This one provides configuration for integrating with SAML SSO. Instructions can be found [here](https://docs.google.com/document/d/1Jo0bUS3L83A9KKbcHaJjJJfyzfw0rDp_mKTxCRwt8QI/edit?usp=sharing)
-                   This also contains additional configuration for using an **external Postgress** instead of a built-in pod-based DB. Instructions for configuring external DB can be found HERE.
+                   This also contains additional configuration for using an **external Postgress** instead of a built-in pod-based DB. Instructions for configuring external DB can be found **_HERE_**.
 
 **saml-redis-postgres.yaml**: This is same as saml-rbac-postgres and also includes configuration for using an **external Redis** such as AWS Elasticache or Google MemoryStore
 
 
-
+<!-- Need to link documents for Manually creating TLS secrets and configuring using external DBs -->
