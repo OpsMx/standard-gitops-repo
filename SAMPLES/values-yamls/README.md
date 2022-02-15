@@ -1,4 +1,4 @@
-# This folder contains value.yaml templates that can be used as a starting point for installing ISD. Instructions can be found here: https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit?usp=sharing
+# This folder contains value.yaml templates that can be used as a starting point for installing ISD. Instructions can be found [here](https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit?usp=sharing)
 
 **easy-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD and requires no knowledge of site-certificates or DNS.
 
