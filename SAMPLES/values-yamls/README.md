@@ -2,6 +2,9 @@
 
 **easy-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD and requires no knowledge of site-certificates or DNS.
 
+**easy-rbac-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD and requires no knowledge of site-certificates or DNS.
+
+
 **basic-values.yaml**: This is a good starting point for a secure (httpS) ISD installation. It will require one of these two:
 1. cert-manager is installed and the cluster is reachable from the internet on port 80
 2. Manually create site certificates (TLS certs) and install them as TLS secerts, as described **_HERE_**. If you are behind a corporate firewall or need to use your own certifications, this is the preferred approach. 
