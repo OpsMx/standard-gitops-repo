@@ -1,4 +1,4 @@
-## Instructions for installing ISD can be found [here](https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit?usp=sharing). This folder contains value.yaml templates that can be used as a starting point. 
+### Instructions for installing ISD can be found [here](https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit?usp=sharing). This folder contains value.yaml templates that can be used as a starting point. 
 
 **easy-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD and requires no knowledge of site-certificates or DNS.
 
@@ -6,7 +6,7 @@
 1. cert-manager is installed and the cluster is reachable from the internet on port 80
 2. Manually create site certificates (TLS certs) and install them as TLS secerts, as described **_HERE_**. If you are behind a corporate firewall or need to use your own certifications, this is the preferred approach. 
                   
-**basic-rbac-saml.yaml**: Same as basic-values.yaml but enable Role Based Access Control (RBAC). This allows for ensure that not everyone can see/modifiy any others' applications
+**basic-rbac-saml.yaml**: Same as basic-values.yaml but enable Role Based Access Control (RBAC). This allows for applications and accounts to be seperated between groups/teams.**DNS is required. If you do not have access to a DNS server, we suggest using the easy-values.yaml**. 
 
 All the above (easy, basic) lavors come with configuration for the built-in openLDAP authentication and authorization.
 
