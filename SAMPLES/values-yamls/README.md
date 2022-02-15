@@ -10,10 +10,10 @@
 
 All the above (easy, basic) lavors come with configuration for the built-in openLDAP authentication and authorization.
 
-**saml-rbac-postgres.yaml**: This one provides configuration for integrating with SAML SSO. Instructions can be found here: https://docs.google.com/document/d/1Jo0bUS3L83A9KKbcHaJjJJfyzfw0rDp_mKTxCRwt8QI/edit?usp=sharing
-                   This also contains additional configuration for using an external Postgress DB instead of a built-in pod-based DB. Instructions for configuring external DB can be found HERE.
+**saml-rbac-postgres.yaml**: This one provides configuration for integrating with SAML SSO. Instructions can be found [here](https://docs.google.com/document/d/1Jo0bUS3L83A9KKbcHaJjJJfyzfw0rDp_mKTxCRwt8QI/edit?usp=sharing)
+                   This also contains additional configuration for using an **external Postgress** instead of a built-in pod-based DB. Instructions for configuring external DB can be found HERE.
 
-**saml-redis-postgres.yaml**: This is same as saml-rbac-postgres and also includes configuration for using an external Redis such as AWS Elasticache or Google MemoryStore
+**saml-redis-postgres.yaml**: This is same as saml-rbac-postgres and also includes configuration for using an **external Redis** such as AWS Elasticache or Google MemoryStore
 
 
 
