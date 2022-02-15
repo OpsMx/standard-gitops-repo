@@ -1,0 +1,51 @@
+# helm install or helm upgrade command accept multiple values.yaml files
+# e.g helm upgrade --install eash opsmx/oes -f easy-values.yaml -f only-saml.yaml -n opsmx-isd --timout 30m
+# This file contains ONLY SAML specific configurations. It disables LDAP as well
+global:
+  installOpenLdap: false # If using external LDAP/SAML/OAuth
+  ldap:
+    enabled: false # Using SAML so turn off ldap
+
+gate:
+  config:
+    #####################################################
+    # SAML AUthentication
+    #####################################################
+    # keytool -genkey -v -keystore oessaml.jks -alias saml -keyalg RSA -keysize 2048 -validity 10000
+    #    oessaml.jks and oesmetadata.xml are mounted as secrets, create them as follows
+    # kubectl create secret generic oesmetadataxml --from-file=oesmetadata.xml
+    # kubectl create secret generic oessamljks --from-file=oessaml.jks
+    # kubectl create secret generic samljks-password --from-literal password=changeit 
+    saml:
+      enabled: true
+      userSource: gate  # Groups will be obtained from SAML
+      keyStore: /opt/spinnaker/saml/oessaml.jks        # The key in this secret must be oessaml.jks
+      keyStorePassword: changeit                       # REPLACE
+      keyStoreAliasName: saml
+      metadataUrl: /opt/spinnaker/saml/oesmetadata.xml # The key in this secret must be oesmetadata.xml
+      redirectProtocol: https
+      redirectHostname: oes-gate.isd-pov.example.coma  # REPLACE
+      redirectBasePath: /
+      issuerId: isd                                    # REPLACE
+      jksSecretName: oessamljks
+      metadataSecretName: oesmetadataxml
+    server:
+      session:
+        timeoutInSeconds: 7200 #Update to match your SAML settings
+     
+platform:
+  config:
+    ##  groups defined here will have superAdmin priviledges in AP
+    adminGroups: isd-admin
+
+saporgate:
+  config:
+    username: admin@example.com      # This should a legitimate SAML user
+    password: saporadmin             # DO NOT PUT real password here, you can leave it as is
+
+spinnaker:
+  spinCli:
+    auth:
+      basic:
+        username: admin@example.com # Should same as saporgate.config.username
+        password: saporadmin        #  DO NOT PUT real password here, you can leave it as is
