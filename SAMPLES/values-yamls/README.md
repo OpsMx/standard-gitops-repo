@@ -2,7 +2,7 @@
 
 **easy-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD and requires no knowledge of site-certificates or DNS.
 
-**easy-rbac-values.yaml**: This is an excellent starting point. It installs an insecure (http) version of ISD along with Role Based Access Control(RBAC) and is generally sufficient for a full POV. Requires no knowledge of site-certificates or DNS.
+**easy-rbac-values.yaml**: This is a great starting point. It installs an insecure (http) version of ISD along with Role Based Access Control(RBAC) and is generally sufficient for a full POV where RBAC is a requirement. Requires no knowledge of site-certificates or DNS.
 
 **basic-values.yaml**: This is a good starting point for a secure (httpS) ISD installation. It will require one of these two:
 1. cert-manager is installed and the cluster is reachable from the internet on port 80
@@ -10,7 +10,7 @@
 
 **basic-rbac-values.yaml**: Same as basic-values.yaml with Role Based Access Control(RBAC) enabled
 
-All the above (easy, basic) flavors come with configuration for the built-in openLDAP authentication and authorization and are great choices for POV without having to create users and groups or integrating with your organizations SSO. The options below present progressively increasing configurations for production or near-production ISD for a full fledged POV with external DB and SSO integration. The files are designed to be modular with commented sections so that mix-and-match can be used to create your own values.yaml to suite your needs.
+All the above (easy, basic) flavors come with configuration for the built-in openLDAP authentication and authorization and are great choices for POV without having to create users and groups or integrating with your organizations SSO. The options below present progressively increasing configurations for production or near-production ISD for a full fledged POV with external DB and SSO integration. 
 
 **basic-rbac-saml.yaml**: Same as basic-values.yaml but enables Role Based Access Control (RBAC). This allows for applications and accounts to be seperated between groups/teams.**DNS is required. If you do not have access to a DNS server, we suggest using the easy-values.yaml**. 
 
@@ -21,5 +21,6 @@ All the above (easy, basic) flavors come with configuration for the built-in ope
 
 **saml-redis-postgres.yaml**: This is same as saml-rbac-postgres and also includes configuration for using an **external Redis** such as AWS Elasticache or Google MemoryStore
 
+**only*.yaml**: helm install command accepts multiple values.yaml files at the same time. These files are designed to be modular so that mix-and-match can be used to suite your needs. Please follow the commented instructions in these files.
 
 <!-- Need to link documents for Manually creating TLS secrets and configuring using external DBs -->
