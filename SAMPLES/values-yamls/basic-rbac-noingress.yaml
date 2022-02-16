@@ -23,6 +23,7 @@ global:
     host: spin.isd-pov.example.com
 
 spinnaker:
+  autoInstallSampleApps: false
   # Initialize gitOps style Halyard
   gitopsHalyard:
     repo:
@@ -33,3 +34,5 @@ spinnaker:
       repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
       dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
 
+
+oesAutoConfiguration: false
