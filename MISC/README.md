@@ -8,4 +8,3 @@ These are generally created automatically during installation. However, in case 
 **isd-autoconfig-job.yaml**: The ISD initial configuration requires some basic integrations to be created. In case auto-config fails during installation,
 we can edit this file and follow the instructions in the file header to re-do the configuration.
 
-: This is a sample file for **create-sample-job.yaml** mentioned above.
