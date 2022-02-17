@@ -12,6 +12,8 @@
 
 All the above (easy, basic) flavors come with configuration for the built-in openLDAP authentication and authorization and are great choices for POV without having to create users and groups or integrating with your organizations SSO. The options below present progressively increasing configurations for production or near-production ISD for a full fledged POV with external DB and SSO integration. 
 
+**base-rbac-noingress**: This one is same as basic-rbac-values but is intended to be used in situations where ingress and certs are being managed outside of the installation process. Note that additional post-installation ISD configuration steps are required.
+
 **basic-rbac-saml.yaml**: Same as basic-values.yaml but enables Role Based Access Control (RBAC). This allows for applications and accounts to be seperated between groups/teams.**DNS is required. If you do not have access to a DNS server, we suggest using the easy-values.yaml**. 
 
 All the above (easy, basic) flavors come with configuration for the built-in openLDAP authentication and authorization and are great choices for POV without having to create users and groups.
@@ -21,6 +23,8 @@ All the above (easy, basic) flavors come with configuration for the built-in ope
 
 **saml-redis-postgres.yaml**: This is same as saml-rbac-postgres and also includes configuration for using an **external Redis** such as AWS Elasticache or Google MemoryStore
 
-**only*.yaml**: helm install command accepts multiple values.yaml files at the same time. These files are designed to be modular so that mix-and-match can be used to suite your needs. Please follow the commented instructions in these files.
+**only???.yaml**: helm install command accepts multiple values.yaml files at the same time. These files are designed to be modular so that mix-and-match can be used to suite your needs. Please follow the commented instructions in these files.
+
+**default-values.yaml**: This is the FULL values.yaml that is not exepcted to be used. Only for reference to pick-up items that one may need to change.
 
 <!-- Need to link documents for Manually creating TLS secrets and configuring using external DBs -->
