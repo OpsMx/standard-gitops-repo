@@ -11,10 +11,12 @@
 # NOTE: In the gitops-repo, locate the file "config", edit it and changed https to http for the "overrideurl" lines
 #
 global:
-  commonGate:
-    spinnakerRBAC: true
+  certManager:
+    installed: false
   ssl:
     enabled: false
+  commonGate:
+    spinnakerRBAC: true
   spinDeck:
     protocol: http
     host: spin.isd-pov.example.com
