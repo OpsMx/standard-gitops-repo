@@ -8,8 +8,6 @@
 # b) Update the git repo details
 # c) Follow the installation instructions to experience the next generation of Software Delivery
 #
-# NOTE: In the gitops-repo, locate the file "config", edit it and changed https to http for the "overrideurl" lines
-#
 global:
   certManager:
     installed: false
@@ -17,15 +15,15 @@ global:
     enabled: false
   spinDeck:
     protocol: http
-    host: spin.isd-pov.example.com
+    host: spin.isd-pov.example.com   # REPLACE if you have DNS access, else use hosts file entries
   ## OES-UI url configuration
   oesUI:
     protocol: http
-    host: oes.isd-pov.example.com
+    host: oes.isd-pov.example.com    # REPLACE if you have DNS access, else use hosts file entries
   ## OES-Gate url configuration
   oesGate:
     protocol: http
-    host: oes-gate.isd-pov.example.com
+    host: oes-gate.isd-pov.example.com # REPLACE if you have DNS access, else use hosts file entries
 
 spinnaker:
   gitopsHalyard:
