@@ -1,0 +1,9 @@
+# Additional configuration for adding Proxy-support in ISD
+# 
+# For ISD to work behind a proxy, we need to do the following
+# a) Ensure that proxy/no-proxy values are updated in values.yaml
+# b) in gitops repo, defaults/service-settings, each of the Spinnaker services should have proxy/no-proxy configured
+#    Note that all ISD services must be listed in the no-proxy list
+extraEnvVars:
+  - name: JAVA_OPTS
+    value: -Dhttps.proxyHost=proxy.server.local -Dhttps.proxyPort=3128

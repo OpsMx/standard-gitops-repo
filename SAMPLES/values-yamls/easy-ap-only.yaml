@@ -6,7 +6,7 @@
 #
 # Instructions:
 # a) Update the 2 URLs below
-# c) Follow the installation instructions to experience the next generation of Software Delivery
+# c) Follow the installation instructions 
 #
 global:
   certManager:
@@ -22,7 +22,16 @@ global:
     protocol: http
     host: oes-gate.isd-pov.example.com
 
+saporgate:
+  enabled: false
+forwarder:
+  enabled: false
+oesAutoConfiguration: false
 installSpinnaker: false
 spinnaker:
+  autoInstallSampleApps: false
   gitopsHalyard:
     enabled: false
+  pipelinePromotion:  
+    enabled: true
+~                                                      
