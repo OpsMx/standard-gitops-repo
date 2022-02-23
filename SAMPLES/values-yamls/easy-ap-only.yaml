@@ -6,7 +6,7 @@
 #
 # Instructions:
 # a) Update the 2 URLs below
-# c) Follow the installation instructions 
+# c) Follow the installation instructions to experience the next generation of Software Delivery
 #
 global:
   certManager:
@@ -16,11 +16,11 @@ global:
   ## OES-UI url configuration
   oesUI:
     protocol: http
-    host: oes.isd-pov.example.com
+    host: oes.adobe310.opsmx.info
   ## OES-Gate url configuration
   oesGate:
     protocol: http
-    host: oes-gate.isd-pov.example.com
+    host: oes-gate.adobe310.opsmx.info
 
 saporgate:
   enabled: false
@@ -32,6 +32,5 @@ spinnaker:
   autoInstallSampleApps: false
   gitopsHalyard:
     enabled: false
-  pipelinePromotion:  
+  pipelinePromotion:  # GitHub only,  Not supportd on S3 or Stash
     enabled: true
-~                                                      
