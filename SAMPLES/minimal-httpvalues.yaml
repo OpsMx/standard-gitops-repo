@@ -1,0 +1,62 @@
+# Global variables can be accessed across all the charts including sub-charts
+global:
+  # when this flag is set to false; UI will be accessible over http instead of https
+  ssl:
+    enabled: false
+  # If cert-manager is installed, TLS secrets will created automatically, as an 'Issuer' will be created
+  # Else, the TLS secrets will need to created manually
+  certManager:
+    installed: false
+  # Spinnaker Deck URL configuration; url overwhich spinnaker deck will be accessed
+  spinDeck:
+    protocol: http
+    host: spin.isd.play.opsmx.org 
+  # Spinnaker Gate URL configuration; url overwhich spinnaker gate will be accessed
+  spinGate:
+    protocol: http
+    host: oes-gate.isd.play.opsmx.org
+  ## OES-UI url configuration
+  oesUI:
+    protocol: http
+    host: oes.isd.play.opsmx.org      
+  ## OES-Gate url configuration
+  oesGate:
+    protocol: http
+    host: oes-gate.isd.play.opsmx.org
+#####################################################
+# Spinnaker instance configuration
+#####################################################
+spinnaker:
+  autoInstallSampleApps: true   # Set this to FALSE if upgrading
+  # Initialize gitOps style Halyard
+  gitopsHalyard:
+    enabled: true
+    secretName: opsmx-gitops-auth  # No need to change this
+    repo:
+      type: git # git, s3, stash(bitbucket server) use a different sample values file for s3/bitbuck-stash
+      configArgs: "http.sslVerify=false"
+      ## Configure below fields only if repo type is git/stash. Skip to s3 section if type is s3
+      baseUrlHostName: github.com    # Specify the Base FQDN of your repository without the protocol
+      organization: OpsMx
+      projectName: ""                # Specify project name only if repo is under a project
+      repository: oes-http # repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      halConfigBranch: master # Branch under which halyard config is present under above repository
+      halConfigPath: / #relative path from repository root folder
+      dynamicAccRepository: oes-http # Please provide the repo name of the GitOps Dynamic Accounts Directory. Can be same as Hal repo. 
+      dynAccntConfigPath: dynaccount/ #relative path from repository root folder
+      username: username # Username to authenticate with git/stash repo
+      token: token  # Token corresponding to above username
+    # Promote applications and pipelines from one environment to another or take backup
+    pipelinePromotion:  # GitHub only,  Not supportd on S3 or Stash
+      enabled: true
+      type: git  # git, s3, stash
+      gitConfig: "git config --global http.sslVerify false"
+      organization: keerthibingi  # Also called "project" in some repos
+      repository: oes-http # bucket name in case of S3
+      rootFolder: /
+      ##### For non-S3 repos
+      baseUrl: github.com  #  "git_url"
+      username: username
+      token: token
+      branch: master
+      usermail: krish@company.com
