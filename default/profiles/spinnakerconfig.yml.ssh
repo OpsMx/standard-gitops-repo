@@ -1,3 +1,5 @@
+encrypt:
+  key: Q7udUkHPuA3VnNlOtksSgQ
 spring:
   profiles:
     include: git
