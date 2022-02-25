@@ -1,7 +1,7 @@
 ## These are sample service configuration files for using the agent
 
 The procedure for using the agent is as follows:
-1. Configure the agent in AP UI and download the manifest as mentioned [here](https://docs.opsmx.com/products/opsmx-intelligent-software-delivery-platform/system-setup/opsmx-agent/installation)
+1. Configure the agent in AP UI and download the manifest as described [here](https://docs.opsmx.com/products/opsmx-intelligent-software-delivery-platform/system-setup/opsmx-agent/installation)
 2. The manifest is configured to be installed in "default" namespace. If you are installing the agent in any other namespace, 
 please edit the manifest, locate "namespace:" in the clusterrolebinding object (there is only one "namespace:") and replace it with the namespace where you are installing it in.
 3. Locate a suitable service-config file in this directory, edit it based on the instructions in the file and configure the services (e.g. Jenkins, k8s account) the agent is authorized to perform
