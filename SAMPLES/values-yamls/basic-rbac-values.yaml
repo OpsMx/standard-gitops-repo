@@ -1,0 +1,35 @@
+# This file can be used for very simple installation that uses
+# secure urls (i.e. httpS).  This requires that cert-manager be present, the cluster be accessible from internet
+# OR you many need to manually create the TLS certificates
+# and/or your browser may give a security warning
+# Good choice for 1st time ISD Trial with Role Based Access Control for an almost-real experience
+#
+# Instructions:
+# a) Update the 3 URLs below
+# b) Update the git repo details
+# c) Follow the  instructions to experience the next generation of Software Delivery
+#
+global:
+  commonGate:
+    spinnakerRBAC: true 
+  oesUI:
+    host: oes.isd-pov.example.com
+  oesGate:
+    host: oes-gate.isd-pov.example.com
+  spinDeck:
+    host: spin.isd-pov.example.com
+  ##### DISABLE LDAP
+  installOpenLdap: false
+  ldap:
+    enabled: false
+
+spinnaker:
+  # Initialize gitOps style Halyard
+  gitopsHalyard:
+    repo:
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>    # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+

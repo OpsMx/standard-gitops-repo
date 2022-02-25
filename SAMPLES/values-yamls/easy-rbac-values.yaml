@@ -1,0 +1,40 @@
+# This file can be used for very simple installation that uses
+# insecure urls (i.e. http, not httpS). This may not be be allowed in some environments
+# and/or your browser may give a security warning
+# Excellent choice for 1st time ISD Trial
+#
+# Instructions:
+# a) Update the 3 URLs below
+# b) Update the git repo details
+# c) Follow the installation instructions to experience the next generation of Software Delivery
+#
+# NOTE: In the gitops-repo, locate the file "config", edit it and changed https to http for the "overrideurl" lines
+#
+global:
+  certManager:
+    installed: false
+  ssl:
+    enabled: false
+  commonGate:
+    spinnakerRBAC: true
+  spinDeck:
+    protocol: http
+    host: spin.isd-pov.example.com      # REPLACE if you have DNS access, else use hosts file entries
+  ## OES-UI url configuration
+  oesUI:
+    protocol: http
+    host: oes.isd-pov.example.com       # REPLACE if you have DNS access, else use hosts file entries
+  ## OES-Gate url configuration
+  oesGate:
+    protocol: http
+    host: oes-gate.isd-pov.example.com  #  REPLACE if you have DNS access, else use hosts file entries
+
+spinnaker:
+  gitopsHalyard:
+    enabled: true
+    repo:
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>     # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory

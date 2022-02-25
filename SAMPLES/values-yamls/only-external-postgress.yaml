@@ -1,0 +1,13 @@
+# helm install or helm upgrade command accept multiple values.yaml files
+# e.g helm upgrade --install eash opsmx/oes -f easy-values.yaml -f only-external-postgress.yaml -n opsmx-isd --timout 30m
+# This file contains ONLY external Postgress configuration instead of the build-in oes-db DB
+
+db:
+  ## Set it to false if any external database is to be used
+  enabled: false
+  ## Change the default configuration when above option is set to false
+  ## Below url and credentials are used by Autopilot & Sapor
+  url: jdbc:postgresql://10.62.231.5:5432  # REPLACE
+  username: postgres                       # REPLACE
+  password: PASSWORD                       # REPLACE
+
