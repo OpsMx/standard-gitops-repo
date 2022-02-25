@@ -1,0 +1,7 @@
+# helm install or helm upgrade command accept multiple values.yaml files
+# e.g helm upgrade --install eash opsmx/oes -f easy-values.yaml -f only-rbac.yaml -n opsmx-isd --timout 30m
+# This is largely an example, it is best to put it in your values.yaml directly under global.
+#
+global:
+  commonGate:
+    spinnakerRBAC: true

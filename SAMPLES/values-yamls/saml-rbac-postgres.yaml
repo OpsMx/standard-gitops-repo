@@ -1,0 +1,99 @@
+# This file can be used for very simple installation that uses
+# secure urls (i.e. httpS).  This requires that cert-manager be present, the cluster be accessible from internet
+# OR you many need to manually create the TLS certificates
+# and/or your browser may give a security warning
+# Best suited for going towards production with external Data bases such as AWS Aurora DB or Google Cloud SQL along with SAML
+#
+# Instructions:
+# a) Update the 3 URLs below
+# b) Update the git repo details
+# c) Update the gate.config.saml information. Alternatively delete the section and set ldap.enabled and installOpenLDAP to true
+# d) Update DB information. If NOT using external MySql or S3 storage, set mini.enabled to true to use the minio pod installed automatically
+# g) Follow the  instructions to experience the next generation of Software Delivery
+#
+global:
+  commonGate:
+    spinnakerRBAC: true
+  oesUI:
+    host: oes.isd-pov.example.com             # REPLACE
+  oesGate:
+    host: oes-gate.isd-pov.example.com        # REPLACE
+  spinDeck:
+    host: spin.isd-pov.example.com            # REPLACE
+  
+  minio:                 # If Using external MySql or S3
+    enabled: false       #   set this to false to save a pod
+  installOpenLdap: false # If using external LDAP/SAML/OAuth
+  ldap:
+    enabled: false # Using SAML so turn off ldap
+
+spinnaker:
+  # Initialize gitOps style Halyard
+  gitopsHalyard:
+    repo:
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>     # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+  spinCli:
+    auth:
+      basic:
+        username: admin@example.com # This should match the saporgate credentials below
+        password: saporadmin        # This should match the saporgate credentials below
+
+################################################################
+## BEGIN SAML SECTION
+################################################################
+gate:
+  config:
+    #####################################################
+    # SAML AUthentication
+    #####################################################
+    # keytool -genkey -v -keystore oessaml.jks -alias saml -keyalg RSA -keysize 2048 -validity 10000
+    #    oessaml.jks and oesmetadata.xml are mounted as secrets, create them as follows
+    # kubectl create secret generic oesmetadataxml --from-file=oesmetadata.xml
+    # kubectl create secret generic oessamljks --from-file=oessaml.jks
+    # kubectl create secret generic samljks-password --from-literal password=changeit 
+    saml:
+      enabled: true
+      userSource: gate  # Groups will be obtained from SAML
+      keyStore: /opt/spinnaker/saml/oessaml.jks  # The key in this secret must be oessaml.jks
+      keyStorePassword: changeit
+      keyStoreAliasName: saml
+      metadataUrl: /opt/spinnaker/saml/oesmetadata.xml # The key in this secret must be oesmetadata.xml
+      redirectProtocol: https
+      redirectHostname: oes-gate.isd-pov.example.com
+      redirectBasePath: /
+      issuerId: isd
+      jksSecretName: oessamljks
+      metadataSecretName: oesmetadataxml
+    server:
+      session:
+        timeoutInSeconds: 7200 #Update to match your SAML settings
+     
+platform:
+  config:
+    ##  groups defined here will have superAdmin priviledges in AP
+    adminGroups: isd-admin
+saporgate:
+  config:
+    username: admin@example.com      # User name with admin permissions and belonging to admin groups defined in platform service
+    password: saporadmin             # Use credentials corresponding to spinCli.gate.endpoint    
+################################################################
+## END SAML SECTION
+################################################################
+
+
+################################################################
+## BEGIN External Postgress SECTION
+################################################################
+db:
+  ## Set it to false if any external database is to be used
+  enabled: false
+  ## Change the default configuration when above option is set to false
+  ## Below url and credentials are used by Autopilot & Sapor
+  url: jdbc:postgresql://10.62.231.5:5432  # REPLACE
+  username: postgres                       # REPLACE
+  password: PASSWORD                       # REPLACE
+

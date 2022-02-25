@@ -1,15 +1,19 @@
 # Pod to create sampleapp in Spinnaker. This should automatically happen
 # During installation. However, if there is a failure, this pod can be run to re-execute
 # the script that will re-create sampleapp from opsmx/sampleapp repo
-# Please REPLACE OES (all occurences) with name of the RELEASE if required
+# Please REPLACE "isd" (all occurences) with name of the RELEASE if required
+# and execute the following command, replacing the namespace accordingly:
+#
+# kubectl replace --force -f create-sample-app.yaml -n opsmx-isd
+#
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "oes-create-sample-app"
+  name: "isd-create-sample-app"
 spec:
   template:
     spec:
-      serviceAccountName: oes-spinnaker-halyard
+      serviceAccountName: isd-spinnaker-halyard
       securityContext:
         fsGroup: 1000
         runAsUser: 1000
@@ -17,13 +21,13 @@ spec:
       volumes:
       - name: halyard-config
         configMap:
-          name: oes-spinnaker-halyard-config
+          name: isd-spinnaker-halyard-config
       - secret:
-          secretName: oes-spinnaker-spin-config
+          secretName: isd-spinnaker-spin-config
         name: spin-config
       - configMap:
           defaultMode: 420
-          name: oes-spinnaker-spin-pipeline-import
+          name: isd-spinnaker-spin-pipeline-import
         name: spin-pipeline-import
       - name: spin-pipeline-config
         emptyDir: {}
