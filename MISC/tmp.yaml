@@ -1,0 +1,46 @@
+# Pod to create sampleapp in Spinnaker. This should automatically happen
+# During installation. However, if there is a failure, this pod can be run to re-execute
+# the script that will re-create sampleapp from opsmx/sampleapp repo
+# Please REPLACE "test" (all occurences) with name of the RELEASE if required
+# and execute the following command, replacing the namespace accordingly:
+#
+# kubectl replace --force -f create-sample-app.yaml -n opsmx-test
+#
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "test-create-sample-app"
+spec:
+  template:
+    spec:
+      serviceAccountName: test-spinnaker-halyard
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      restartPolicy: OnFailure
+      volumes:
+      - name: halyard-config
+        configMap:
+          name: test-spinnaker-halyard-config
+      - secret:
+          secretName: test-spinnaker-spin-config
+        name: spin-config
+      - configMap:
+          defaultMode: 420
+          name: test-spinnaker-spin-pipeline-import
+        name: spin-pipeline-import
+      - name: spin-pipeline-config
+        emptyDir: {}
+      containers:
+      - command: ["sleep","infinity"]
+        #- bash
+        #- /tmp/config/spin-pipeline-import.sh
+        name: sample-pipeline-install
+        image: quay.io/opsmxpublic/spin-sample-pipeline:1.0
+        volumeMounts:         
+        - name: spin-pipeline-config
+          mountPath: /tmp/config/git
+        - mountPath: /tmp/config
+          name: spin-pipeline-import
+        - mountPath: /tmp/config/spin
+          name: spin-config
