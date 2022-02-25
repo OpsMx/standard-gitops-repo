@@ -13,4 +13,4 @@ please edit the manifest, locate "namespace:" in the clusterrolebinding object (
 3. You can see the configured services in the logs of the pod when it starts off
   
 ## Using the configured services
-- In the **Setup->Integrations** and **Setup->Cloud Providers**, you will see your services. Please "accept" them, wait for a few minutes and the services should show up in Spinnaker.
+- In the **Setup->Integrations** and **Setup->Cloud Providers**, we should see the services. Please "accept" them, wait for a few minutes and the services should show up in Spinnaker.
