@@ -1,0 +1,14 @@
+encrypt:
+  key: Q7udUkHPuA3VnNlOtksSgQ
+spring:
+  profiles:
+    include: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: DYNAMIC_ACCOUNTS_REPO
+          basedir: /tmp/config-repo
+          strictHostKeyChecking: false
+          ignoreLocalSshSettings: true
+          privateKey: |
