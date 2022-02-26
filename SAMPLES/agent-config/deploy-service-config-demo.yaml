@@ -11,7 +11,7 @@ metadata:
     agent.opsmx.com/role: agent
 data:
   services.yaml: |
-    services:
+    outgoingServices:
       - name: dev-jenkins
         type: jenkins
         enabled: true
