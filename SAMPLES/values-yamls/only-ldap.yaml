@@ -1,0 +1,31 @@
+# This file contains ONLY LDAP specific configurations.
+global:
+  installOpenLdap: false # If using external LDAP/SAML/OAuth
+  ldap:
+    enabled: true
+  ldap:
+    enabled: true
+    url: ldap://{{ .Release.Name }}-openldap:389
+    managerDn: cn=admin,dc=example,dc=org
+    managerPassword: opsmxadmin123
+    groupSearchBase: ou=groups,dc=example,dc=org
+    groupSearchFilter: member={0}
+    groupRoleAttributes: cn
+    userDnPattern: cn={0},dc=example,dc=org
+
+platform:
+  config:
+    # At least one group MUST be defined, others can be given admin access from UI
+    adminGroups: <comma separated list of groups you want to give superAdmin access to>
+
+saporgate:
+  config:
+    username: admin@example.com      # This should a legitimate SAML user
+    password: saporadmin             # DO NOT PUT real password here, you can leave it as is
+
+spinnaker:
+  spinCli:
+    auth:
+      basic:
+        username: admin@example.com # Should same as saporgate.config.username
+        password: saporadmin        # Should same as saporgate.config.password
