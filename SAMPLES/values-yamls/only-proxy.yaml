@@ -1,0 +1,8 @@
+# This part will put proxy for AP components only
+# For Spinnaker part, the configuration needs to be done in gitops repo, default/service-settings:
+#
+# The documentation for proxy-based configuration can be found HERE (TODO)
+# TODO: Add NOPROXY as well.
+extraEnvVars:
+  - name: JAVA_OPTS
+    value: -Dhttps.proxyHost=proxy.server.local -Dhttps.proxyPort=3128
