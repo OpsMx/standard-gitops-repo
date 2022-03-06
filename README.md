@@ -1,5 +1,5 @@
 ## GitOps repo for use with ISD installation
-### Instructions for installed ISD are available [here](https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit#heading=h.pav61t9jb26z)
+### Instructions for installing ISD are available [here](https://docs.google.com/document/d/1D2drat72nj58q-sBjf-HDBX_HuBuBzJQsx4O7BVhWIc/edit#heading=h.pav61t9jb26z)
 
 Typically, you do not need to modify any of these files. Simple copy them into your own repo.
 
