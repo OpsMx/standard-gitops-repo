@@ -60,6 +60,9 @@ job:
                       name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
+                    - name: git-token
+                      mountPath: /etc/git-secret
+                      readOnly: false
                     env:
                       - name: spinnaker_applications
                         value: 'will be replaced'
@@ -79,6 +82,11 @@ job:
                           secretKeyRef:
                             name: git-token
                             key: git_pr_token
+                      - name: git_secret_sshkey
+                        valueFrom:
+                          secretKeyRef:
+                            name: git-token
+                            key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
@@ -92,6 +100,10 @@ job:
                     secret:
                       defaultMode: 420
                       secretName: spin-cli-config
+                  - name: git-token
+                    secret:
+                      defaultMode: 420
+                      secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
       - label: pipelineSyncToSpinnaker
@@ -143,6 +155,9 @@ job:
                       name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
+                    - name: git-token
+                      mountPath: /etc/git-secret
+                      readOnly: false
                     env:
                       - name: spinnaker_applications
                         value: 'will be replaced'
@@ -162,6 +177,11 @@ job:
                           secretKeyRef:
                             name: git-token
                             key: git_pr_token
+                      - name: git_secret_sshkey
+                        valueFrom:
+                          secretKeyRef:
+                            name: git-token
+                            key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
@@ -174,7 +194,11 @@ job:
                   - name: spin-cli-config
                     secret:
                       defaultMode: 420
-                      secretName: local-spin-cli-config
+                      secretName: spin-cli-config
+                  - name: git-token
+                    secret:
+                      defaultMode: 420
+                      secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
 webhook:
