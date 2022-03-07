@@ -35,11 +35,6 @@ job:
             label: Branch
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: branch_ui
-          - defaultValue: ""
-            description: "Please enter the path to upload/download APP/pipeline data to github repo,It is optional if not specified default path is taken from the configmap"
-            label: SavePath
-            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
-            name: rootfolder_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -74,8 +69,6 @@ job:
                       - name: spinnaker_pipelines
                         value: 'will be replaced'
                       - name: branch_ui
-                        value: 'will be replaced'
-                      - name: rootfolder_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'upload'
@@ -137,11 +130,6 @@ job:
             label: Branch
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: branch_ui
-          - defaultValue: ""
-            description: "Please enter the path to upload/download APP/pipeline data to github repo,It is optional if not specified default path is taken from the configmap"
-            label: SavePath
-            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
-            name: rootfolder_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -176,8 +164,6 @@ job:
                       - name: spinnaker_pipelines
                         value: 'will be replaced'
                       - name: branch_ui
-                        value: 'will be replaced'
-                      - name: rootfolder_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'download'
