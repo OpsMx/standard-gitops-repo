@@ -214,7 +214,8 @@ job:
                       defaultMode: 420
                       secretName: git-token
                   restartPolicy: Never
-                  serviceAccountName: defaultwebhook:
+                  serviceAccountName: default
+webhook:
   preconfigured:
   - label: "JIRA: Wait for state"
     type: waitJiraState
