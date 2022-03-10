@@ -1,0 +1,5 @@
+spinnaker:
+  build:
+    pollInterval: 60  # in seconds for all monitors
+    pollingSafeguard:
+       itemUpperThreshold: 10000
