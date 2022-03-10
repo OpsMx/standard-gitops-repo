@@ -36,7 +36,7 @@ job:
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: branch_ui
           - defaultValue: ""
-            description: "Please enter the path to upload/download APP/pipeline data to github repo,It is optional if not specified default path is taken from the configmap"
+            description: "Please enter the path to upload/download APP/pipeline data to github specific directory,It is optional if not specified default path is taken from the configmap"
             label: SavePath
             mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
             name: rootfolder_ui
@@ -138,7 +138,7 @@ job:
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: branch_ui
           - defaultValue: ""
-            description: "Please enter the path to upload/download APP/pipeline data to github repo,It is optional if not specified default path is taken from the configmap"
+            description: "Please enter the path to upload/download APP/pipeline data to github specific directory,It is optional if not specified default path is taken from the configmap"
             label: SavePath
             mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
             name: rootfolder_ui
