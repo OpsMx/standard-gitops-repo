@@ -12,7 +12,7 @@
 # PLEASE REPLACE the KUBECTL command below as required
 # Also, change SEDCHAR to a charected that is NOT present in any of the secret-values
 ################################################################################
-KUBECTL="kubectl -n oes3952"
+KUBECTL="kubectl"
 SEDCHAR="?"
 echo "##########Replacing Secrets#########"
 while IFS= read -r line ; do
@@ -26,7 +26,6 @@ secret=${line#*encrypted:}
 secretName=${secret%%:*}
 keyName=${secret#*:} 
 keyName=${keyName%%\"*} 
-keyName=${keyName%%\'*} 
 keyName=${keyName%% *} 
 jqParam=".data.\"$keyName\""
 value=$($KUBECTL get secret $secretName -o json | jq -r $jqParam | base64 -d)

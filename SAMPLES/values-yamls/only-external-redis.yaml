@@ -1,0 +1,10 @@
+# helm install or helm upgrade command accept multiple values.yaml files
+# e.g helm upgrade --install eash opsmx/oes -f easy-values.yaml -f only-extenral-redis.yaml -n opsmx-isd --timout 30m
+# This file contains ONLY external Redis configuration, e.g. AWS Elastic Cache or Google MemoryStore
+
+installRedis: false
+redis:
+  external:
+    host: 10.65.242.3   # REPLACE
+    port: 6379
+

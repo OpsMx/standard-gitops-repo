@@ -1,0 +1,36 @@
+# This file can be used for very simple installation that uses
+# insecure urls (i.e. http, not httpS). This may not be be allowed in some environments
+# and/or your browser may give a security warning
+# This is not recommended for ISD full POV. If only Canary Analysis is required, this might be
+# a good starting point
+#
+# Instructions:
+# a) Update the 2 URLs below
+# c) Follow the installation instructions to experience the next generation of Software Delivery
+#
+global:
+  certManager:
+    installed: false
+  ssl:
+    enabled: false
+  ## OES-UI url configuration
+  oesUI:
+    protocol: http
+    host: oes.adobe310.opsmx.info
+  ## OES-Gate url configuration
+  oesGate:
+    protocol: http
+    host: oes-gate.adobe310.opsmx.info
+
+saporgate:
+  enabled: false
+forwarder:
+  enabled: false
+oesAutoConfiguration: false
+installSpinnaker: false
+spinnaker:
+  autoInstallSampleApps: false
+  gitopsHalyard:
+    enabled: false
+  pipelinePromotion:  # GitHub only,  Not supportd on S3 or Stash
+    enabled: true

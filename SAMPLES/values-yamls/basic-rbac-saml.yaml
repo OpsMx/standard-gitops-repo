@@ -1,0 +1,69 @@
+# This file can be used for very simple installation that uses
+# secure urls (i.e. httpS).  This requires that cert-manager be present, the cluster be accessible from internet
+# OR you many need to manually create the TLS certificates
+# and/or your browser may give a security warning
+# Good choice for ISD Trial  using SAML SSO, excellent for checking out SSO integration in your environment
+#
+# Instructions:
+# a) Update the 3 URLs below
+# b) Update the git repo details
+# c) Update the gate.config.saml information
+# d) Follow the  instructions to experience the next generation of Software Delivery
+#
+global:
+  commonGate:
+    spinnakerRBAC: true 
+  oesUI:
+    host: oes.isd-pov.example.com
+  oesGate:
+    host: oes-gate.isd-pov.example.com
+  spinDeck:
+    host: spin.isd-pov.example.com
+  ##### DISABLE LDAP
+  installOpenLdap: false
+  ldap:
+    enabled: false
+
+spinnaker:
+  # Initialize gitOps style Halyard
+  gitopsHalyard:
+    repo:
+      organization: ksrinimba # REPLACE
+      username: ksrinimba     # REPLACE
+      token: <YOUR TOKEN>    # REPLACE
+      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+
+gate:
+  config:
+    #####################################################
+    # SAML AUthentication
+    #####################################################
+    # keytool -genkey -v -keystore oessaml.jks -alias saml -keyalg RSA -keysize 2048 -validity 10000
+    # oessaml.jks and oesmetadata.xml are mounted as secrets, create them as follows
+    # kubectl create secret generic oesmetadataxml --from-file=oesmetadata.xml
+    # kubectl create secret generic oessamljks --from-file=oessaml.jks
+    # kubectl create secret generic samljks-password --from-literal password=changeit 
+    saml:
+      enabled: true
+      userSource: gate  # Groups will be obtained from SAML
+      keyStore: /opt/spinnaker/saml/oessaml.jks  # The key in this secret must be oessaml.jks
+      keyStorePassword: changeit
+      keyStoreAliasName: saml
+      metadataUrl: /opt/spinnaker/saml/oesmetadata.xml # The key in this secret must be oesmetadata.xml
+      redirectProtocol: https
+      redirectHostname: oes-gate.isd-pov.example.com
+      redirectBasePath: /
+      issuerId: isd
+      jksSecretName: oessamljks
+      metadataSecretName: oesmetadataxml
+     
+platform:
+  config:
+    ##  groups defined here will have superAdmin priviledges in AP
+    adminGroups: isd-admin
+saporgate:
+  config:
+    username: admin@example.com      # User name with admin permissions and belonging to admin groups defined in platform service
+    password: saporadmin             # Use credentials corresponding to spinCli.gate.endpoint    
+
