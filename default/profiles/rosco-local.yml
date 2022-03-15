@@ -1,0 +1,4 @@
+rosco: 
+  configDir: /opt/rosco/config/packer
+#redis: 
+# connection: redis://:password@oes-redis-master:6379 

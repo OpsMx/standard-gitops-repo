@@ -1,3 +1,8 @@
+#If user need to set admin roles to the fiat
+#fiat:
+#  admin:
+#    roles:
+#      - 77xx939ops
 auth:
   groupMembership:
     service: ldap

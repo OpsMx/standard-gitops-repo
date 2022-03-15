@@ -30,6 +30,16 @@ job:
             label: pipieline names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
+          - defaultValue: ""
+            description: "Please enter the Specific branch to upload APP/pipeline data to github repo,It is optional if not specified default branch is taken from the configmap"
+            label: Branch
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: branch_ui
+          - defaultValue: ""
+            description: "Please enter the path to upload/download APP/pipeline data to github specific directory,It is optional if not specified default path is taken from the configmap"
+            label: SavePath
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: rootfolder_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -55,10 +65,17 @@ job:
                       name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
+                    - name: git-token
+                      mountPath: /etc/git-secret
+                      readOnly: false
                     env:
                       - name: spinnaker_applications
                         value: 'will be replaced'
                       - name: spinnaker_pipelines
+                        value: 'will be replaced'
+                      - name: branch_ui
+                        value: 'will be replaced'
+                      - name: rootfolder_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'upload'
@@ -72,6 +89,11 @@ job:
                           secretKeyRef:
                             name: git-token
                             key: git_pr_token
+                      - name: git_secret_sshkey
+                        valueFrom:
+                          secretKeyRef:
+                            name: git-token
+                            key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
@@ -85,6 +107,10 @@ job:
                     secret:
                       defaultMode: 420
                       secretName: spin-cli-config
+                  - name: git-token
+                    secret:
+                      defaultMode: 420
+                      secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
       - label: pipelineSyncToSpinnaker
@@ -106,6 +132,16 @@ job:
             label: pipieline names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
+          - defaultValue: ""
+            description: "Please enter the Specific branch to download APP/pipeline data from github repo, It is optional if not specified default branch is taken from the configmap" 
+            label: Branch
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: branch_ui
+          - defaultValue: ""
+            description: "Please enter the path to upload/download APP/pipeline data to github specific directory,It is optional if not specified default path is taken from the configmap"
+            label: SavePath
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: rootfolder_ui
         manifest:
             apiVersion: batch/v1
             kind: Job
@@ -131,10 +167,17 @@ job:
                       name: pipe-promot-config
                     - mountPath: /home/opsmx/.spin
                       name: spin-cli-config
+                    - name: git-token
+                      mountPath: /etc/git-secret
+                      readOnly: false
                     env:
                       - name: spinnaker_applications
                         value: 'will be replaced'
                       - name: spinnaker_pipelines
+                        value: 'will be replaced'
+                      - name: branch_ui
+                        value: 'will be replaced'
+                      - name: rootfolder_ui
                         value: 'will be replaced'
                       - name: command
                         value: 'download'
@@ -148,6 +191,11 @@ job:
                           secretKeyRef:
                             name: git-token
                             key: git_pr_token
+                      - name: git_secret_sshkey
+                        valueFrom:
+                          secretKeyRef:
+                            name: git-token
+                            key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
@@ -160,7 +208,11 @@ job:
                   - name: spin-cli-config
                     secret:
                       defaultMode: 420
-                      secretName: local-spin-cli-config
+                      secretName: spin-cli-config
+                  - name: git-token
+                    secret:
+                      defaultMode: 420
+                      secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
 webhook:
@@ -357,7 +409,6 @@ webhook:
       type: string
 spinnaker:
   extensibility:
-    plugins-root-path: /tmp/plugins
     plugins:
       Opsmx.VerificationGatePlugin:
         enabled: true
@@ -375,7 +426,11 @@ spinnaker:
         enabled: true
         version: 1.0.1
         config:
-    repositories:
-      opsmx-repo:
-        id: opsmx-repo
-        url: https://raw.githubusercontent.com/opsmx/spinnakerPluginRepository/v3.10.0/plugins.json
+      Opsmx.RbacPlugin:
+        enabled: true
+        version: 1.0.1
+        config:
+policy:
+  opa:
+    enabled: true
+    url: http://oes-sapor:8085
