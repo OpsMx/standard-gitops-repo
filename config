@@ -424,7 +424,7 @@ deploymentConfigurations:
     trust:
       enabled: false
   stats:
-    enabled: true
+    enabled: false
     endpoint: "https://stats.spinnaker.io"
     instanceId: "01EKYADM081RQT4KAZKBPKMZK7"
     deploymentMethod: {}
