@@ -1,0 +1,19 @@
+  - name: "default"
+    liveManifestCalls: true
+    requiredGroupMembership: []
+    providerVersion: "v2"
+    permissions: []
+    dockerRegistries: []
+    configureImagePullSecrets: true
+    serviceAccount: true
+    cacheThreads: 1
+    namespaces:
+    - "default"
+    - "opsmx-isd"
+    omitNamespaces: []
+    kinds: []
+    omitKinds:
+    - "podPreset"
+    customResources: []
+    cachingPolicies: []
+    onlySpinnakerManaged: true
