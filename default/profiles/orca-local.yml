@@ -90,10 +90,11 @@ job:
                             name: git-token
                             key: git_pr_token
                       - name: git_secret_sshkey
-                        valueFrom:
-                          secretKeyRef:
-                            name: git-token
-                            key: git_secret_sshkey
+                        value: ""
+                        #valueFrom:
+                        #  secretKeyRef:
+                        #    name: git-token
+                        #    key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
@@ -192,10 +193,11 @@ job:
                             name: git-token
                             key: git_pr_token
                       - name: git_secret_sshkey
-                        valueFrom:
-                          secretKeyRef:
-                            name: git-token
-                            key: git_secret_sshkey
+                        value: ""
+                        #valueFrom:
+                        #  secretKeyRef:
+                        #    name: git-token
+                        #    key: git_secret_sshkey
                   volumes:
                   - configMap:
                       defaultMode: 420
