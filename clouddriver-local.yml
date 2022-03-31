@@ -9,7 +9,6 @@
     cacheThreads: 1
     namespaces:
     - "default"
-    - "opsmx-isd"
     omitNamespaces: []
     kinds: []
     omitKinds:
