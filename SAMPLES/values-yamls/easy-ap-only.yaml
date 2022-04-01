@@ -9,6 +9,9 @@
 # c) Follow the installation instructions to experience the next generation of Software Delivery
 #
 global:
+  createIngress: true 
+  gitea:
+   enabled: false
   certManager:
     installed: false
   ssl:

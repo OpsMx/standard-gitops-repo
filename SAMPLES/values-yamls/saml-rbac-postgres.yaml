@@ -12,14 +12,17 @@
 # g) Follow the  instructions to experience the next generation of Software Delivery
 #
 global:
+  gitea:
+   enabled: false
+  createIngress: true 
   commonGate:
     spinnakerRBAC: true
   oesUI:
-    host: oes.isd-pov.example.com             # REPLACE
+    host: oes.oes.opsmx.net   # REPLACE
   oesGate:
-    host: oes-gate.isd-pov.example.com        # REPLACE
+    host: oes-gate-ldap.oes.opsmx.net   # REPLACE
   spinDeck:
-    host: spin.isd-pov.example.com            # REPLACE
+    host: spin.oes.opsmx.net            # REPLACE
   
   minio:                 # If Using external MySql or S3
     enabled: false       #   set this to false to save a pod
@@ -31,11 +34,11 @@ spinnaker:
   # Initialize gitOps style Halyard
   gitopsHalyard:
     repo:
-      organization: ksrinimba # REPLACE
-      username: ksrinimba     # REPLACE
-      token: <YOUR TOKEN>     # REPLACE
-      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
-      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+      organization: 101781958  # REPLACE
+      username: IArshidinova    # REPLACE
+      token: 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     # REPLACE
+      repository: test   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
+      dynamicAccRepository: test # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
   spinCli:
     auth:
       basic:
