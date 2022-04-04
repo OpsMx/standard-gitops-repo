@@ -12,6 +12,7 @@ kubernetes:
     cacheThreads: 1
     namespaces:
     - "opsmx-isd"
+    - "SPINNAKER_NAMESPACE"
     omitNamespaces: []
     kinds: []
     omitKinds:
