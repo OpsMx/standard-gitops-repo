@@ -1,1 +1,1 @@
-window.spinnakerSettings.feature.managedServiceAccounts = true;
+window.spinnakerSettings.feature.managedServiceAccounts = false;
