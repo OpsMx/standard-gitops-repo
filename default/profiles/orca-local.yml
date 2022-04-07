@@ -7,7 +7,7 @@ pollers:
 
 tasks:
   daysOfExecutionHistory: 180      # How many days to keep old task executions around.
-
+  useManagedServiceAccounts: false
 job:
   preconfigured:
     kubernetes:
