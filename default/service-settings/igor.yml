@@ -13,5 +13,8 @@ kubernetes:
     mountPath: /etc/pki/ca-trust/extracted/java
     type: secret
     readOnly: true
+  podAnnotations:
+    moniker.spinnaker.io/application: spin
+
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
