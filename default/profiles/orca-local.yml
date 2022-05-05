@@ -219,6 +219,164 @@ job:
                   serviceAccountName: default
 webhook:
   preconfigured:
+  - label: "ServiceNow-Create Change Request"
+    type: CreateServiceNowChangeRequest
+    enabled: true
+    description: Custom stage for servicenow normal request creation
+    method: POST
+    url: SERVICENOW_URL/api/sn_chg_rest/v1/change
+    customHeaders:
+      Authorization: Basic SERVICENOW_BASE64_USR_PASSWD
+      Content-Type: application/json
+    payload: |-
+      {
+        "delivery_plan":"${parameterValues['deliveryplan']}",
+        "impact":"${parameterValues['impact']}",
+        "priority":"${parameterValues['priority']}",
+        "change_plan":"${parameterValues['changeplan']}",
+        "short_description":"${parameterValues['shortdescription']}",
+        "description":"${parameterValues['description']}",
+        "implementation_plan":"${parameterValues['implementationplan']}",
+        "backout_plan":"${parameterValues['backoutplan']}",
+        "type":"${parameterValues['type']}"
+      }
+    parameters:
+    - label: Delivery Plan
+      name: deliveryplan
+      description: Delivery plan
+      type: string
+    - label: Impact
+      name: impact
+      description: 1-High, 2-Medium, 3-Low. Mention 1 or 2 or 3 in the column.
+      type: string
+    - label: Priority
+      name: priority
+      description: 1-Critical, 2-High, 3-Moderate, 4-Low
+      type: string
+    - label: Change Plan
+      name: changeplan
+      description: Change plan
+      type: string
+    - label: Short Description
+      name: shortdescription
+      description: Short description
+      type: string
+    - label: Description
+      name: description
+      description: Description
+      type: string
+    - label: Implementation Plan
+      name: implementationplan
+      description: Implementation plan
+      type: string
+    - label: Backout Plan
+      name: backoutplan
+      description: Backout plan
+      type: string
+    - label: Type
+      name: type
+      description: Emergency, Normal etc 
+      type: string
+
+  - label: "ServiceNow-Change State of Change Request"
+    type: ChangeStateofChangeRequest
+    enabled: true
+    description: Custom stage to change the state of the normal request
+    method: PATCH
+    url: SERVICENOW_URL/api/sn_chg_rest/v1/change/${parameterValues['sysid']}
+    customHeaders:
+      Authorization: Basic SERVICENOW_BASE64_USR_PASSWD
+      Content-Type: application/json
+    payload: |-
+      {
+        "assignment_group":"${parameterValues['assignmentgroup']}",
+        "state":"${parameterValues['state']}"
+      }
+    parameters:
+    - label: Assignment Group
+      name: assignmentgroup
+      description: Assignment group to approval the state change Eg- CAB Approval 
+      type: string
+    - label: State
+      name: state
+      description: Change to which state? Eg- Assess 
+      type: string
+    - label: sys_id
+      name: sysid
+      description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
+      type: string
+
+  - label: "ServiceNow-Add Work Note to Change Request"
+    type: AddWorkNotetoChangeRequst
+    enabled: true
+    description: Custom stage to add work note to normal request
+    method: PATCH
+    url: SERVICENOW_URL/api/sn_chg_rest/change/${parameterValues['sysid']}
+    customHeaders:
+      Authorization: Basic SERVICENOW_BASE64_USR_PASSWD
+      Content-Type: application/json
+    payload: |-
+      {
+        "work_notes":"${parameterValues['worknotes']}"
+      }
+    parameters:
+    - label: Work Notes
+      name: worknotes
+      description: Add work notes to the request 
+      type: string
+    - label: sys_id
+      name: sysid
+      description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
+      type: string
+      
+  - label: "Service Now: Wait for state"    
+    type: waitServiceNowState          
+    enabled: true                    
+    description: Custom stage that waits for a specific state on a Service Now Issue
+    method: GET                                                              
+    url: SERVICENOW_URL/api/sn_chg_rest/change/${parameterValues['sysid']}
+    customHeaders:                                                                       
+      Authorization: Basic SERVICENOW_BASE64_USR_PASSWD
+      Content-Type: application/json                                                     
+    failPipeline: true                                                                   
+    progressJsonPath: "result.state.display_value"                                               
+    payload: ""                                                                          
+    retryStatusCodes:                                                                    
+      - 200                                                                              
+    statusJsonPath: "result.state.display_value"                                                 
+    statusUrlResolution: "getMethod"                                                   
+    successStatuses: ${parameterValues['success']}                                       
+    retryStatuses: ${parameterValue['retry']}                                            
+    terminalStatuses: ${parameterValues['terminate']}                                    
+    canceledStatuses: ${parameterValues['cancel']}                                       
+    waitBeforeMonitor: "1"                                                             
+    waitForCompletion: true                                                            
+    parameters:                                                                          
+    - label: Sys id                            
+      name: sysid                                                                        
+      description: "sys id of the request"
+      type: string                                                                     
+      defaultValue: ""                                                
+    - label: Service Now Success States              
+      name: success                                                              
+      description: "Service Now issue States that progress the pipeline, e.g,: In Verificaiton etc."
+      type: string
+      defaultValue: ""  
+    - label: Service Now Retry States                                                     
+      name: retry                                                                  
+      description: "Service Now issue states that Retry the stage e.g,: New etc. Can give multiple states coma seperated"
+      type: string                                                                        
+      defaultValue: ""
+    - label: Service Now Termination States                                                          
+      name: terminate           
+      description: "Service Now issue states that terminates the pipeline, e.g,: Done etc."    
+      type: string                                                                        
+      defaultValue: ""                                                             
+    - label: Service Now Canceled States                                                         
+      name: cancel                                                                           
+      description: "Service Now issue states that cancel the pipeline e.g,: Closed, etc."             
+      type: string                                                                           
+      defaultValue: Closed 
   - label: "JIRA: Wait for state"
     type: waitJiraState
     enabled: true
