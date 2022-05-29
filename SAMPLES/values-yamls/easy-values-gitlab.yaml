@@ -12,18 +12,21 @@ global:
   createIngress: true
   gitea:
     enabled: false
-
   ## OES-UI url configuration
   oesUI:
     protocol: http
     host: oes.isd-pov.example.com    # REPLACE if you have DNS access, else use hosts file entries
-
+  
 spinnaker:
   gitopsHalyard:
     enabled: true
     repo:
-      organization: ksrinimba # REPLACE
-      username: ksrinimba     # REPLACE
-      token: <YOUR TOKEN>     # REPLACE
-      repository: YOUR-REPO   # REPLACE repo name for GitOps Halyard (Sample Reference: https://github.com/OpsMx/sample-gitops-repo.git).
-      dynamicAccRepository: YOUR-REPO # REPLACE Please provide the repo name of the GitOps Dynamic Accounts Directory
+      type: git  # git, s3, stash(bitbucket server) 
+      baseUrlHostName: gitlab.com
+      organization: <your gitlab organisation> # REPLACE 
+      username: <your gitlab username>    # REPLACE
+      Usermailid: <mail id>
+      token: <your token>    # REPLACE
+      repository: <repo name>    # REPLACE repo name for Gitlab
+      dynamicAccRepository: <repo name>   # REPLACE   
+
