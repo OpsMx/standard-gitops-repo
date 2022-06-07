@@ -1,12 +1,18 @@
-rest:
-  enabled: true
-  endpoints:
-    -
-      wrap: false
-      url:  http://oes-audit-service:8097/auditservice/v1/echo/events/data # --> audit listener
-    - 
-      wrap: false
-      url: http://oes-sapor:8085/oes/echo   # ----> [Note: This url should be our SAPOR url]
+message-broker:
+  endpoint:
+    name: rabbitmq     #Currently support rabbitmq only
+  username: rabbitmq         #rabbitmq username to connect
+  password: Networks123      #rabbitmq password to connect
+  host: rabbitmq-service     #rabbitmq endpoint to connect
+  port: 5672                 #rabbitmq port to connect
+spinnaker:
+  name: preview-saas       #Should be same as account name given in spinnaker setup
+  extensibility:
+    plugins:
+      Opsmx.EchoEventPlugin:
+        enabled: true
+        version: 1.0.1
+        config: null
 
 microsoftteams:
   enabled: true
