@@ -254,11 +254,10 @@ job:
             backoffLimit: 0
             template:
               spec:
-                containers:
-                  - args:
-                      - |-
-                        set +x
-                        curl -s -H "Authorization: token $accesstoken" -X $method -d '{"body":"'"$payload"'"}' "$url"
+                containers: 
+                  - command:
+                      - sh
+                      - /tmp/initscript/run.sh
                     env:
                       - name: url
                         value: 
@@ -274,7 +273,15 @@ job:
                     image: 'opsmxdev/apline-with-curl'
                     imagePullPolicy: Always
                     name: updatepr
+                    volumeMounts:
+                      - mountPath: /tmp/initscript/
+                        name: initscript
                 restartPolicy: Never
+                volumes:
+                  - configMap:
+                      default: 420
+                      name: updatepr-config
+                    name: initscript
       - label: Customnotification-OpsMx
         cloudProvider: kubernetes
         credentials: default
