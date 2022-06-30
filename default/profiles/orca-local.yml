@@ -11,12 +11,12 @@ tasks:
 job:
   preconfigured:
     kubernetes:
-      - label: pipelineSyncToGit
+      - label: PipelineSyncToGit-OpsMx
         cloudProvider: kubernetes
         credentials: default
-        description: Update git with pipelines in Spinnaker
+        description: Backup the Applications and Pipelines from Spinnaker to the Git
         account: default
-        application: sampleapp
+        application: "${execution.application}"
         type: pipelineSyncToGit
         waitForCompletion: true
         parameters:
@@ -114,12 +114,12 @@ job:
                       secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
-      - label: pipelineSyncToSpinnaker
+      - label: PipelineSyncToSpinnaker-OpsMx
         cloudProvider: kubernetes
         credentials: default
-        description: Sync Spinnaker pipelines from git
+        description: Syncup the Applications and Pipelines from Git to the Spinnaker
         account: default
-        application: sampleapp
+        application: "${execution.application}"
         type: pipelineSyncToSpinnaker
         waitForCompletion: true
         parameters:
@@ -217,12 +217,505 @@ job:
                       secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
+      - label: "Update PR-OpsMx"
+        cloudProvider: kubernetes
+        credentials: default
+        application: "${execution.application}"
+        description: Update the PR with the comment
+        account: default
+        type: customPRStage
+        waitForCompletion: true
+        parameters:
+          - defaultValue: "" 
+            description: Please enter the webhook url.
+            label: Webhook URL
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: url
+          - defaultValue: "" 
+            description: Please enter method.
+            label: Method
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: method
+          - defaultValue: "" 
+            description: Please enter payload.
+            label: Payload
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: payload
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: updateprjob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: updatepr
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - args:
+                      - |-
+                        set +x
+                        curl -s -H "Authorization: token $accesstoken" -X $method -d '{"body":"'"$payload"'"}' "$url"
+                    env:
+                      - name: url
+                        value: 
+                      - name: method
+                        value:
+                      - name: payload
+                        value: 
+                      - name: accesstoken
+                        valueFrom:
+                         secretKeyRef:
+                          key: accesstoken
+                          name: updatepr-secrets
+                    image: 'opsmxdev/apline-with-curl'
+                    imagePullPolicy: Always
+                    name: updatepr
+                restartPolicy: Never
+      - label: Customnotification-OpsMx
+        cloudProvider: kubernetes
+        credentials: default
+        application: "${execution.application}"
+        description: Email notification that supports SPEL expression as mailid
+        account: default
+        type: customnotification
+        waitForCompletion: true
+        parameters:
+          - defaultValue: "" 
+            description: Please enter the Email address
+            label: Email
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: email
+          - defaultValue: ""
+            description: Please enter CC mail address with "," as saperated for more mails.
+            label: CC Address
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: ccmail
+          - defaultValue: ""
+            description: Please enter Subject
+            label: Subject
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: subject
+          - defaultValue: ""
+            description: Please enter body message.
+            label: Body Message
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: body
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: smtpjob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: customnotification
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - command:
+                      - sh
+                      - /tmp/initscript/run.sh
+                    env:
+                      - name: email
+                        value: 
+                      - name: ccmail
+                        value:
+                      - name: subject
+                        value:
+                      - name: body
+                        value:
+                      - name: ssmtpemail                                  
+                        valueFrom:                                           
+                         secretKeyRef:                                       
+                          key: ssmtpemail                                   
+                          name: ssmtp-secrets
+                      - name: emailpassword                                    
+                        valueFrom:                                           
+                         secretKeyRef:                                       
+                          key: emailpassword                                  
+                          name: ssmtp-secrets
+                    image: 'opsmxdev/apline-with-curl'
+                    imagePullPolicy: Always
+                    name: email-notify
+                    volumeMounts:
+                      - mountPath: /tmp/initscript/
+                        name: initscript
+                restartPolicy: Never
+                volumes:
+                  - configMap:
+                      default: 420
+                      name: email-config
+                    name: initscript
+      - label: Ansible-OpsMx
+        cloudProvider: kubernetes
+        credentials: default
+        application: "${execution.application}"
+        description: Run playbooks to a single VM node 
+        account: default
+        type: customAnsibleStage
+        waitForCompletion: true
+        parameters:
+          - defaultValue: "" 
+            description: Please enter the  Git repo url with out https://
+            label: Git repo
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: gitrepo
+          - defaultValue: "" 
+            description: Please enter ansiblefile location.
+            label: Ansible file
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: ansiblefileepo
+          - defaultValue: "" 
+            description: Please enter override inventoryfile.
+            label: Inventory file
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: inventoryfile
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: ansiblejob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: ansible
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - command:
+                      - bash
+                      - /tmp/initscript/run.sh
+                    env:
+                      - name: gitrepo
+                        value: 
+                      - name: ansiblefile
+                        value:
+                      - name: inventoryfile
+                        value: 
+                      - name: gitusername
+                        valueFrom:
+                         secretKeyRef:
+                          key: gitusername
+                          name: ansible-secrets
+                      - name: gitpassword
+                        valueFrom:
+                         secretKeyRef:
+                          key: gitpassword
+                          name: ansible-secrets
+                      - name: nodeuser                                    
+                        valueFrom:                                           
+                         secretKeyRef:                                       
+                          key: nodeuser                                   
+                          name: ansible-secrets
+                      - name: userpassword                                    
+                        valueFrom:                                           
+                         secretKeyRef:                                       
+                          key: userpassword                                  
+                          name: ansible-secrets
+                    image: 'opsmx11/ansible-job-image:v2'
+                    imagePullPolicy: Always
+                    name: ansible-test
+                    volumeMounts:
+                      - mountPath: /tmp/initscript/
+                        name: initscript
+                restartPolicy: Never
+                volumes:
+                  - configMap:
+                      default: 420
+                      name: ansible-config
+                    name: initscript
+      - label: TSPlanJob-OpsMx
+        cloudProvider: kubernetes
+        application: "${execution.application}"
+        description: Stage for Terraform Plan operation
+        account: default
+        type: customTSPlanJobStage
+        waitForCompletion: true
+        parameters:
+          - defaultValue: ""
+            description: "Please enter the AWS Assure role configured account name."
+            label: AWS account name
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: awsrole
+          - defaultValue: ""
+            description: "Please enter the namespace of spinnaker in HA mode."
+            label: Spinnaker Namespace
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: namespace
+          - defaultValue: ""
+            description: "Please enter the artifact account name from artifactsaccounts.json, Account where you have tf script present.It is optional if not specified default branch is taken from the configmap"
+            label: Tf script account
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: scriptaccount
+          - defaultValue: "" 
+            description: "Please enter the Git Repo Account of TF script."
+            label: Tf Plan script Repo
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: repo
+          - defaultValue: "" 
+            description: Please enter Location of terraform script in the repo.
+            label: Tf Location
+            mapping: 'manifest.spec.template.spec.containers[0].env[4].value'
+            name: location
+          - defaultValue: "" 
+            description: Please enter overrideVariableFile path if you want to override variables.
+            label: Override file
+            mapping: 'manifest.spec.template.spec.containers[0].env[5].value'
+            name: overridefile
+          - defaultValue: ""
+            description: Please enter terraform workspace name.
+            label: Terraform Workspace
+            mapping: 'manifest.spec.template.spec.containers[0].env[6].value'
+            name: TF_WORKSPACE
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: terraspinplanjob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: terraform
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - command: 
+                      - role.sh 
+                    env:
+                      - name: awsrole
+                        value:
+                      - name: namespace
+                        value:
+                      - name: scriptaccount
+                        value:
+                      - name: repo
+                        value: 
+                      - name: location
+                        value: 
+                      - name: overridefile
+                        value: 
+                      - name: TF_WORKSPACE
+                        value:  
+                      - name: command
+                        value: plan
+                    image: 'quay.io/opsmxpublic/customterraformstage:v2-awsrole-gitbranch-noartifact'
+                    imagePullPolicy: Always
+                    name: terraspinplan
+                    volumeMounts:
+                      - mountPath: /home/terraspin/opsmx/app/config/
+                        name: opsmx-terraspin-backend-config
+                      - mountPath: /home/terraspin/usr/local/bin/
+                        name: terraformstage-run-scripts
+                restartPolicy: Never
+                volumes:
+                  - secret:
+                      secretName: terraspinbackendconfig
+                    name: opsmx-terraspin-backend-config
+                  - configMap:
+                      name: terraformstage-run-scripts
+                    name: terraformstage-run-scripts
+      - label: TSApplyJob-OpsMx
+        cloudProvider: kubernetes
+        application: "${execution.application}"
+        description: Stage for Terraform Apply operation
+        account: default
+        type: customTSApplyJobStage
+        waitForCompletion: true
+        parameters:
+          - defaultValue: ""
+            description: "Please enter the AWS Assure role configured account name."
+            label: AWS account name
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: awsrole
+          - defaultValue: ""
+            description: "Please enter the namespace of spinnaker in HA mode."
+            label: Spinnaker Namespace
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: namespace
+          - defaultValue: ""
+            description: "Please enter the artifact account name from artifactsaccounts.json, Account where you have tf script present."
+            label: Tf script account
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: scriptaccount
+          - defaultValue: "" 
+            description: "Please enter the Git Repo Account of TF script."
+            label: Tf Plan script Repo
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: repo
+          - defaultValue: "" 
+            description: Please enter Location of terraform script in the repo.
+            label: Tf Location
+            mapping: 'manifest.spec.template.spec.containers[0].env[4].value'
+            name: location
+          - defaultValue: "" 
+            description: Please enter overrideVariableFile path if you want to override variables.
+            label: Override file
+            mapping: 'manifest.spec.template.spec.containers[0].env[5].value'
+            name: overridefile
+          - defaultValue: ""
+            description: Please enter terraform workspace name.
+            label: Terraform Workspace
+            mapping: 'manifest.spec.template.spec.containers[0].env[6].value'
+            name: TF_WORKSPACE  
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: terraspinapplyjob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: terraform
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - command:
+                      - role.sh
+                    env:
+                      - name: awsrole
+                        value:
+                      - name: namespace
+                        value:
+                      - name: scriptaccount
+                        value:
+                      - name: repo
+                        value: 
+                      - name: location
+                        value: 
+                      - name: overridefile
+                        value: 
+                      - name: TF_WORKSPACE
+                        value:          
+                      - name: command
+                        value: apply
+                    image: 'quay.io/opsmxpublic/customterraformstage:v2-awsrole-gitbranch-noartifact'
+                    imagePullPolicy: Always
+                    name: terraspinapply
+                    volumeMounts:
+                      - mountPath: /home/terraspin/opsmx/app/config/
+                        name: opsmx-terraspin-backend-config
+                      - mountPath: /home/terraspin/usr/local/bin/
+                        name: terraformstage-run-scripts
+                restartPolicy: Never
+                volumes:
+                  - secret:
+                      secretName: terraspinbackendconfig
+                    name: opsmx-terraspin-backend-config
+                  - configMap:
+                      name: terraformstage-run-scripts
+                    name: terraformstage-run-scripts
+      - label: TSDestroyJob-OpsMx
+        application: "${execution.application}"
+        cloudProvider: kubernetes
+        credentials: default
+        description: Stage for Terraform Destroy operation
+        account: default
+        type: customTSDestroyJobStage
+        waitForCompletion: true
+        parameters:
+          - defaultValue: ""
+            description: "Please enter the AWS Assure role configured account name."
+            label: AWS account name
+            mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
+            name: awsrole
+          - defaultValue: ""
+            description: "Please enter the namespace of spinnaker in HA mode."
+            label: Spinnaker Namespace
+            mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
+            name: namespace
+          - defaultValue: ""
+            description: "Please enter the artifact account name from artifactsaccounts.json, Account where you have tf script present."
+            label: Tf script account
+            mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
+            name: scriptaccount
+          - defaultValue: "" 
+            description: "Please enter the Git Repo Account of TF script."
+            label: Tf Plan script Repo
+            mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
+            name: repo
+          - defaultValue: "" 
+            description: Please enter Location of terraform script in the repo.
+            label: Tf Location
+            mapping: 'manifest.spec.template.spec.containers[0].env[4].value'
+            name: location
+          - defaultValue: "" 
+            description: Please enter overrideVariableFile path if you want to override variables.
+            label: Override file
+            mapping: 'manifest.spec.template.spec.containers[0].env[5].value'
+            name: overridefile
+          - defaultValue: ""
+            description: Please enter terraform workspace name.
+            label: Terraform Workspace
+            mapping: 'manifest.spec.template.spec.containers[0].env[6].value'
+            name: TF_WORKSPACE
+        manifest:
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: terraspindestroyjob-
+            namespace: SPINNAKER_NAMESPACE
+            labels:
+               stage: opsmx-custom
+               stagetype: terraform
+          spec:
+            backoffLimit: 0
+            template:
+              spec:
+                containers:
+                  - command:
+                      - role.sh
+                    env:
+                      - name: awsrole
+                        value:
+                      - name: namespace
+                        value:
+                      - name: scriptaccount
+                        value:
+                      - name: repo
+                        value: 
+                      - name: location
+                        value: 
+                      - name: overridefile
+                        value: 
+                      - name: TF_WORKSPACE
+                        value: 
+                      - name: command
+                        value: destroy
+                    image: 'quay.io/opsmxpublic/customterraformstage:terraform-1.1.7-isd'
+                    imagePullPolicy: Always
+                    name: terraspindestroy
+                    volumeMounts:
+                      - mountPath: /home/terraspin/opsmx/app/config/
+                        name: opsmx-terraspin-backend-config
+                      - mountPath: /home/terraspin/usr/local/bin/
+                        name: terraformstage-run-scripts
+                restartPolicy: Never
+                volumes:
+                  - secret:
+                      secretName: terraspinbackendconfig
+                    name: opsmx-terraspin-backend-config
+                  - configMap:
+                      name: terraformstage-run-scripts
+                    name: terraformstage-run-scripts
+
 webhook:
   preconfigured:
-  - label: "ServiceNow-Create Change Request"
+  - label: "ServiceNow: Create Change Request-OpsMx"
     type: CreateServiceNowChangeRequest
     enabled: true
-    description: Custom stage for servicenow normal request creation
+    description: ServiceNow Normal Request creation
     method: POST
     url: SERVICENOW_URL/api/sn_chg_rest/v1/change
     customHeaders:
@@ -277,11 +770,10 @@ webhook:
       name: type
       description: Emergency, Normal etc 
       type: string
-
-  - label: "ServiceNow-Change State of Change Request"
+  - label: "ServiceNow: Change State of Change Request-OpsMx"
     type: ChangeStateofChangeRequest
     enabled: true
-    description: Custom stage to change the state of the normal request
+    description: ServiceNow change the state of the normal request
     method: PATCH
     url: SERVICENOW_URL/api/sn_chg_rest/v1/change/${parameterValues['sysid']}
     customHeaders:
@@ -305,11 +797,10 @@ webhook:
       name: sysid
       description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
       type: string
-
-  - label: "ServiceNow-Add Work Note to Change Request"
+  - label: "ServiceNow: Add Work Note to Change Request-OpsMx"
     type: AddWorkNotetoChangeRequst
     enabled: true
-    description: Custom stage to add work note to normal request
+    description: ServiceNow add work note to normal request
     method: PATCH
     url: SERVICENOW_URL/api/sn_chg_rest/change/${parameterValues['sysid']}
     customHeaders:
@@ -328,11 +819,10 @@ webhook:
       name: sysid
       description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
       type: string
-      
-  - label: "Service Now: Wait for state"    
+  - label: "ServiceNow: Wait for state-OpsMx"    
     type: waitServiceNowState          
     enabled: true                    
-    description: Custom stage that waits for a specific state on a Service Now Issue
+    description: Waits for a specific state on a ServiceNow Issue
     method: GET                                                              
     url: SERVICENOW_URL/api/sn_chg_rest/change/${parameterValues['sysid']}
     customHeaders:                                                                       
@@ -377,10 +867,10 @@ webhook:
       description: "Service Now issue states that cancel the pipeline e.g,: Closed, etc."             
       type: string                                                                           
       defaultValue: Closed 
-  - label: "JIRA: Wait for state"
+  - label: "JIRA: Wait for state-OpsMx"
     type: waitJiraState
     enabled: true
-    description: Custom stage that waits for a specific state on a Jira Issue
+    description: Stage that waits for a specific state on a Jira Issue
     method: GET
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}
     customHeaders:
@@ -426,10 +916,10 @@ webhook:
       description: "JIRA issue states that cancel the pipeline e.g,: Done, etc."
       type: string
       defaultValue: Done
-  - label: "JIRA: Create Issue"
+  - label: "JIRA: Create Issue-OpsMx"
     type: addJiraIss
     enabled: true
-    description: Custom stage that add an Issue in Jira
+    description: Stage that add an Issue in Jira
     method: POST
     url: JIRA_URL/rest/api/2/issue/
     customHeaders:
@@ -482,10 +972,10 @@ webhook:
       name: description
       description: description
       type: string
-  - label: "JIRA: Comment on Issue"
+  - label: "JIRA: Comment on Issue-OpsMx"
     type: comJiraIss
     enabled: true
-    description: Custom stage that posts a comment in a Jira Issue
+    description: Stage that posts a comment in a Jira Issue
     method: POST
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}/comment
     customHeaders:
@@ -505,10 +995,10 @@ webhook:
       name: message
       description: message
       type: string
-  - label: "JIRA: Update Issue"
+  - label: "JIRA: Update Issue-OpsMx"
     type: updJiraIss
     enabled: true
-    description: Custom stage that updates an Issue in Jira
+    description: Stage that updates an Issue in Jira
     method: PUT
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}
     customHeaders:
@@ -542,10 +1032,10 @@ webhook:
     - label: Description
       name: description
       description: description
-  - label: "JIRA: Transition Issue"
+  - label: "JIRA: Transition Issue-OpsMx"
     type: transJiraIss
     enabled: true
-    description: Custom stage that transitions an Issue in Jira
+    description: Stage that transitions an Issue in Jira
     method: POST
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}/transitions
     customHeaders:
@@ -566,6 +1056,142 @@ webhook:
     - label: Target Stage ID
       name: targetStageID
       description: Target Stage ID (11 is "To Do", 21 is "In Progress", 31 is "In Review", 41 is "Done")
+      type: string
+  - label: "ServiceDesk: Create Request-OpsMx"
+    type: CreateServiceDeskrequest (issue)
+    enabled: true
+    description: Stage that Create an request in ServiceDesk
+    method: POST
+    url: https://<DOMAIN>/rest/servicedeskapi/request
+    customHeaders:
+      Authorization: Basic USER/PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "serviceDeskId": "${parameterValues['projectid']}",
+        "requestTypeId": "${parameterValues['requesttypeid']}",
+        "requestFieldValues": {
+        "summary": "${parameterValues['summary']}",
+        "description": "${parameterValues['description']}"
+        },
+        "requestParticipants": [
+          "${parameterValues['requestParticipants']}"
+        ]
+      }
+    parameters:
+    - label: Project ID 
+      name: projectid
+      description: Which Servicedesk project do you want to create an item in?
+      type: string
+    - label: Request Type Id
+      name: requesttypeid
+      description: Request type like id "25" for IT HELP 
+      type: string
+    - label: Summary
+      name: summary
+      description: summary of the request
+      type: string
+    - label: Request Participants
+      name: requestParticipants
+      description: requestParticipants of the request
+      type: string
+    - label: Description
+      name: description
+      description: Description of the request
+      type: string   
+  - label: "ServiceDesk: Comment on Issue-OpsMx"
+    type: Coment ServiceDesk Issue
+    enabled: true
+    description: Stage that post a comment in a ServiceDesk Issue
+    method: POST
+    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
+    customHeaders:
+      Authorization: Basic USER/PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "body": "${parameterValues['message']}",
+        "public": true
+      }
+    parameters:
+    - label: Issue ID
+      name: issue
+      description: Issue
+      type: string
+    - label: Message
+      name: message
+      description: message
+      type: string
+  - label: "ServiceDesk: Wait for state-OpsMx"
+    type: waitservicedeskstate
+    enabled: true
+    description: Stage that waits for a specific state on a Servicedesk Issue
+    method: GET
+    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/status
+    customHeaders:
+      Authorization: Basic USER/PASSWORD-BASE64
+      Content-Type: application/json
+    failPipeline: true
+    progressJsonPath: "values[0].status"
+    payload: ""
+    retryStatusCodes:
+      - 200
+    statusJsonPath: "values[0].status"
+    statusUrlResolution: "getMethod"
+    successStatuses: ${parameterValues['success']}
+    retryStatuses: ${parameterValue['retry']}
+    canceledStatuses: ${parameterValues['cancel']}
+    waitBeforeMonitor: "1"
+    waitForCompletion: true
+    parameters:
+    - label: ServiceDesk Issue ID
+      name: issue
+      description: "The ServiceDesk issue, the default relies on ServiceDesk issue ID extraction"
+      type: string
+      defaultValue: 
+    - label: ServiceDesk Retry States
+      name: retry
+      description: "ServiceDesk issue states that Retry the stage e.g,: To Do, In Progress, etc."
+      type: string
+      defaultValue: To Do, In Progress
+    - label: ServiceDesk Success States
+      name: success
+      description: "ServiceDeskissue States that progress the pipeline, e.g,: In Verificaiton etc."
+      type: string
+      defaultValue: In Verification
+    - label: ServiceDesk Canceled States
+      name: cancel
+      description: "ServiceDesk issue states that cancel the pipeline e.g,: Done, etc."
+      type: string
+      defaultValue: Done
+  - label: "ServiceDesk: Transition Issue-OpsMx"
+    type: transservicedesk issue status
+    enabled: true
+    description: Stage that transitions an Servicedesk request status 
+    method: POST
+    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
+    customHeaders:
+      Authorization: Basic USER/PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+     {
+        "id": "${parameterValues['targetStageID']}",
+        "additionalComment": {
+            "body": "${parameterValues['body']}"
+        }
+     }
+    parameters:
+    - label: Issue ID
+      name: issue
+      description: Issue
+      type: string
+    - label: Target Stage ID
+      name: targetStageID
+      description: Target ID from the workflow of project
+      type: string
+    - label: Body
+      name: body
+      description: Current status as a comment to change the transition 
       type: string
 spinnaker:
   extensibility:
