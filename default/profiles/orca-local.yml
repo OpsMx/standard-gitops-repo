@@ -282,11 +282,11 @@ job:
                       default: 420
                       name: updatepr-config
                     name: initscript
-      - label: Customnotification-OpsMx
+      - label: CustomNotification-OpsMx
         cloudProvider: kubernetes
         credentials: default
         application: "${execution.application}"
-        description: Email notification that supports SPEL expression as mailid
+        description: Email Notification that supports SPEL expression as mailid
         account: default
         type: customnotification
         waitForCompletion: true
@@ -439,7 +439,7 @@ job:
                       default: 420
                       name: ansible-config
                     name: initscript
-      - label: TSPlanJob-OpsMx
+      - label: TerraformPlanJob-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform Plan operation
@@ -531,7 +531,7 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: TSApplyJob-OpsMx
+      - label: TerraformApplyJob-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform Apply operation
@@ -623,7 +623,7 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: TSDestroyJob-OpsMx
+      - label: TerraformDestroyJob-OpsMx
         application: "${execution.application}"
         cloudProvider: kubernetes
         credentials: default
@@ -777,7 +777,7 @@ webhook:
       name: type
       description: Emergency, Normal etc 
       type: string
-  - label: "ServiceNow: Change State of Change Request-OpsMx"
+  - label: "ServiceNow: Status of Change Request-OpsMx"
     type: ChangeStateofChangeRequest
     enabled: true
     description: ServiceNow change the state of the normal request
