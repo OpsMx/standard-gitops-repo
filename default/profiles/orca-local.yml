@@ -11,10 +11,10 @@ tasks:
 job:
   preconfigured:
     kubernetes:
-      - label: PipelineSyncToGit-OpsMx
+      - label: Pipeline sync to GitHub-OpsMx
         cloudProvider: kubernetes
         credentials: default
-        description: Backup the Applications and Pipelines from Spinnaker to the Git
+        description: Backup the applications and pipelines from Spinnaker to the GitHub
         account: default
         application: "${execution.application}"
         type: pipelineSyncToGit
@@ -22,12 +22,12 @@ job:
         parameters:
           - defaultValue: "app1,app2,..."
             description: "Please enter spinnaker applications separated by comma"
-            label: spinnaker applications
+            label: Spinnaker applications
             mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
             name: spinnaker_applications
           - defaultValue: "pipeline1,pipeline2..."
             description: "Please enter spinnaker pipelines separated by comma"
-            label: pipieline names
+            label: Pipieline names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
           - defaultValue: ""
@@ -114,10 +114,10 @@ job:
                       secretName: git-token
                   restartPolicy: Never
                   serviceAccountName: default
-      - label: PipelineSyncToSpinnaker-OpsMx
+      - label: Pipeline sync to Spinnaker-OpsMx
         cloudProvider: kubernetes
         credentials: default
-        description: Syncup the Applications and Pipelines from Git to the Spinnaker
+        description: Syncup the applications and pipelines from GitHub to the Spinnaker
         account: default
         application: "${execution.application}"
         type: pipelineSyncToSpinnaker
@@ -125,12 +125,12 @@ job:
         parameters:
           - defaultValue: "app1,app2,..."
             description: "Please enter spinnaker applications separated by comma"
-            label: spinnaker applications
+            label: Spinnaker Applications
             mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
             name: spinnaker_applications
           - defaultValue: "pipeline1,pipeline2..."
             description: "Please enter spinnaker pipelines separated by comma"
-            label: pipieline names
+            label: Pipieline Names
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
           - defaultValue: ""
@@ -282,11 +282,11 @@ job:
                       default: 420
                       name: updatepr-config
                     name: initscript
-      - label: CustomNotification-OpsMx
+      - label: Custom notification-OpsMx
         cloudProvider: kubernetes
         credentials: default
         application: "${execution.application}"
-        description: Email Notification that supports SPEL expression as mailid
+        description: Email notification that supports SPEL expression as mailid
         account: default
         type: customnotification
         waitForCompletion: true
@@ -439,10 +439,10 @@ job:
                       default: 420
                       name: ansible-config
                     name: initscript
-      - label: TerraformPlanJob-OpsMx
+      - label: Terraform Plan-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
-        description: Stage for Terraform Plan operation
+        description: Stage for Terraform plan operation
         account: default
         type: customTSPlanJobStage
         waitForCompletion: true
@@ -531,10 +531,10 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: TerraformApplyJob-OpsMx
+      - label: Terraform Apply-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
-        description: Stage for Terraform Apply operation
+        description: Stage for Terraform apply operation
         account: default
         type: customTSApplyJobStage
         waitForCompletion: true
@@ -623,11 +623,11 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: TerraformDestroyJob-OpsMx
+      - label: Terraform destroy-OpsMx
         application: "${execution.application}"
         cloudProvider: kubernetes
         credentials: default
-        description: Stage for Terraform Destroy operation
+        description: Stage for Terraform destroy operation
         account: default
         type: customTSDestroyJobStage
         waitForCompletion: true
@@ -719,10 +719,10 @@ job:
 
 webhook:
   preconfigured:
-  - label: "ServiceNow: Create Change Request-OpsMx"
+  - label: "ServiceNow: Create change request-OpsMx"
     type: CreateServiceNowChangeRequest
     enabled: true
-    description: ServiceNow Normal Request creation
+    description: ServiceNow normal request creation
     method: POST
     url: SERVICENOW_URL/api/sn_chg_rest/v1/change
     customHeaders:
@@ -777,7 +777,7 @@ webhook:
       name: type
       description: Emergency, Normal etc 
       type: string
-  - label: "ServiceNow: Status of Change Request-OpsMx"
+  - label: "ServiceNow: Change request Status-OpsMx"
     type: ChangeStateofChangeRequest
     enabled: true
     description: ServiceNow change the state of the normal request
@@ -804,7 +804,7 @@ webhook:
       name: sysid
       description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
       type: string
-  - label: "ServiceNow: Add Work Note to Change Request-OpsMx"
+  - label: "ServiceNow: Add work note to change request-OpsMx"
     type: AddWorkNotetoChangeRequst
     enabled: true
     description: ServiceNow add work note to normal request
@@ -829,7 +829,7 @@ webhook:
   - label: "ServiceNow: Wait for state-OpsMx"    
     type: waitServiceNowState          
     enabled: true                    
-    description: Waits for a specific state on a ServiceNow Issue
+    description: Waits for a specific state on a ServiceNow issue
     method: GET                                                              
     url: SERVICENOW_URL/api/sn_chg_rest/change/${parameterValues['sysid']}
     customHeaders:                                                                       
@@ -877,7 +877,7 @@ webhook:
   - label: "JIRA: Wait for state-OpsMx"
     type: waitJiraState
     enabled: true
-    description: Stage that waits for a specific state on a Jira Issue
+    description: Stage that waits for a specific state on a Jira issue
     method: GET
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}
     customHeaders:
@@ -923,10 +923,10 @@ webhook:
       description: "JIRA issue states that cancel the pipeline e.g,: Done, etc."
       type: string
       defaultValue: Done
-  - label: "JIRA: Create Issue-OpsMx"
+  - label: "JIRA: Create issue-OpsMx"
     type: addJiraIss
     enabled: true
-    description: Stage that add an Issue in Jira
+    description: Stage that add an issue in Jira
     method: POST
     url: JIRA_URL/rest/api/2/issue/
     customHeaders:
@@ -979,10 +979,10 @@ webhook:
       name: description
       description: description
       type: string
-  - label: "JIRA: Comment on Issue-OpsMx"
+  - label: "JIRA: Comment on issue-OpsMx"
     type: comJiraIss
     enabled: true
-    description: Stage that posts a comment in a Jira Issue
+    description: Stage that posts a comment in a Jira issue
     method: POST
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}/comment
     customHeaders:
@@ -1002,10 +1002,10 @@ webhook:
       name: message
       description: message
       type: string
-  - label: "JIRA: Update Issue-OpsMx"
+  - label: "JIRA: Update issue-OpsMx"
     type: updJiraIss
     enabled: true
-    description: Stage that updates an Issue in Jira
+    description: Stage that updates an issue in Jira
     method: PUT
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}
     customHeaders:
@@ -1039,10 +1039,10 @@ webhook:
     - label: Description
       name: description
       description: description
-  - label: "JIRA: Transition Issue-OpsMx"
+  - label: "JIRA: Transition issue-OpsMx"
     type: transJiraIss
     enabled: true
-    description: Stage that transitions an Issue in Jira
+    description: Stage that transitions an issue in Jira
     method: POST
     url: JIRA_URL/rest/api/latest/issue/${parameterValues['issue']}/transitions
     customHeaders:
@@ -1064,10 +1064,10 @@ webhook:
       name: targetStageID
       description: Target Stage ID (11 is "To Do", 21 is "In Progress", 31 is "In Review", 41 is "Done")
       type: string
-  - label: "ServiceDesk: Create Request-OpsMx"
+  - label: "ServiceDesk: Create request-OpsMx"
     type: CreateServiceDeskrequest (issue)
     enabled: true
-    description: Stage that Create an request in ServiceDesk
+    description: Stage that create an request in ServiceDesk
     method: POST
     url: https://<DOMAIN>/rest/servicedeskapi/request
     customHeaders:
@@ -1106,10 +1106,10 @@ webhook:
       name: description
       description: Description of the request
       type: string   
-  - label: "ServiceDesk: Comment on Issue-OpsMx"
+  - label: "ServiceDesk: Comment on issue-OpsMx"
     type: Coment ServiceDesk Issue
     enabled: true
-    description: Stage that post a comment in a ServiceDesk Issue
+    description: Stage that post a comment in a ServiceDesk issue
     method: POST
     url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
     customHeaders:
@@ -1132,7 +1132,7 @@ webhook:
   - label: "ServiceDesk: Wait for state-OpsMx"
     type: waitservicedeskstate
     enabled: true
-    description: Stage that waits for a specific state on a Servicedesk Issue
+    description: Stage that waits for a specific state on a Servicedesk issue
     method: GET
     url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/status
     customHeaders:
@@ -1171,7 +1171,7 @@ webhook:
       description: "ServiceDesk issue states that cancel the pipeline e.g,: Done, etc."
       type: string
       defaultValue: Done
-  - label: "ServiceDesk: Transition Issue-OpsMx"
+  - label: "ServiceDesk: Transition issue-OpsMx"
     type: transservicedesk issue status
     enabled: true
     description: Stage that transitions an Servicedesk request status 
