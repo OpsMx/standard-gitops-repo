@@ -439,7 +439,7 @@ job:
                       default: 420
                       name: ansible-config
                     name: initscript
-      - label: Terraform Plan-OpsMx
+      - label: Terraform plan-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform plan operation
@@ -531,7 +531,7 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: Terraform Apply-OpsMx
+      - label: Terraform apply-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform apply operation
