@@ -923,7 +923,7 @@ webhook:
       description: "JIRA issue states that cancel the pipeline e.g,: Done, etc."
       type: string
       defaultValue: Done
-  - label: "JIRA: Create issue-OpsMx"
+  - label: "JIRA: Create an issue-OpsMx"
     type: addJiraIss
     enabled: true
     description: Stage that add an issue in Jira
