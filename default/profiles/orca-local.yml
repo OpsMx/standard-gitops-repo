@@ -719,7 +719,7 @@ job:
 
 webhook:
   preconfigured:
-  - label: "ServiceNow: Create change request-OpsMx"
+  - label: "ServiceNow: Create a change request-OpsMx"
     type: CreateServiceNowChangeRequest
     enabled: true
     description: ServiceNow normal request creation
@@ -804,7 +804,7 @@ webhook:
       name: sysid
       description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
       type: string
-  - label: "ServiceNow: Add work note to change request-OpsMx"
+  - label: "ServiceNow: Add a work note to the change request-OpsMx"
     type: AddWorkNotetoChangeRequst
     enabled: true
     description: ServiceNow add work note to normal request
