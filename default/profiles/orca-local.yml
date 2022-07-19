@@ -439,7 +439,7 @@ job:
                       default: 420
                       name: ansible-config
                     name: initscript
-      - label: Terraform Plan-OpsMx
+      - label: Terraform plan-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform plan operation
@@ -531,7 +531,7 @@ job:
                   - configMap:
                       name: terraformstage-run-scripts
                     name: terraformstage-run-scripts
-      - label: Terraform Apply-OpsMx
+      - label: Terraform apply-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
         description: Stage for Terraform apply operation
@@ -719,7 +719,7 @@ job:
 
 webhook:
   preconfigured:
-  - label: "ServiceNow: Create change request-OpsMx"
+  - label: "ServiceNow: Create a change request-OpsMx"
     type: CreateServiceNowChangeRequest
     enabled: true
     description: ServiceNow normal request creation
@@ -804,7 +804,7 @@ webhook:
       name: sysid
       description: Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6
       type: string
-  - label: "ServiceNow: Add work note to change request-OpsMx"
+  - label: "ServiceNow: Add a work note to the change request-OpsMx"
     type: AddWorkNotetoChangeRequst
     enabled: true
     description: ServiceNow add work note to normal request
@@ -923,7 +923,7 @@ webhook:
       description: "JIRA issue states that cancel the pipeline e.g,: Done, etc."
       type: string
       defaultValue: Done
-  - label: "JIRA: Create issue-OpsMx"
+  - label: "JIRA: Create an issue-OpsMx"
     type: addJiraIss
     enabled: true
     description: Stage that add an issue in Jira
