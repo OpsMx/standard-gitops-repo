@@ -10,7 +10,7 @@ spring:
           password: GIT_TOKEN
           basedir: /tmp/config-repo
           searchPaths: DYN_ACCNT_CONFG_PATH
-          defaultLabel: main
+          defaultLabel: master
           refresh-rate: 10
 encrypt:
   key: Q7udUkHPuA3VnNlOtksSgQ
