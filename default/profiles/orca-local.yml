@@ -1054,7 +1054,7 @@ webhook:
     enabled: true
     description: Stage that create an request in ServiceDesk
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request
+    url: https://<URL>/rest/servicedeskapi/request
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1096,7 +1096,7 @@ webhook:
     enabled: true
     description: Stage that post a comment in a ServiceDesk issue
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1119,7 +1119,7 @@ webhook:
     enabled: true
     description: Stage that waits for a specific state on a Servicedesk issue
     method: GET
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/status
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/status
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1161,7 +1161,7 @@ webhook:
     enabled: true
     description: Stage that transitions an Servicedesk request status 
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
