@@ -1165,7 +1165,7 @@ webhook:
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
-      X-ExperimentalApi: opt-in
+      X-ExperimentalApi: opt
     payload: |-
      {
         "id": "${parameterValues['targetStageID']}",
