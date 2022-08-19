@@ -515,22 +515,17 @@ job:
                         value:  
                       - name: command
                         value: plan
-                    image: 'quay.io/opsmxpublic/customterraformstage:v2-awsrole-gitbranch-noartifact'
+                    image: 'quay.io/opsmxpublic/customterraformstage:terraform-1.1.7-isd-backendconfig'
                     imagePullPolicy: Always
                     name: terraspinplan
                     volumeMounts:
                       - mountPath: /home/terraspin/opsmx/app/config/
                         name: opsmx-terraspin-backend-config
-                      - mountPath: /home/terraspin/usr/local/bin/
-                        name: terraformstage-run-scripts
                 restartPolicy: Never
                 volumes:
                   - secret:
                       secretName: terraspinbackendconfig
                     name: opsmx-terraspin-backend-config
-                  - configMap:
-                      name: terraformstage-run-scripts
-                    name: terraformstage-run-scripts
       - label: Terraform apply-OpsMx
         cloudProvider: kubernetes
         application: "${execution.application}"
@@ -607,22 +602,17 @@ job:
                         value:          
                       - name: command
                         value: apply
-                    image: 'quay.io/opsmxpublic/customterraformstage:v2-awsrole-gitbranch-noartifact'
+                    image: 'quay.io/opsmxpublic/customterraformstage:terraform-1.1.7-isd-backendconfig'
                     imagePullPolicy: Always
                     name: terraspinapply
                     volumeMounts:
                       - mountPath: /home/terraspin/opsmx/app/config/
                         name: opsmx-terraspin-backend-config
-                      - mountPath: /home/terraspin/usr/local/bin/
-                        name: terraformstage-run-scripts
                 restartPolicy: Never
                 volumes:
                   - secret:
                       secretName: terraspinbackendconfig
                     name: opsmx-terraspin-backend-config
-                  - configMap:
-                      name: terraformstage-run-scripts
-                    name: terraformstage-run-scripts
       - label: Terraform destroy-OpsMx
         application: "${execution.application}"
         cloudProvider: kubernetes
@@ -700,22 +690,17 @@ job:
                         value: 
                       - name: command
                         value: destroy
-                    image: 'quay.io/opsmxpublic/customterraformstage:terraform-1.1.7-isd'
+                    image: 'quay.io/opsmxpublic/customterraformstage:terraform-1.1.7-isd-backendconfig'
                     imagePullPolicy: Always
                     name: terraspindestroy
                     volumeMounts:
                       - mountPath: /home/terraspin/opsmx/app/config/
                         name: opsmx-terraspin-backend-config
-                      - mountPath: /home/terraspin/usr/local/bin/
-                        name: terraformstage-run-scripts
                 restartPolicy: Never
                 volumes:
                   - secret:
                       secretName: terraspinbackendconfig
                     name: opsmx-terraspin-backend-config
-                  - configMap:
-                      name: terraformstage-run-scripts
-                    name: terraformstage-run-scripts
 
 webhook:
   preconfigured:
@@ -1069,7 +1054,7 @@ webhook:
     enabled: true
     description: Stage that create an request in ServiceDesk
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request
+    url: https://<URL>/rest/servicedeskapi/request
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1111,7 +1096,7 @@ webhook:
     enabled: true
     description: Stage that post a comment in a ServiceDesk issue
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/comment
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1134,7 +1119,7 @@ webhook:
     enabled: true
     description: Stage that waits for a specific state on a Servicedesk issue
     method: GET
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/status
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/status
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
@@ -1176,10 +1161,11 @@ webhook:
     enabled: true
     description: Stage that transitions an Servicedesk request status 
     method: POST
-    url: https://<DOMAIN>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
+    url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
     customHeaders:
       Authorization: Basic USER/PASSWORD-BASE64
       Content-Type: application/json
+      X-ExperimentalApi: opt
     payload: |-
      {
         "id": "${parameterValues['targetStageID']}",
