@@ -1213,3 +1213,7 @@ policy:
   opa:
     enabled: true
     url: http://oes-sapor:8085
+
+isd:
+  gate:
+     url: PROTOCOL://OVERRIDE_API_URL

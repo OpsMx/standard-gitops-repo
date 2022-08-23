@@ -1,0 +1,9 @@
+services:
+  clouddriver:
+    baseUrl: http://stormdriver-ro:8090
+    enabled: true
+  echo:
+    baseUrl: http://spin-echo-worker:8089
+    enabled: true
+
+global.spinnaker.timezone: America/Los_Angeles
