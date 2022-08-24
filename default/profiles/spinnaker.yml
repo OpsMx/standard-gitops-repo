@@ -48,7 +48,7 @@ services:
     host: 0.0.0.0
     port: 7003
     baseUrl: http://spin-fiat:7003
-    enabled: true
+    enabled: false
   front50:
     host: 0.0.0.0
     port: 8080
@@ -77,12 +77,7 @@ services:
   redis:
     host: 0.0.0.0
     port: 6379
-    baseUrl: redis://:password@<NAMESPACE_NAME>-redis-master:6379
-    enabled: true
-  rosco:
-    host: 0.0.0.0
-    port: 8087
-    baseUrl: http://spin-rosco:8087
+    baseUrl: redis://:password@RELEASE_NAME-redis-master:6379
     enabled: true
   monitoringDaemon:
     host: 0.0.0.0
