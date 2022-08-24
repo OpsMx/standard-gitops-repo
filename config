@@ -309,7 +309,7 @@ deploymentConfigurations:
     apiSecurity:
       ssl:
         enabled: false
-      overrideBaseUrl: /gate/
+      overrideBaseUrl: PROTOCOL://OVERRIDE_API_URL
     uiSecurity:
       ssl:
         enabled: false
