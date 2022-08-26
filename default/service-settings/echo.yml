@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-echo:2.17.1-rabbitmq
+artifactId: quay.io/opsmxpublic/ubi8-spin-echo:1.27.0-v4.0-beta
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:
