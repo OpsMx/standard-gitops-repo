@@ -2,48 +2,48 @@ services:
   clouddriver:
     host: 0.0.0.0
     port: 7002
-    baseUrl: http://spin-clouddriver:7002
-    enabled: false
-  clouddriverCaching:
-    host: 0.0.0.0
-    port: 7002
-    baseUrl: http://spin-clouddriver-caching:7002
-    enabled: true
-  clouddriverRo:
-    host: 0.0.0.0
-    port: 7002
-    baseUrl: http://stormdriver-ro:8090
-    enabled: true
-  clouddriverRoDeck:
-    host: 0.0.0.0
-    port: 7002
-    baseUrl: http://stormdriver-ro-deck:8090
-    enabled: true
-  clouddriverRw:
-    host: 0.0.0.0
-    port: 7002
-    baseUrl: http://stormdriver-rw:8090
-    enabled: true
-  deck:
-    host: 0.0.0.0
-    port: 9000
-    baseUrl: https://<deck-url>
+    baseUrl: http://stormdriver:7002
     enabled: true
   echo:
     host: 0.0.0.0
     port: 8089
     baseUrl: http://spin-echo:8089
+    enabled: true
+  clouddriverCaching:
+    host: 0.0.0.0
+    port: 7002
+    baseUrl: http://spin-clouddriver-caching:7002
     enabled: false
+  clouddriverRo:
+    host: 0.0.0.0
+    port: 7002
+    baseUrl: http://spin-clouddriver-ro:7002
+    enabled: false
+  clouddriverRoDeck:
+    host: 0.0.0.0
+    port: 7002
+    baseUrl: http://spin-clouddriver-ro-deck:7002
+    enabled: false
+  clouddriverRw:
+    host: 0.0.0.0
+    port: 7002
+    baseUrl: http://spin-clouddriver-rw:7002
+    enabled: false
+  deck:
+    host: 0.0.0.0
+    port: 9000
+    baseUrl: http://oes.ryzon7-isd40.opsmx.org/deck
+    enabled: true
   echoScheduler:
     host: 0.0.0.0
     port: 8089
     baseUrl: http://spin-echo-scheduler:8089
-    enabled: true
+    enabled: false
   echoWorker:
     host: 0.0.0.0
     port: 8089
     baseUrl: http://spin-echo-worker:8089
-    enabled: true
+    enabled: false
   fiat:
     host: 0.0.0.0
     port: 7003
@@ -57,13 +57,13 @@ services:
   gate:
     host: 0.0.0.0
     port: 8084
-    baseUrl: https://<gate-url>
+    baseUrl: http://oes.ryzon7-isd40.opsmx.org/gate
     enabled: true
   igor:
     host: 0.0.0.0
     port: 8088
     baseUrl: http://spin-igor:8088
-    enabled: false
+    enabled: true
   kayenta:
     host: 0.0.0.0
     port: 8090
@@ -77,7 +77,7 @@ services:
   redis:
     host: 0.0.0.0
     port: 6379
-    baseUrl: redis://:password@RELEASE_NAME-redis-master:6379
+    baseUrl: redis://:password@isd-redis-master:6379
     enabled: true
   rosco:
     host: 0.0.0.0
@@ -88,6 +88,6 @@ services:
     host: 0.0.0.0
     port: 8008
     baseUrl: http://spin-monitoring-daemon:8008
-    enabled: true
+    enabled: false
 
 global.spinnaker.timezone: America/Los_Angeles
