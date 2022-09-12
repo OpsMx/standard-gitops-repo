@@ -1,3 +1,5 @@
+# Copy this file to spinnaker.yml if configuring for stormdriver
+# Note that HA Clouddriver and Echo is not supported at this time with Stormdriver
 services:
   clouddriver:
     host: 0.0.0.0
