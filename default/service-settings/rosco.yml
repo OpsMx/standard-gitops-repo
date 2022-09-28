@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-rosco:1.27.0-v4.0-ga
+artifactId: quay.io/opsmxpublic/ubi8-spin-rosco:1.28.1_1.8.3_4.0.1
 kubernetes:
   podAnnotations:
     moniker.spinnaker.io/application: spin
