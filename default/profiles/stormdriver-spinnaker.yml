@@ -79,7 +79,7 @@ services:
   redis:
     host: 0.0.0.0
     port: 6379
-    baseUrl: redis://:password@isd-redis-master:6379
+    baseUrl: redis://:password@RELEASE_NAME-redis-master:6379
     enabled: true
   rosco:
     host: 0.0.0.0
