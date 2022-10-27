@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.27.0-v4.0-alpha
+artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.1_5.76.2_4.0.1
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0 -Daws.accessKeyId=AWS_ACCESS_KEY_ID -Daws.secretKey=AWS_SECRET_ACCESS_KEY"
 kubernetes:
