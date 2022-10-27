@@ -704,6 +704,530 @@ job:
 
 webhook:
   preconfigured:
+  - label: "Ansible AWX - Create Instance Group"
+    type: AnsibleAWXCreateInstanceGroup
+    enabled: true
+    description: Stage to create an instance group in ansible awx
+    method: POST
+    url: http://<URL>/api/v2/instance_groups/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "credential": "${parameterValues['credentialid']}",
+        "name": "${parameterValues['name']}",
+        "pod_spec_override": "${parameterValues['podspecoverride']}",
+        "policy_instance_list": [${parameterValues['policyinstancelist']}],
+        "is_container_group": ${parameterValues['iscontainergroup']},
+        "policy_instance_minimum": ${parameterValues['policyinstanceminimum']},
+        "policy_instance_percentage": ${parameterValues['policyinstancepercentage']}
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Credential Id
+      name: credentialid
+      description: Credential id. Leave it blank if not needed
+      type: string
+    - label: Policy Instance Percentage
+      name: policyinstancepercentage
+      description: Minimum percentage of all instances that will be automatically assigned to this group when new instances come online. (integer, default=0)
+      type: string
+    - label: Policy Instance Minimum
+      name: policyinstanceminimum
+      description: Static minimum number of Instances that will be automatically assign to this group when new instances come online. (integer, default=0)
+      type: string
+    - label: Policy Instance List
+      name: policyinstancelist
+      description: List of exact-match Instances that will be assigned to this group (json, default=``). Provide value in "" and multiple values by coma seperated
+      type: string
+    - label: Pod Spec Override
+      name: podspecoverride
+      description: (string, default="")
+      type: string
+    - label: Is Container Group
+      name: iscontainergroup
+      description: true or false
+      type: string
+
+  - label: "Ansible AWX - Update Credential of Instance Group"
+    type: AnsibleAWXUpdatecredentialofInstanceGroup
+    enabled: true
+    description: Stage to update credential of an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['name']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "credential": "${parameterValues['credentialid']}",
+        "name": "${parameterValues['name']}"
+        "is_container_group": true
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Credential Id
+      name: credentialid
+      description: Id of credential to which you want to change
+      type: string
+    
+  - label: "Ansible AWX - Update Instance List of Instance Group"
+    type: AnsibleAWXUpdateInstanceListofInstanceGroup
+    enabled: true
+    description: Stage to update instance list an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['name']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['name']}",
+        "policy_instance_list": [${parameterValues['policyinstancelist']}]
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Policy Instance List
+      name: policyinstancelist
+      description: List of exact-match Instances that will be assigned to this group (json, default=``). Provide value in "" and multiple values by coma seperated
+      type: string
+    
+  - label: "Ansible AWX - Update Policy Instance Minimum of Instance Group"
+    type: AnsibleAWXUpdatePolicyInstanceMinimumofInstanceGroup
+    enabled: true
+    description: Stage to update policy instance minimum an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['name']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['name']}",
+        "policy_instance_minimum": ${parameterValues['policyinstanceminimum']}
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Policy Instance Minimum
+      name: policyinstanceminimum
+      description: Static minimum number of Instances that will be automatically assign to this group when new instances come online. (integer, default=0)
+      type: string
+
+  - label: "Ansible AWX - Update Policy Instance Percentage of Instance Group"
+    type: AnsibleAWXUpdatePolicyInstancePercentageofInstanceGroup
+    enabled: true
+    description: Stage to update policy instance percentage of an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['name']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['name']}",
+        "policy_instance_percentage": ${parameterValues['policyinstancepercentage']}
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Policy Instance Percentage
+      name: policyinstancepercentage
+      description: Minimum percentage of all instances that will be automatically assigned to this group when new instances come online. (integer, default=0)
+      type: string
+
+  - label: "Ansible AWX - Update Pod Spec Override of Instance Group"
+    type: AnsibleAWXUpdatePodSpecOverrideofInstanceGroup
+    enabled: true
+    description: Stage to update pod spec override of an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['name']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['name']}",
+        "pod_spec_override": "${parameterValues['podspecoverride']}"
+      }
+    parameters:
+    - label: Name  
+      name: name
+      description: Name of this instance group. (string, required)
+      type: string
+    - label: Pod Spec Override
+      name: podspecoverride
+      description: (string, default="")
+      type: string
+    
+  - label: "Ansible AWX - Name of Instance Group"
+    type: AnsibleAWXUpdateNameofInstanceGroup
+    enabled: true
+    description: Stage to update name of an instance group in ansible awx
+    method: PATCH
+    url: http://<URL>/api/v2/instance_groups/${parameterValues['currentname']}/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['changename']}"
+      }
+    parameters:
+    - label: Current Name   
+      name: currentname
+      description: Name of the instance group which exists
+      type: string
+    - label: Change Name 
+      name: changename
+      description: To what you need to change
+      type: string
+
+  - label: "Ansible AWX - Create Job Template"
+    type: AnsibleAWXCreateJobTemplate
+    enabled: true
+    description: Stage to create job template in ansible awx
+    method: POST
+    url: http://<URL>/api/v2/job_templates/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "allow_callbacks": "${parameterValues['allowcallbacks']}",
+        "allow_simultaneous": "${parameterValues['allowsimultaneous']}",
+        "ask_credential_on_launch": "${parameterValues['askcredentialonlaunch']}",
+        "ask_diff_mode_on_launch": "${parameterValues['askdiffmodeonlaunch']}",
+        "ask_inventory_on_launch": "${parameterValues['askinventoryonlaunch']}",
+        "ask_job_type_on_launch": "${parameterValues['askjobtypeonlaunch']}",
+        "ask_limit_on_launch": "${parameterValues['asklimitonlaunch']}",
+        "ask_scm_branch_on_launch": "${parameterValues['askscmbranchonlaunch']}",
+        "ask_skip_tags_on_launch": "${parameterValues['askskiptagsonlaunch']}",
+        "ask_tags_on_launch": "${parameterValues['asktagsonlaunch']}",
+        "ask_variables_on_launch": "${parameterValues['askvariablesonlaunch']}",
+        "ask_verbosity_on_launch": "${parameterValues['askverbosityonlaunch']}",
+        "become_enabled": "${parameterValues['becomeenabled']}",
+        "description": "${parameterValues['description']}",
+        "diff_mode": "${parameterValues['diffmode']}",
+        "extra_vars": "${parameterValues['extravars']}",
+        "forks": "${parameterValues['forks']}",
+        "host_config_key": "${parameterValues['hostconfigkey']}",
+        "job_slice_count": "${parameterValues['jobslicecount']}",
+        "job_tags": "${parameterValues['jobtags']}",
+        "job_type": "${parameterValues['jobtype']}",
+        "limit": "${parameterValues['limit']}",
+        "name": "${parameterValues['name']}",
+        "playbook": "${parameterValues['playbook']}",
+        "scm_branch": "${parameterValues['scmbranch']}",
+        "skip_tags": "${parameterValues['skiptags']}",
+        "timeout": "${parameterValues['timeout']}",
+        "use_fact_cache": "${parameterValues['usefactcache']}",
+        "verbosity": "${parameterValues['verbosity']}",
+        "webhook_service": "${parameterValues['webhookservice']}",
+        "project": "${parameterValues['project']}",
+        "webhook_credential": "${parameterValues['webhook_credential']}",
+        "inventory": "${parameterValues['inventory']}",
+        "execution_environment": "${parameterValues['executionenvironment']}"
+      }
+    parameters:
+    - label: Allow Callbacks  
+      name: allowcallbacks
+      description: true or false
+      type: string
+    - label: Allow Simultaneous
+      name: allowsimultaneous
+      description: true or false
+      type: string
+    - label: Ask Credential on Launch
+      name: askcredentialonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Diff Mode on Launch
+      name: askdiffmodeonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Inventory On Launch
+      name: askinventoryonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Job Type on Launch
+      name: askjobtypeonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Limit on Launch
+      name: asklimitonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Scm Branch on Launch
+      name: askscmbranchonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Skip Tags On Launch
+      name: askskiptagsonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Tags on Launch
+      name: asktagsonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Variables on Launch
+      name: askvariablesonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Ask Verbosity on Launch
+      name: askverbosityonlaunch
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Become Enabled
+      name: becomeenabled
+      description: true or false
+      type: string
+      defaultValue: false
+    - label: Description
+      name: description
+      description: Description about job template
+      type: string
+    - label: Diff Mode
+      name: diffmode
+      description: true or false. If enabled, textual changes made to any templated files on the host are shown in the standard output.
+      type: string
+      defaultValue: false
+    - label: Extra Vars
+      name: extravars
+      description: (json, default=``)
+      type: string
+    - label: Forks
+      name: forks
+      description: (integer, default=0)
+      type: string
+      defaultValue: 0
+    - label: Host Config Key
+      name: hostconfigkey
+      description: (string, default="")
+      type: string
+    - label: Job Slice Count
+      name: jobslicecount
+      description: The number of jobs to slice into at runtime. Will cause the Job Template to launch a workflow if value is greater than 1. (integer, default=1)
+      type: string
+      defaultValue: 1
+    - label: Job Tags
+      name: jobtags
+      description: (string, default="")
+      type: string
+    - label: Job Type
+      name: jobtype
+      description: Run(default) or Check
+      type: string
+      defaultValue: Run
+    - label: Limit
+      name: limit
+      description: (string, default="")
+      type: string
+    - label: Name
+      name: name
+      description: name
+      type: string
+    - label: playbook
+      name: playbook
+      description: (string, default="") Eg:- hello_world.yml
+      type: string
+    - label: Scm Branch
+      name: scmbranch
+      description: Branch to use in job run. Project default used if blank. Only allowed if project allow_override field is set to true. (string, default="")
+      type: string
+    - label: Skip Tags
+      name: skiptags
+      description: (string, default="")
+      type: string
+    - label: Timeout
+      name: timeout
+      description: The amount of time (in seconds) to run before the task is canceled. (integer, default=0)
+      type: string
+      defaultValue: 0
+    - label: Use Fact Cache
+      name: usefactcache
+      description:  If enabled, Tower will act as an Ansible Fact Cache Plugin; persisting facts at the end of a playbook run to the database and caching facts for use by Ansible. (boolean, default=False)
+      type: string
+      defaultValue: false
+    - label: Verbosity
+      name: verbosity
+      description: 0(Normal)(default) - 1(Verbose) - 2(More Verbose) - 3(Debug) - 4(Connection Debug) - 5(WinRM Debug)
+      type: string
+      defaultValue: 0
+    - label: webhook_service
+      name: webhook_service
+      description: Service that webhook requests will be accepted from (choice) Eg:- github gitlab
+      type: string
+    - label: Project
+      name: project
+      description: (id, default=``)
+      type: string
+    - label: Webhook Credential
+      name: webhookcredential
+      description: Personal Access Token for posting back the status to the service API (id, default=null)
+      type: string
+      defaultValue: null
+    - label: Inventory
+      name: inventory
+      description: (id, default=``)
+      type: string
+    - label: Execution Environment
+      name: executionenvironment
+      description: (id, default=null)
+      type: string
+      defaultValue: null
+
+  - label: "Ansible AWX - Create Project"
+    type: AnsibleAWXCreateProject
+    enabled: true
+    description: Stage to create a project in ansible awx
+    method: POST
+    url: http://<URL>/api/v2/projects/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: |-
+      {
+        "name": "${parameterValues['name']}",
+        "description": "${parameterValues['description']}",
+        "local_path": "${parameterValues['localpath']}",
+        "scm_type": "${parameterValues['scmtype']}",
+        "scm_url": "${parameterValues['scmurl']}",
+        "scm_branch": "${parameterValues['scmbranch']}",
+        "scm_refspec": "${parameterValues['scmrefspec']}",
+        "scm_clean": "${parameterValues['scmclean']}",
+        "scm_delete_on_update": "${parameterValues['scmdeleteonupdate']}",
+        "credential": "${parameterValues['credential']}",
+        "timeout": "${parameterValues['timeout']}",
+        "organization": "${parameterValues['organization']}",
+        "scm_update_on_launch": "${parameterValues['scmupdateonlaunch']}",
+        "scm_update_cache_timeout": "${parameterValues['scmupdatecachetimeout']}",
+        "allow_override": "${parameterValues['allow_override']}",
+        "custom_virtualenv": "${parameterValues['customvirtualenv']}"
+      }
+    parameters:
+    - label: Name   
+      name: name
+      description: Name of the project
+      type: string
+    - label: Description 
+      name: description
+      description: Description for the project
+      type: string
+    - label: Local Path   
+      name: localpath
+      description: Local path (relative to PROJECTS_ROOT) containing playbooks and related files for this project. (string, default="")
+      type: string
+    - label: Scm Type   
+      name: scmtype
+      description: Specifies the source control system used to store the project. (choice). "" (Manual)(default) - git (Git) - hg (Mercurial) - svn (Subversion) - insights (Red Hat Insights) - archive (Remote Archive)
+      type: string
+    - label: Scm Url   
+      name: scmurl
+      description: The location where the project is stored. (string, default="") Eg:- https://github.com/ansible/test-playbooks.git
+      type: string
+    - label: Scm Branch   
+      name: scmbranch
+      description: Specific branch, tag or commit to checkout. (string, default="")
+      type: string
+    - label: Scm Refspec   
+      name: scmrefspec
+      description: For git projects, an additional refspec to fetch. (string, default="")
+      type: string
+    - label: Scm Clean   
+      name: scmclean
+      description: true or false. Discard any local changes before syncing the project. (boolean, default=False)
+      type: string
+      defaultValue: false
+    - label: Scm Delete on Update   
+      name: scmdeleteonupdate
+      description: true or false. Delete the project before syncing. (boolean, default=False)
+      type: string
+      defaultValue: false
+    - label: Credential   
+      name: credential
+      description: (id, default=``)
+      type: string
+    - label: Timeout   
+      name: timeout
+      description: The amount of time (in seconds) to run before the task is canceled. (integer, default=0)
+      type: string
+      defaultValue: 0
+    - label: Organization   
+      name: organization
+      description: The organization used to determine access to this template. (id, default=``)
+      type: string
+    - label: Scm Update on Launch   
+      name: scmupdateonlaunch
+      description: Update the project when a job is launched that uses the project. (boolean, default=False)
+      type: string
+      defaultValue: false
+    - label: Scm Update Cache Timeout   
+      name: scmupdatecachetimeout
+      description: The number of seconds after the last project update ran that a new project update will be launched as a job dependency. (integer, default=0)
+      type: string
+      defaultValue: 0
+    - label: Allow Override   
+      name: allowoverride
+      description: Allow changing the SCM branch or revision in a job template that uses this project. (boolean, default=False)
+      type: string
+      defaultValue: false
+    - label: Custom Virtualenv   
+      name: customvirtualenv
+      description: Local absolute file path containing a custom Python virtualenv to use (string, default="")
+      type: string
+    
+  - label: "Ansible AWX - Get List of Job Templates"
+    type: AnsibleAWXUGetListofJobTemplates
+    enabled: true
+    description: Stage to list the job templates available
+    method: GET
+    url: http://<URL>/api/v2/job_templates/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: ""
+    parameters: ""
+
+  - label: "Ansible AWX - Invoke a Job Template"
+    type: AnsibleAWXInvokeJobTemplate
+    enabled: true
+    description: Stage to invoke job template in ansible awx.
+    method: POST
+    url: http://<URL>/api/v2/job_templates/${parameterValues['jobtemplateid']}/launch/
+    customHeaders:
+      Authorization: Basic USER:PASSWORD-BASE64
+      Content-Type: application/json
+    payload: ""
+    parameters:
+    - label: Job Template Id  
+      name: jobtemplateid
+      description: Job template id
+      type: string
   - label: "ServiceNow: Create a change request-OpsMx"
     type: CreateServiceNowChangeRequest
     enabled: true
