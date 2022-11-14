@@ -14,3 +14,26 @@ auth:
       groupSearchFilter: member={0}
       groupRoleAttributes: cn
       userDnPattern: cn={0},dc=example,dc=org
+
+#auth.permissions.provider.pipeline: aggregate
+#auth.permissions.source.pipeline.prefix:
+#   enabled: true
+#   prefixes:
+#    - prefix: "dev*"
+#      permissions:
+#        READ:
+#        - "devteam-group"
+#        - "qateam"
+#        WRITE:
+#        - "devteam-group"
+#        EXECUTE:
+#        - "devteam-group"
+#    - prefix: "qa*"
+#      permissions:
+#        READ:
+#        - "qateam"
+#        - "devteam-group"
+#        WRITE:
+#        - "qateam"
+#        EXECUTE:
+#        - "qateam"
