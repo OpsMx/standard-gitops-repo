@@ -13,4 +13,4 @@ spring:
           defaultLabel: BRANCH
           refresh-rate: 10
 encrypt:
-  key: Q7udUkHPuA3VnNlOtksSgQ
+  key: KEY
