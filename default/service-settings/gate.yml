@@ -1,5 +1,5 @@
 enabled: false
-artifactId: quay.io/opsmxpublic/ubi8-gate:1.28.1_6.55.2_4.0.2
+artifactId: quay.io/opsmxpublic/ubi8-gate:1.28.4_6.55.3-ubi8
 healthEndpoint: /health
 kubernetes:
   useExecHealthCheck: false
