@@ -1,0 +1,22 @@
+version: 1.28.4
+services:
+  kayenta:
+    image: quay.io/opsmxpublic/ubi8-spin-kayenta:1.28.4_v2.32.3_4.0.3
+  fiat:
+    image: quay.io/opsmxpublic/ubi8-spin-fiat:1.28.4_v1.31.3_4.0.3
+  clouddriver: 
+    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.4_5.76.3_4.0.3-OSS
+  front50:
+    image: quay.io/opsmxpublic/ubi8-oes-front50:1.28.4_v2.25.3_4.0.3
+  echo:
+    image: quay.io/opsmxpublic/ubi8-spin-echo:1.28.4_2.34.4
+  rosco:
+    image: quay.io/opsmxpublic/ubi8-spin-rosco:1.28.4_v1.8.5_4.0.3
+  igor:
+    image: quay.io/opsmxpublic/ubi8-spin-igor:1.28.4_v4.7.3_4.0.3
+  deck:
+    image: quay.io/opsmxpublic/ubi8-oes-deck:1.28.4_v3.9.2_4.0.3
+  orca:
+    image: quay.io/opsmxpublic/ubi8-oes-orca:1.28.4_v8.24.4_4.0.3
+  gate:
+    image: quay.io/opsmxpublic/ubi8-gate:1.28.4_6.55.3-ubi8
