@@ -18,7 +18,7 @@ services:
   igor:
     image: quay.io/opsmxpublic/ubi8-spin-igor:1.28.4_v4.7.3_4.0.3
   deck:
-    image: quay.io/opsmxpublic/ubi8-oes-deck:1.28.4_v3.9.2_4.0.3
+    image: quay.io/opsmxpublic/ubi8-oes-deck:1.28.4_v3.9.2_4.0.4-b1-rc1
   orca:
     image: quay.io/opsmxpublic/ubi8-oes-orca:1.28.4_v8.24.4_4.0.3
   gate:
