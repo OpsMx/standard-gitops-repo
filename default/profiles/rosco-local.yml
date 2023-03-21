@@ -1,4 +1,4 @@
-rosco: 
+rosco:
   configDir: /opt/rosco/config/packer
-redis: 
-  connection: redis://:password@RELEASE_NAME-redis-master:6379 
+redis:
+  connection: redis://:password@RELEASE_NAME-redis-master:6379

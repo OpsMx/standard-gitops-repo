@@ -6,4 +6,4 @@ policy:
     enabled: true
     url: http://oes-sapor:8085
 migrations:
-  migrateToManagedServiceAccounts: false    
+  migrateToManagedServiceAccounts: false
