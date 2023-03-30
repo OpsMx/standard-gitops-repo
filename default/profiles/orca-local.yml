@@ -1302,11 +1302,11 @@ webhook:
     parameters:
     - label: Assignment Group
       name: assignmentgroup
-      description: Assignment group to approval the state change Eg- CAB Approval
+      description: Approval Group that works on the change request. It populates the Assignment group field based on the support group available for the CI or the service offering consecutively Eg- CAB
       type: string
     - label: State
       name: state
-      description: Change to which state? Eg- Assess
+      description: State of the change request. The default state is New
       type: string
     - label: sys_id
       name: sysid
@@ -1328,7 +1328,7 @@ webhook:
     parameters:
     - label: Work Notes
       name: worknotes
-      description: Add work notes to the request
+      description: The state flow adds these work notes to the Work notes field of any task making this transition.
       type: string
     - label: sys_id
       name: sysid
