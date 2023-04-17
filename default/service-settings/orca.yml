@@ -1,6 +1,6 @@
 #artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2.20.3-slackops
 #artifactId: quay.io/opsmxpublic/ubi8-oes-orca:1.28.1_5.76.2_4.0.2
-artifactId: quay.io/opsmxpublic/ubi8-oes-orca:1.28.4_v8.24.4
+artifactId: quay.io/opsmxpublic/ubi8-oes-orca:cb2cc40d7-18
 kubernetes:
   volumes:
   - id: oes-cacerts

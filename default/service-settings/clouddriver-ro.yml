@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.4_5.76.3_4.0.3
+artifactId: quay.io/opsmxpublic/ubi8-oes-clouddriver:31a3bbdbd
 kubernetes:
   volumes:
   - id: oes-cacerts
