@@ -1359,7 +1359,7 @@ webhook:
     parameters:
     - label: Sys id
       name: sysid
-      description: "sys id of the request"
+      description: "Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6"
       type: string
       defaultValue: ""
     - label: Service Now Success States
