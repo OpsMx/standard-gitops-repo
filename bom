@@ -6,11 +6,11 @@ services:
   kayenta:
     image: quay.io/opsmxpublic/ubi8-spin-kayenta:ecbe3f6-5
   fiat:
-    image: quay.io/opsmxpublic/ubi8-oes-fiat:dcd7dab-7
+    image: quay.io/opsmxpublic/ubi8-oes-fiat:b54c6f1-12
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-oes-clouddriver:31a3bbdbd
+    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:fa4e12bba-25
   front50:
-    image: quay.io/opsmxpublic/ubi8-oes-front50:30308b42-11
+    image: quay.io/opsmxpublic/ubi8-oes-front50:79e1ab67-19
   echo:
     image: quay.io/opsmxpublic/ubi8-oes-echo:8fd3e1d6-7
   rosco:
@@ -20,6 +20,6 @@ services:
   deck:
     image: quay.io/opsmxpublic/ubi8-oes-deck:6f60379a8-8
   orca:
-    image: quay.io/opsmxpublic/ubi8-oes-orca:cb2cc40d7-18
+    image: quay.io/opsmxpublic/ubi8-oes-orca:f17f65800-26
   gate:
     image: quay.io/opsmxpublic/ubi8-oes-gate:80130c7d-11
