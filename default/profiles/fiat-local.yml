@@ -14,7 +14,8 @@ auth:
       groupSearchFilter: member={0}
       groupRoleAttributes: cn
       userDnPattern: cn={0},dc=example,dc=org
-
+pipeline:
+  rbac: false
 #Please uncomment below section if spinnakerrbac is enabled and provide appropriate permissions
 #auth.permissions.provider.pipeline: aggregate
 #auth.permissions.source.pipeline.prefix:
