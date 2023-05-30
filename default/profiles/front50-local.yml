@@ -7,3 +7,5 @@ policy:
     url: http://oes-sapor:8085
 migrations:
   migrateToManagedServiceAccounts: false
+pipeline:
+  rbac: false
