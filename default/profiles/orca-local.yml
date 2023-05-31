@@ -134,7 +134,7 @@ job:
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: spinnaker_pipelines
           - defaultValue: ""
-            description: "Please enter the Specific branch to download APP/pipeline data from github repo, It is optional if not specified default branch is taken from the configmap" 
+            description: "Please enter the Specific branch to download APP/pipeline data from github repo, It is optional if not specified default branch is taken from the configmap"
             label: Branch
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: branch_ui
@@ -226,17 +226,17 @@ job:
         type: customPRStage
         waitForCompletion: true
         parameters:
-          - defaultValue: "" 
+          - defaultValue: ""
             description: Please enter the webhook url.
             label: Webhook URL
             mapping: 'manifest.spec.template.spec.containers[0].env[0].value'
             name: url
-          - defaultValue: "" 
+          - defaultValue: ""
             description: Please enter method.
             label: Method
             mapping: 'manifest.spec.template.spec.containers[0].env[1].value'
             name: method
-          - defaultValue: "" 
+          - defaultValue: ""
             description: Please enter payload.
             label: Payload
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
@@ -462,7 +462,7 @@ job:
             label: Tf script account
             mapping: 'manifest.spec.template.spec.containers[0].env[2].value'
             name: scriptaccount
-          - defaultValue: "" 
+          - defaultValue: ""
             description: "Please enter the Git Repo Account of TF script."
             label: Tf Plan script Repo
             mapping: 'manifest.spec.template.spec.containers[0].env[3].value'
@@ -892,11 +892,10 @@ webhook:
       name: currentname
       description: Name of the instance group which exists
       type: string
-    - label: Change Name 
+    - label: Change Name
       name: changename
       description: To what you need to change
       type: string
-
   - label: "Ansible AWX - Create Job Template"
     type: AnsibleAWXCreateJobTemplate
     enabled: true
@@ -1134,7 +1133,7 @@ webhook:
       name: name
       description: Name of the project
       type: string
-    - label: Description 
+    - label: Description
       name: description
       description: Description for the project
       type: string
@@ -1252,39 +1251,39 @@ webhook:
     parameters:
     - label: Delivery Plan
       name: deliveryplan
-      description: Delivery plan
+      description: Steps to be done to complete the request can be defined as a Delivery Plan.
       type: string
     - label: Impact
       name: impact
-      description: 1-High, 2-Medium, 3-Low. Mention 1 or 2 or 3 in the column.
+      description: Impact is a measure of the effect of an incident, problem, or change on business processes( 1-High, 2-Medium, 3-Low ). Mention 1 or 2 or 3 in the column.
       type: string
     - label: Priority
       name: priority
-      description: 1-Critical, 2-High, 3-Moderate, 4-Low
+      description: Priority is based on impact and urgency, it identifies how quickly the service desk should address the task ( 1-Critical, 2-High, 3-Moderate, 4-Low )
       type: string
     - label: Change Plan
       name: changeplan
-      description: Change plan
+      description: Change Request Lifecycle model like (Normal, Emergency, or Standard etc.)
       type: string
     - label: Short Description
       name: shortdescription
-      description: Short description
+      description: Summary of the change.
       type: string
     - label: Description
       name: description
-      description: Description
+      description: Detailed description of the change.
       type: string
     - label: Implementation Plan
       name: implementationplan
-      description: Implementation plan
+      description: Name of the plan that is to be implemented.
       type: string
     - label: Backout Plan
       name: backoutplan
-      description: Backout plan
+      description: Backout plan implemented prior to any software or system upgrade, installation, integration or transformation to ensure automated system business operations.
       type: string
     - label: Type
       name: type
-      description: Emergency, Normal etc 
+      description: Type of change request ( Emergency, Normal etc )
       type: string
   - label: "ServiceNow: Change request Status-OpsMx"
     type: ChangeStateofChangeRequest
@@ -1303,11 +1302,11 @@ webhook:
     parameters:
     - label: Assignment Group
       name: assignmentgroup
-      description: Assignment group to approval the state change Eg- CAB Approval 
+      description: Approval Group that works on the change request. It populates the Assignment group field based on the support group available for the CI or the service offering consecutively Eg- CAB
       type: string
     - label: State
       name: state
-      description: Change to which state? Eg- Assess 
+      description: State of the change request. The default state is New
       type: string
     - label: sys_id
       name: sysid
@@ -1329,7 +1328,7 @@ webhook:
     parameters:
     - label: Work Notes
       name: worknotes
-      description: Add work notes to the request
+      description: The state flow adds these work notes to the Work notes field of any task making this transition.
       type: string
     - label: sys_id
       name: sysid
@@ -1360,7 +1359,7 @@ webhook:
     parameters:
     - label: Sys id
       name: sysid
-      description: "sys id of the request"
+      description: "Sys id of the request. Can get from url of the request Eg-7067852307303010268affa08c1ed0a6"
       type: string
       defaultValue: ""
     - label: Service Now Success States
@@ -1595,13 +1594,13 @@ webhook:
         ]
       }
     parameters:
-    - label: Project ID 
+    - label: Project ID
       name: projectid
       description: Which Servicedesk project do you want to create an item in?
       type: string
     - label: Request Type Id
       name: requesttypeid
-      description: Request type like id "25" for IT HELP 
+      description: Request type like id "25" for IT HELP
       type: string
     - label: Summary
       name: summary
@@ -1614,7 +1613,7 @@ webhook:
     - label: Description
       name: description
       description: Description of the request
-      type: string   
+      type: string
   - label: "ServiceDesk: Comment on issue-OpsMx"
     type: Coment ServiceDesk Issue
     enabled: true
@@ -1664,7 +1663,7 @@ webhook:
       name: issue
       description: "The ServiceDesk issue, the default relies on ServiceDesk issue ID extraction"
       type: string
-      defaultValue: 
+      defaultValue:
     - label: ServiceDesk Retry States
       name: retry
       description: "ServiceDesk issue states that Retry the stage e.g,: To Do, In Progress, etc."
@@ -1683,7 +1682,7 @@ webhook:
   - label: "ServiceDesk: Transition issue-OpsMx"
     type: transservicedesk issue status
     enabled: true
-    description: Stage that transitions an Servicedesk request status 
+    description: Stage that transitions an Servicedesk request status
     method: POST
     url: https://<URL>/rest/servicedeskapi/request/${parameterValues['issue']}/transition
     customHeaders:
