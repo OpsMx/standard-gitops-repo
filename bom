@@ -8,7 +8,7 @@ services:
   fiat:
     image: quay.io/opsmxpublic/ubi8-spin-fiat:1.28.4_v1.31.3_4.0.3.1
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.4_v8.24.4_4.0.3.1-samlfix
+    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.4_5.76.3_4.0.3.1
   front50:
     image: quay.io/opsmxpublic/ubi8-oes-front50:1.28.4_v2.25.3_4.0.3.1
   echo:
@@ -20,6 +20,6 @@ services:
   deck:
     image: quay.io/opsmxpublic/ubi8-oes-deck:1.28.4_v3.9.2_4.0.3.1
   orca:
-    image: quay.io/opsmxpublic/ubi8-oes-orca:1.28.4_v8.24.4_4.0.3.1
+    image: quay.io/opsmxpublic/ubi8-oes-orca:1.28.4_v8.24.4_4.0.3.1-samlfix
   gate:
     image: quay.io/opsmxpublic/ubi8-gate:1.28.4_6.55.3_v4.0.3.1
