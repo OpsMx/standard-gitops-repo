@@ -1,25 +1,25 @@
 ## Bom file will override the halyard version in .hal/config
 ## And over write the respective service images in service-settings, If service is not defined here it won't consider to over written
 
-version: 1.30.1
+version: 1.30.2
 services:
   kayenta:
-    image: quay.io/opsmxpublic/ubi8-spin-kayenta:ecbe3f6-5
+    image: quay.io/opsmxpublic/ubi8-spin-kayenta:le38d0f-6
   fiat:
-    image: quay.io/opsmxpublic/ubi8-oes-fiat:b54c6f1-12
+    image: quay.io/opsmxpublic/ubi8-oes-fiat:95cc599-15
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:fa4e12bba-25
+    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:
   front50:
-    image: quay.io/opsmxpublic/ubi8-oes-front50:79e1ab67-19
+    image: quay.io/opsmxpublic/ubi8-oes-front50:4966624b-25
   echo:
     image: quay.io/opsmxpublic/ubi8-oes-echo:8fd3e1d6-7
   rosco:
-    image: quay.io/opsmxpublic/ubi8-spin-rosco:4bd1f58-5
+    image: quay.io/opsmxpublic/ubi8-spin-rosco:6cfb434-8
   igor:
     image: quay.io/opsmxpublic/ubi8-spin-igor:b42e23d-7
   deck:
-    image: quay.io/opsmxpublic/ubi8-oes-deck:6f60379a8-8
+    image: quay.io/opsmxpublic/ubi8-oes-deck:82451241c-13
   orca:
-    image: quay.io/opsmxpublic/ubi8-oes-orca:f17f65800-26
+    image: quay.io/opsmxpublic/ubi8-oes-orca:2f8702542-29
   gate:
-    image: quay.io/opsmxpublic/ubi8-oes-gate:80130c7d-11
+    image: quay.io/opsmxpublic/ubi8-oes-gate:da8021a5-18
