@@ -8,7 +8,7 @@ services:
   fiat:
     image: quay.io/opsmxpublic/ubi8-oes-fiat:95cc599-15
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:
+    image: quay.io/opsmxpublic/ubi8-spin-clouddriver:268889b
   front50:
     image: quay.io/opsmxpublic/ubi8-oes-front50:4966624b-25
   echo:

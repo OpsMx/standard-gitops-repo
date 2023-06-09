@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:fa4e12bba-25
+artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:268889b
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:
