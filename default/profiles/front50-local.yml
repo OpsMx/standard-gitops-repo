@@ -1,10 +1,6 @@
 spinnaker:
   s3:
     versioning: false
-policy:
-  opa:
-    enabled: true
-    url: http://oes-sapor:8085
 migrations:
   migrateToManagedServiceAccounts: false
 pipeline:
