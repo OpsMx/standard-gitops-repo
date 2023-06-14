@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-orca:f17f65800-32
+artifactId: quay.io/opsmxpublic/ubi8-oes-orca:2f8702542-33
 kubernetes:
   volumes:
   - id: oes-cacerts
