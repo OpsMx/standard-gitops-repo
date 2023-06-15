@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-fiat:b54c6f1-12
+artifactId: quay.io/opsmxpublic/ubi8-oes-fiat:95cc599-15
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:
