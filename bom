@@ -6,7 +6,7 @@ services:
   kayenta:
     image: quay.io/opsmxpublic/ubi8-spin-kayenta:1.28.4_v2.32.3_4.0.3.1
   fiat:
-    image: quay.io/opsmxpublic/ubi8-spin-fiat:tag-1.28.4_4.0.3.1
+    image: quay.io/opsmxpublic/ubi8-oes-fiat:1.28.4_4.0.3.1
   clouddriver: 
     image: quay.io/opsmxpublic/ubi8-spin-clouddriver:1.28.4-fa4e12bba_4.0.3.1
   front50:
