@@ -8,6 +8,8 @@ pollers:
 tasks:
   daysOfExecutionHistory: 180      # How many days to keep old task executions around.
   useManagedServiceAccounts: false
+  delete-pipeline:
+    timeout-millis: 60000  
 job:
   preconfigured:
     kubernetes:
