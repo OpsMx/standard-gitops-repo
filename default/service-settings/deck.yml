@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-deck:82451241c-13
+artifactId: quay.io/opsmxpublic/ubi8-oes-deck:3dfa9a909-22
 env:
   API_HOST: http://spin-gate:8084
 kubernetes:
