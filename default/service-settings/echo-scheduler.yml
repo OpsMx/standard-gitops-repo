@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-oes-echo:b5dad694-11
+artifactId: quay.io/opsmxpublic/ubi8-oes-echo:b5dad694-12
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:
