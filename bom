@@ -12,13 +12,13 @@ services:
   front50:
     image: quay.io/opsmxpublic/ubi8-oes-front50:4966624b-25
   echo:
-    image: quay.io/opsmxpublic/ubi8-oes-echo:8fd3e1d6-7
+    image: quay.io/opsmxpublic/ubi8-oes-echo:b5dad694-11
   rosco:
     image: quay.io/opsmxpublic/ubi8-spin-rosco:6cfb434-8
   igor:
     image: quay.io/opsmxpublic/ubi8-spin-igor:b42e23d-7
   deck:
-    image: quay.io/opsmxpublic/ubi8-oes-deck:82451241c-13
+    image: quay.io/opsmxpublic/ubi8-oes-deck:3dfa9a909-22
   orca:
     image: quay.io/opsmxpublic/ubi8-oes-orca:2f8702542-33
   gate:
