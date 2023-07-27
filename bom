@@ -20,6 +20,6 @@ services:
   deck:
     image: quay.io/opsmxpublic/ubi8-oes-deck:3dfa9a909-22
   orca:
-    image: quay.io/opsmxpublic/ubi8-oes-orca:2f8702542-33
+    image: quay.io/opsmxpublic/ubi8-oes-orca:250f012ed-67
   gate:
     image: quay.io/opsmxpublic/ubi8-oes-gate:da8021a5-18
