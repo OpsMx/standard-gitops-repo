@@ -5,6 +5,9 @@ message-broker:
   password: Networks123      #rabbitmq password to connect
   host: rabbitmq-service     #rabbitmq endpoint to connect
   port: 5672                 #rabbitmq port to connect
+ssd:
+  name: preview-saas-ssd
+  enable: false
 spinnaker:
   name: preview-saas       #Should be same as account name given in spinnaker setup
   extensibility:
