@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-rosco:6cfb434-8
+artifactId: quay.io/opsmxpublic/ubi8-spin-rosco:190f4ac-14
 kubernetes:
   podAnnotations:
     moniker.spinnaker.io/application: spin
