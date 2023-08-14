@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-igor:b42e23d-7
+artifactId: quay.io/opsmxpublic/ubi8-spin-igor:75231dd-10
 kubernetes:
   volumes:
   #- id: ca-trust-bundle

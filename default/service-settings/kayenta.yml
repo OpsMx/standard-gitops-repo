@@ -1,3 +1,3 @@
-artifactId: quay.io/opsmxpublic/ubi8-spin-kayenta:le38d0f-6
+artifactId: quay.io/opsmxpublic/ubi8-spin-kayenta:1dc64bf-7
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
