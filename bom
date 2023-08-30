@@ -12,7 +12,7 @@ services:
   front50:
     image: quay.io/opsmxpublic/ubi8-oes-front50:b4cc2bd1-34
   echo:
-    image: quay.io/opsmxpublic/ubi8-oes-echo:b5dad694-14
+    image: quay.io/opsmxpublic/ubi8-oes-echo:d56da527-17
   rosco:
     image: quay.io/opsmxpublic/ubi8-spin-rosco:190f4ac-14
   igor:
