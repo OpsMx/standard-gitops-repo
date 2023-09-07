@@ -1,6 +1,8 @@
 artifactId: quay.io/opsmxpublic/ubi8-spin-clouddriver:268889b
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
+ #We need to uncomment the following env variable if we are installing in OpenShift cluster
+ # HOME: "/tmp"
 kubernetes:
   podAnnotations:
     moniker.spinnaker.io/application: spin
