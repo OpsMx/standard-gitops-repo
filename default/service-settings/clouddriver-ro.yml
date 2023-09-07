@@ -9,3 +9,4 @@ kubernetes:
 
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
+#  HOME: "/tmp"
