@@ -9,7 +9,7 @@ ssd:
   name: preview-saas-ssd
   enable: false
 spinnaker:
-  name: preview-saas       #Should be same as account name given in spinnaker setup
+  name: CDName       #Should be same as account name given in spinnaker setup
   extensibility:
     plugins:
       Opsmx.EchoEventPlugin:
