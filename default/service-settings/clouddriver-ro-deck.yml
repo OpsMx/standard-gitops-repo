@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.30.1-b2b54b5-202403190808
+artifactId: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.30.1-ffa4f98eb-202405030428
 kubernetes:
   volumes:
   - id: oes-cacerts
