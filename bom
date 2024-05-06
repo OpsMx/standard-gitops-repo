@@ -8,7 +8,7 @@ services:
   fiat:
     image: quay.io/opsmxpublic/ubi8-fiat-cve:1.30.1-e54c0af-202403190808
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.30.1-b2b54b5-202403190808
+    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.30.1-ffa4f98eb-202405030428
   front50:
     image: quay.io/opsmxpublic/ubi8-front50-cve:1.30.1-c2bdddc-202403190808
   echo:
