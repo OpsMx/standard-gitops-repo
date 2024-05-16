@@ -1,0 +1,46 @@
+#SSD Configs
+message-broker:
+  endpoint:
+    name: rabbitmq     #Currently support rabbitmq only
+  username: rabbitmq         #rabbitmq username to connect
+  password: encrypted:rabbitmqpassword:rabbitmqpassword      #rabbitmq password to connect
+  host: rabbitmq-service     #rabbitmq endpoint to connect
+  port: 5672                 #rabbitmq port to connect
+ssd:
+  name: preview-saas-ssd
+  enable: false
+
+#Http Timeout
+okHttpClient:
+  readTimeoutMs: 120000
+  connectTimeoutMs: 120000
+server.max-http-request-header-size: 512000
+orca:
+  enabled: true
+rest:
+  enabled: true
+  endpoints:
+    -
+      wrap: false
+      url:  http://oes-audit-service:8097/auditservice/v1/echo/events/data # --> audit listener
+    - 
+      wrap: false
+      url: http://oes-sapor:8085/oes/echo   # ----> [Note: This url should be our SAPOR url]
+
+microsoftteams:
+  enabled: true
+
+spinnaker:
+  name: preview-saas      #Should be same as account name given in spinnaker setup
+  extensibility:
+    plugins-root-path: /opt/echo/plugins
+    plugins:
+      Opsmx.EchoEventPlugin:
+        enabled: true
+        version: 1.0.1
+        config: null
+
+
+
+
+ 
