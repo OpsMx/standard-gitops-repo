@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-91a2bb5-202412031015
+artifactId: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-efb8afc-202503121106
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:
