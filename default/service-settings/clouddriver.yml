@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-7fabd3e2c-202508111451
+artifactId: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-40d70d702-202508221216
 env: 
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
  #We need to uncomment the following env variable if we are installing in OpenShift cluster

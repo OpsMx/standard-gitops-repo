@@ -4,13 +4,13 @@
 version: 1.33.3
 services:
   kayenta:
-    image: quay.io/opsmxpublic/ubi8-kayenta-cve:1.33.3-9bef165-202507111308
+    image: quay.io/opsmxpublic/ubi8-kayenta-cve:1.33.3-39fe18ef-202508110504
   fiat:
-    image: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-2c3000d-202508051141
+    image: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-34ad93f-202508051252
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-7fabd3e2c-202508111451
+    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-40d70d702-202508221216
   front50:
-    image: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-e18a2d6b-202508051129
+    image: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-db4911cc-202508080545
   echo:
     image: quay.io/opsmxpublic/ubi8-echo-cve:1.33.3-ca8aea59-202508090933
   rosco:
