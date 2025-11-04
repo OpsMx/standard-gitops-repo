@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-db4911cc-202508080545
+artifactId: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-3d3fc2e-202510270923
 env:
   JAVA_OPTS: "-XX:MaxRAMPercentage=100.0"
 kubernetes:

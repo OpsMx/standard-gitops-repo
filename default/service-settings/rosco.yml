@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-rosco-cve:1.33.3-a0c4ab4-202508051306
+artifactId: quay.io/opsmxpublic/ubi8-rosco-cve:1.33.3-77a9021-202510270924
 kubernetes:
   podAnnotations:
     moniker.spinnaker.io/application: spin

@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-igor-cve:1.33.3-0edaf6a3-202508090819
+artifactId: quay.io/opsmxpublic/ubi8-igor-cve:1.33.3-e346d80-202510270923
 kubernetes:
   volumes:
   #- id: ca-trust-bundle

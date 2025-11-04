@@ -1,4 +1,4 @@
-artifactId: quay.io/opsmxpublic/ubi8-orca-cve:1.33.3-26f44f863-202508211254
+artifactId: quay.io/opsmxpublic/ubi8-orca-cve:1.33.3-0f5f79b-202510270923
 kubernetes:
   volumes:
   - id: oes-cacerts
