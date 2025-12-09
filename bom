@@ -4,22 +4,22 @@
 version: 1.33.3
 services:
   kayenta:
-    image: quay.io/opsmxpublic/ubi8-kayenta-cve:1.33.3-ecc9ab2-202510270931
+    image: quay.io/opsmxpublic/ubi8-kayenta-cve:1.33.3-17a8f1e6-202511260923
   fiat:
-    image: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-4523712-202510270923
+    image: quay.io/opsmxpublic/ubi8-fiat-cve:1.33.3-1539ea5-202511260737
   clouddriver: 
-    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-917d4da-202510270924
+    image: quay.io/opsmxpublic/ubi8-clouddriver-cve:1.33.3-426d5dc17-202511260644
   front50:
-    image: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-3d3fc2e-202510270923
+    image: quay.io/opsmxpublic/ubi8-front50-cve:1.33.3-d448c212-202511281512
   echo:
-    image: quay.io/opsmxpublic/ubi8-echo-cve:1.33.3-1258ec7-202510270923
+    image: quay.io/opsmxpublic/ubi8-echo-cve:1.33.3-ea5ead12-202511240753
   rosco:
-    image: quay.io/opsmxpublic/ubi8-rosco-cve:1.33.3-77a9021-202510270924
+    image: quay.io/opsmxpublic/ubi8-rosco-cve:1.33.3-3a9c913-202511260927
   igor:
-    image: quay.io/opsmxpublic/ubi8-igor-cve:1.33.3-e346d80-202510270923
+    image: quay.io/opsmxpublic/ubi8-igor-cve:1.33.3-9e9cb4d4-202511260912
   deck:
-    image: quay.io/opsmxpublic/ubi8-oes-custom-deck:isd-spin-2025.10.00-30eed8021-202510281147
+    image: quay.io/opsmxpublic/ubi8-oes-custom-deck:isd-7f2a64925-202512051105
   orca:
-    image: quay.io/opsmxpublic/ubi8-orca-cve:1.33.3-0f5f79b-202510270923
+    image: quay.io/opsmxpublic/ubi8-orca-cve:1.33.3-ada79690a-202511260932
   gate:
-    image: quay.io/opsmxpublic/ubi8-gate-cve:1.33.3-d19c230-202510270923
+    image: quay.io/opsmxpublic/ubi8-gate-cve:1.33.3-0104a80a-20251126082
