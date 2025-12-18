@@ -25,10 +25,10 @@ global:
 spinnaker:
   gitopsHalyard:
     repo:
-      organization: ksrinimba # REPLACE
-      username: ksrinimba     # REPLACE
-      token: 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
-      #token: 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
+      organization: gitorganization # REPLACE
+      username: abc     # REPLACE
+      token: gittoken
       repository: http-ryzon7
       dynamicAccRepository: http-ryzon7
+
 
