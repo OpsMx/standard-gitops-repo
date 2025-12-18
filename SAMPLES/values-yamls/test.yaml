@@ -26,9 +26,10 @@ spinnaker:
   gitopsHalyard:
     repo:
       organization: gitorganization # REPLACE
-      username: abc     # REPLACE
+      username: gitusername     # REPLACE
       token: gittoken
       repository: http-ryzon7
       dynamicAccRepository: http-ryzon7
+
 
 
