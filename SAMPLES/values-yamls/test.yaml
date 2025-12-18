@@ -26,10 +26,11 @@ spinnaker:
   gitopsHalyard:
     repo:
       organization: gitorganization # REPLACE
-      username: gitusername     # REPLACE
-      token: gittoken
+      username: git/stash_username  # Username to authenticate with git/stash repo
+      token: git/stash_token  # Token corresponding to above username
       repository: http-ryzon7
       dynamicAccRepository: http-ryzon7
+
 
 
 
