@@ -25,10 +25,12 @@ global:
 spinnaker:
   gitopsHalyard:
     repo:
-      organization: ksrinimba # REPLACE
-      username: ksrinimba     # REPLACE
-      token: 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
-      #token: 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
+      organization: gitorganization # REPLACE
+      username: git/stash_username  # Username to authenticate with git/stash repo
+      token: git/stash_token  # Token corresponding to above username
       repository: http-ryzon7
       dynamicAccRepository: http-ryzon7
+
+
+
 
